@@ -1,19 +1,19 @@
 {
   "name": "sky-qr",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "Minimal web app to generate QR Codes from an URL or just plain text",
   "scripts": {
     "start": "npm run dev",
     "dev": "npx run-p build-watch assets-watch serve",
     "build": "npx esbuild src/main.ts --bundle --outfile=www/main.js",
     "build-watch": "npm run build -- --watch",
+    "build-prod": "npm run build -- --minify",
     "assets": "copy src\\index.html www\\index.html",
     "assets-watch": "chokidar \"src/**/*.html\" -c \"npm run assets\" --verbose",
     "serve": "cd www && npx snowpack dev"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Vitor B Barbieri",
+  "license": "MIT",
   "devDependencies": {
     "chokidar-cli": "^3.0.0",
     "esbuild": "^0.12.28",
