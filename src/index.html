@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script type="module" async defer src="./main.js"></script>
+  <link rel="stylesheet" type="text/css" href="./main.css">
+  <title>Sky QR Code</title>
+</head>
+
+<body>
+  <h3 class="text-primary"><b>Sky QR Code</b></h3>
+  <div class="card">
+    <header>
+      <h5>Insert URL below</h5>
+    </header>
+    <input type="url" id="url-input">
+  </div>
+  <div class="spacer"></div>
+  <div class="card">
+    <div class="qr-code-container">
+      <canvas id="qr-code-canvas"></canvas>
+    </div>
+  </div>
+  <style>
+    body {
+      padding: 16px;
+    }
+    .qr-code-container {
+      min-height: calc(100vh - 236px);
+      min-width: calc(100vw - 72px);
+    }
+    .spacer {
+      width: 100%;
+      min-height: 16px;
+    }
+  </style>
+</body>
+
+</html>
