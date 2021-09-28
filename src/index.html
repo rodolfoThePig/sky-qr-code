@@ -14,7 +14,7 @@
   <h3 class="text-primary"><b>Sky QR Code</b></h3>
   <div class="card">
     <header>
-      <h5>Insert URL below</h5>
+      <h5><label for="url-input">Insert URL</label></h5>
     </header>
     <input type="url" id="url-input">
   </div>
@@ -28,10 +28,14 @@
     body {
       padding: 16px;
     }
+
     .qr-code-container {
       min-height: calc(100vh - 236px);
       min-width: calc(100vw - 72px);
+      max-height: calc(100vh - 236px);
+      max-width: calc(100vw - 72px);
     }
+
     .spacer {
       width: 100%;
       min-height: 16px;

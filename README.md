@@ -7,14 +7,19 @@ To-do
 ----
 
 - ~~licensing~~
-- open-sourcing
-- minify
+- ~~open-sourcing~~
+- ~~minify~~
 - fullscreen
-- clipboard
+- clipboard (paste, copy image)
+- add instructions and URL to readme
+- github link on page
 - share img
 - download img
 - offline
 - install button
-- file qrcode
+- encode (small) file as qrcode
+  - also decode and download?
+  - compress?
 - correction level option
 - col wrap on landscape
+

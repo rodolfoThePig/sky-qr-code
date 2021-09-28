@@ -1,6 +1,6 @@
 {
   "name": "sky-qr",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Minimal web app to generate QR Codes from an URL or just plain text",
   "scripts": {
     "start": "npm run dev",

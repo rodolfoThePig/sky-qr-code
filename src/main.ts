@@ -25,6 +25,5 @@ let canvasTimeout;
 function updateQrCode() {
   const input: HTMLInputElement = document.querySelector('#url-input');
   const canvas: HTMLCanvasElement = document.querySelector('#qr-code-canvas');
-  console.log(input.value);
   debounce(canvasTimeout, 400, () => paintQrCodeToCanvas(input.value, canvas,));
 }
