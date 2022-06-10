@@ -4149,7 +4149,7 @@
       return;
     }
     if (!width) {
-      const parentRect = canvas.parentElement.getBoundingClientRect();
+      const parentRect = canvas.parentElement?.getBoundingClientRect();
       width = parentRect.width > parentRect.height ? parentRect.height : parentRect.width;
     }
     return (0, import_qrcode.toCanvas)(canvas, data, { margin: 0, width, errorCorrectionLevel: "M" }, (error) => {
@@ -4179,9 +4179,8 @@
   }
   var canvasTimeout;
   function updateQrCode() {
-    const input2 = document.querySelector("#url-input");
     const canvas = document.querySelector("#qr-code-canvas");
-    debounce(canvasTimeout, 400, () => paintQrCodeToCanvas(input2.value, canvas));
+    debounce(canvasTimeout, 400, () => paintQrCodeToCanvas(input.value, canvas));
   }
 })();
 /*!

@@ -5,10 +5,10 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "npx run-p build-watch assets-watch serve",
-    "build": "npx esbuild src/main.ts --bundle --outfile=www/main.js",
+    "build": "npx esbuild src/main.ts --bundle --outfile=main.js",
     "build-watch": "npm run build -- --watch",
     "build-prod": "npm run build -- --minify",
-    "assets": "copy src\\index.html www\\index.html",
+    "assets": "copy src\\index.html index.html",
     "assets-watch": "chokidar \"src/**/*.html\" -c \"npm run assets\" --verbose",
     "serve": "cd www && npx snowpack dev"
   },
