@@ -1,5 +1,5 @@
 {
-  "name": "sky-qr",
+  "name": "easy-qr",
   "version": "0.0.2",
   "description": "Minimal web app to generate QR Codes from an URL or just plain text",
   "scripts": {

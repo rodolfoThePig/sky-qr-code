@@ -1,4 +1,4 @@
-Sky QR Code
+Easy QR Code
 ====
 
 Minimal web app to generate QR Codes from an URL or just plain text.

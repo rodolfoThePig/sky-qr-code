@@ -5,7 +5,7 @@ export function paintQrCodeToCanvas(data: string, canvas: HTMLCanvasElement, wid
     return;
   }
   if (!width) {
-    const parentRect = canvas.parentElement.getBoundingClientRect() as {
+    const parentRect = canvas.parentElement?.getBoundingClientRect() as {
       width: number;
       height: number;
       top: number;
