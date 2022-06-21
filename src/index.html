@@ -7,11 +7,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script type="module" async defer src="./main.js"></script>
   <link rel="stylesheet" type="text/css" href="./main.css">
+  <base href="/">
   <title>Easy QR Code</title>
 </head>
 
 <body>
-  <h3 class="text-primary"><b>Easy QR Code</b></h3>
+  <div class="row top-row">
+    <div class="top-title">
+      <h3 class="text-primary"><b>Easy QR Code</b></h3>
+    </div>
+    <div class="top-icons">
+      <!-- <img id="button-install" src="/assets/ionicons/logo-pwa.svg" alt="Install Pwa" class="icon icon-button"> -->
+      <img id="button-github" src="/assets/ionicons/logo-github.svg" alt="View on Github" class="icon icon-button">
+    </div>
+  </div>
+
   <div class="card">
     <header>
       <h5><label for="url-input">Insert URL</label></h5>
@@ -24,23 +34,15 @@
       <canvas id="qr-code-canvas"></canvas>
     </div>
   </div>
-  <style>
-    body {
-      padding: 16px;
-    }
-
-    .qr-code-container {
-      min-height: calc(100vh - 236px);
-      min-width: calc(100vw - 72px);
-      max-height: calc(100vh - 236px);
-      max-width: calc(100vw - 72px);
-    }
-
-    .spacer {
-      width: 100%;
-      min-height: 16px;
-    }
-  </style>
+  <div class="spacer"></div>
+  <div class="card">
+    <div class="row bottom-row">
+      <img id="button-download" src="/assets/ionicons/download.svg" alt="Download image file" class="icon icon-button">
+      <img id="button-copy" src="/assets/ionicons/copy.svg" alt="Copy to clipboard" class="icon icon-button">
+      <img id="button-share" src="/assets/ionicons/share-social.svg" alt="Share image" class="icon icon-button">
+      <img id="button-fullscreen" src="/assets/ionicons/expand.svg" alt="Expand to Fullscreen" class="icon icon-button">
+    </div>
+  </div>
 </body>
 
 </html>

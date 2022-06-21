@@ -9,8 +9,8 @@
     "build-watch": "npm run build -- --watch",
     "build-prod": "npm run build -- --minify && npm run assets",
     "assets": "cp src/index.html index.html",
-    "assets-watch": "chokidar \"src/**/*.html\" -c \"npm run assets\" --verbose",
-    "serve": "cd www && npx snowpack dev"
+    "assets-watch": "chokidar \"src/**/*.html\" -c \"npm run assets\"",
+    "serve": "npx snowpack dev"
   },
   "author": "Vitor B Barbieri",
   "license": "MIT",

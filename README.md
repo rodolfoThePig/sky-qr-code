@@ -22,4 +22,3 @@ To-do
   - compress?
 - correction level option
 - col wrap on landscape
-
