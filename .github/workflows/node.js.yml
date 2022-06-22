@@ -47,4 +47,4 @@ jobs:
         # Stage the file, commit and push
         git add .
         git commit -m "build static site"
-        git push origin stable
+        git push origin prod
