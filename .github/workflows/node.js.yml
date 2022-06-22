@@ -28,7 +28,7 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build-prod --if-present
-    
+
     - name: setup git config
       run: |
         # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
@@ -37,10 +37,10 @@ jobs:
 
     - name: commit
       run: |
-        # Move changes to prod      
+        # Move changes to prod
         git stash
         git checkout prod
-        git stash pop      
+        git stash pop
         # Stage the file, commit and push
         git add .
         git commit -m "build static site"
