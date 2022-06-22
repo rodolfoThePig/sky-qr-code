@@ -44,10 +44,6 @@ jobs:
 
     - name: commit
       run: |
-        # Move changes to prod
-        git stash
-        git checkout prod
-        git stash pop
         # Stage the file, commit and push
         git add .
         git commit -m "build static site"
