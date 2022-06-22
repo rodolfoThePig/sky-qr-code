@@ -35,6 +35,13 @@ jobs:
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
 
+    - name: stash move to prod
+      run: |
+        # Move changes to prod
+        git stash
+        git checkout prod
+        git stash pop
+
     - name: commit
       run: |
         # Move changes to prod
