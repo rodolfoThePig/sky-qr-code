@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "stable" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "stable" ]
 
 jobs:
   build:
@@ -28,7 +28,7 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build-prod --if-present
-    
+
     - name: setup git config
       run: |
         # setup the username and email. I tend to use 'GitHub Actions Bot' with no email by default
@@ -37,9 +37,11 @@ jobs:
 
     - name: commit
       run: |
+        # Move changes to prod
+        git stash
+        git checkout prod
+        git stash pop
         # Stage the file, commit and push
-        git add index.html
-        git add main.js
-        git add main.css
+        git add .
         git commit -m "build static site"
-        git push origin master
+        git push origin stable
