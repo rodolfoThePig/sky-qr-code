@@ -35,12 +35,15 @@ jobs:
         git config user.name "GitHub Actions Bot"
         git config user.email "<>"
 
-    - name: commit
+    - name: stash move to prod
       run: |
         # Move changes to prod
         git stash
         git checkout prod
         git stash pop
+
+    - name: commit
+      run: |
         # Stage the file, commit and push
         git add .
         git commit -m "build static site"
