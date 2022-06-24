@@ -39,6 +39,7 @@ jobs:
       run: |
         # Move changes to prod
         git stash
+        git fetch origin prod:prod
         git checkout prod
         git stash pop
 
