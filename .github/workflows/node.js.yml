@@ -49,6 +49,7 @@ jobs:
         npm run build-prod --if-present
 
     - name: commit
+      continue-on-error: true
       run: |
         # Stage the file and commit
         git add .
