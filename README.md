@@ -14,12 +14,13 @@ To-do
 - ✔ copy image to clipboard
 - paste URL from clipboard
 - clear input
-- ✔ github link on page
 - ✔ share img
 - ✔ download img
+- ✔ github link on page
+- ✔ make it responsive
+- colorize icons
 - offline (service worker)
 - pwa manifest and install button
-- ✔ make it responsive
 - minify html/css
 - change base href depending on debug/production
 - add tests (cypress/playwright)
