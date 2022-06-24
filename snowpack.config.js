@@ -6,7 +6,8 @@ module.exports = {
   root: ".",
   mount: {
     ".": {url: '/', resolve: false,},
-    "./assets": {url: '/assets', static: true, resolve: false, },
+    "./build": {url: '/build', static: true, resolve: false, },
+    "./build/assets": {url: '/build/assets', static: true, resolve: false, },
   },
   plugins: [
     /* ... */
