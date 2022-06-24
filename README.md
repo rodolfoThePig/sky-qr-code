@@ -22,3 +22,4 @@ To-do
 - ✔ make it responsive
 - minify html/css
 - change base href depending on debug/production
+- add tests (cypress/playwright)
