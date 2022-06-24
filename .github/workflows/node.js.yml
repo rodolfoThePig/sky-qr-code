@@ -40,7 +40,7 @@ jobs:
     - name: checkout prod and merge stable
       run: |
         git checkout prod
-        git merge -X theirs stable
+        git merge -X theirs stable --allow-unrelated-histories
 
     - run: npm ci
 
