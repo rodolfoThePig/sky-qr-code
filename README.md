@@ -20,3 +20,6 @@ To-do
 - offline (service worker)
 - pwa manifest and install button
 - ✔ make it responsive
+- minify html/css
+- change base href depending on debug/production
+- add tests (cypress/playwright)
