@@ -26,8 +26,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build-prod --if-present
 
     - name: setup git config
       run: |
@@ -41,14 +39,21 @@ jobs:
 
     - name: stash move to prod
       run: |
-        # Move changes to prod
-        git stash
         git checkout prod
-        git stash pop
+
+    - run: npm ci
+
+    - name: build static site
+      run: |
+        npm run build-prod --if-present
 
     - name: commit
       run: |
-        # Stage the file, commit and push
+        # Stage the file and commit
         git add .
         git commit -m "build static site"
+
+    - name: push
+      run: |
+        # Push to origin/prod
         git push origin prod
