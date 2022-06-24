@@ -37,9 +37,10 @@ jobs:
       run: |
         git fetch origin prod:prod
 
-    - name: stash move to prod
+    - name: checkout prod and merge stable
       run: |
         git checkout prod
+        git merge -X theirs stable
 
     - run: npm ci
 
