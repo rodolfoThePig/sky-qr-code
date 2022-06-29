@@ -4193,6 +4193,10 @@
   // src/utils/qr-code.ts
   var paintQrCodeToCanvas = (data, canvas2, width) => {
     if (!data) {
+      const context = canvas2.getContext("2d");
+      if (context) {
+        context.clearRect(0, 0, canvas2.width, canvas2.height);
+      }
       return;
     }
     if (!width) {
@@ -4248,6 +4252,19 @@
   githubButton.onclick = () => {
     window.open("https://github.com/rodolfoThePig/easy-qr-code");
   };
+  var pasteButton = document.querySelector("#button-paste");
+  pasteButton.onclick = async () => {
+    const clipboard = await navigator.clipboard.readText();
+    if (typeof clipboard === "string") {
+      input.value = clipboard;
+      updateQrCode();
+    }
+  };
+  var clearButton = document.querySelector("#button-clear");
+  clearButton.onclick = () => {
+    input.value = "";
+    updateQrCode();
+  };
   var copyButton = document.querySelector("#button-copy");
   copyButton.onclick = async () => {
     const blob = await qrCodeToBlob(input.value, canvas);
@@ -4264,7 +4281,7 @@
     shareBlobImage(blob, "Qr-code.png");
   };
   var fullscreenButton = document.querySelector("#button-fullscreen");
-  fullscreenButton.onclick = async () => {
+  fullscreenButton.onclick = () => {
     canvas.requestFullscreen();
   };
 })();

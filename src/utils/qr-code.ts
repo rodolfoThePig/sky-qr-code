@@ -3,6 +3,10 @@ import { dataURItoBlob } from './blob';
 
 export const paintQrCodeToCanvas = (data: string, canvas: HTMLCanvasElement, width?: number) => {
   if (!data) {
+    const context = canvas.getContext('2d');
+    if (context) {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+    }
     return;
   }
   if (!width) {
@@ -22,7 +26,7 @@ export const paintQrCodeToCanvas = (data: string, canvas: HTMLCanvasElement, wid
   });
 }
 
-export const qrCodeToBlob = async (data: string, canvas: HTMLCanvasElement, width?: number): Blob => {
+export const qrCodeToBlob = async (data: string, canvas: HTMLCanvasElement, width?: number) => {
   if (!data) {
     throw new Error('No data');
   }
