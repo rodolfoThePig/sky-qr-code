@@ -9,9 +9,9 @@
   <base href="/build/">
   <script type="module" async defer src="main.js"></script>
   <link rel="stylesheet" type="text/css" href="main.css">
-  <link rel="icon" type="image/png" href="assets/favicon16.png" sizes="16x16">
-  <link rel="icon" type="image/png" href="assets/favicon32.png" sizes="32x32">
-  <link rel="icon" type="image/png" href="assets/favicon96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="build/assets/favicon16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="build/assets/favicon32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="build/assets/favicon96.png" sizes="96x96">
   <title>Easy QR Code</title>
 </head>
 
@@ -21,15 +21,18 @@
       <h4 class="text-primary"><b>Easy QR Code</b></h4>
     </div>
     <div class="top-icons">
-      <!-- <img id="button-install" src="/assets/logo-pwa.svg" alt="Install Pwa" class="icon icon-button"> -->
       <img id="button-github" src="assets/logo-github.svg" alt="View on Github" class="icon icon-button">
     </div>
   </div>
 
   <div class="card">
-    <header>
+    <div class="row input-row">
       <h5><label for="url-input">Insert URL</label></h5>
-    </header>
+      <div class="row input-icon-row">
+        <img id="button-clear" src="assets/trash-bin.svg" alt="Clear url" class="icon icon-sm icon-button">
+        <img id="button-paste" src="assets/clipboard.svg" alt="Paste URL from clipboard" class="icon icon-sm icon-button">
+      </div>
+    </div>
     <input type="url" id="url-input">
   </div>
   <div class="spacer"></div>
