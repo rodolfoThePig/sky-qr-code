@@ -3,8 +3,8 @@ import './main.css';
 import { paintQrCodeToCanvas, qrCodeToBlob } from './utils/qr-code';
 import { downloadBlob, shareBlobImage } from './utils/blob';
 import { debounce } from './utils/time';
-const canvas = document.querySelector('#qr-code-canvas') as HTMLCanvasElement;
 
+const canvas = document.querySelector('#qr-code-canvas') as HTMLCanvasElement;
 let canvasTimeout;
 function updateQrCode() {
   // const input = document.querySelector('#url-input') as HTMLInputElement;
@@ -27,25 +27,40 @@ githubButton.onclick = () => {
   window.open('https://github.com/rodolfoThePig/easy-qr-code');
 }
 
+const pasteButton = document.querySelector('#button-paste') as HTMLImageElement;
+pasteButton.onclick = async () => {
+  const clipboard = await navigator.clipboard.readText();
+  if (typeof clipboard === 'string') {
+    input.value = clipboard;
+    updateQrCode();
+  }
+}
+
+const clearButton = document.querySelector('#button-clear') as HTMLImageElement;
+clearButton.onclick = () => {
+  input.value = '';
+  updateQrCode();
+}
+
 const copyButton = document.querySelector('#button-copy') as HTMLImageElement;
 copyButton.onclick = async () => {
-  const blob = await qrCodeToBlob(input.value, canvas,);
+  const blob = await qrCodeToBlob(input.value, canvas);
   navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
 }
 
 const downloadButton = document.querySelector('#button-download') as HTMLImageElement;
 downloadButton.onclick = async () => {
-  const blob = await qrCodeToBlob(input.value, canvas,);
+  const blob = await qrCodeToBlob(input.value, canvas);
   downloadBlob(blob, 'Qr-code.png');
 }
 
 const shareButton = document.querySelector('#button-share') as HTMLImageElement;
 shareButton.onclick = async () => {
-  const blob = await qrCodeToBlob(input.value, canvas,);
+  const blob = await qrCodeToBlob(input.value, canvas);
   shareBlobImage(blob, 'Qr-code.png')
 }
 
 const fullscreenButton = document.querySelector('#button-fullscreen') as HTMLImageElement;
-fullscreenButton.onclick = async () => {
+fullscreenButton.onclick = () => {
   canvas.requestFullscreen();
 }
