@@ -12,8 +12,8 @@ To-do
 - ✔ minify
 - ✔ fullscreen
 - ✔ copy image to clipboard
-- paste URL from clipboard
-- clear input
+- ✔ paste URL from clipboard
+- ✔ clear input
 - ✔ share img
 - ✔ download img
 - ✔ github link on page
