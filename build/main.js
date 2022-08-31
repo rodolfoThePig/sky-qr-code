@@ -2985,17 +2985,17 @@
       exports.MIXED = {
         bit: -1
       };
-      exports.getCharCountIndicator = function getCharCountIndicator(mode, version) {
-        if (!mode.ccBits)
-          throw new Error("Invalid mode: " + mode);
+      exports.getCharCountIndicator = function getCharCountIndicator(mode2, version) {
+        if (!mode2.ccBits)
+          throw new Error("Invalid mode: " + mode2);
         if (!VersionCheck.isValid(version)) {
           throw new Error("Invalid version: " + version);
         }
         if (version >= 1 && version < 10)
-          return mode.ccBits[0];
+          return mode2.ccBits[0];
         else if (version < 27)
-          return mode.ccBits[1];
-        return mode.ccBits[2];
+          return mode2.ccBits[1];
+        return mode2.ccBits[2];
       };
       exports.getBestModeForData = function getBestModeForData(dataStr) {
         if (Regex.testNumeric(dataStr))
@@ -3007,13 +3007,13 @@
         else
           return exports.BYTE;
       };
-      exports.toString = function toString(mode) {
-        if (mode && mode.id)
-          return mode.id;
+      exports.toString = function toString(mode2) {
+        if (mode2 && mode2.id)
+          return mode2.id;
         throw new Error("Invalid mode");
       };
-      exports.isValid = function isValid(mode) {
-        return mode && mode.bit && mode.ccBits;
+      exports.isValid = function isValid(mode2) {
+        return mode2 && mode2.bit && mode2.ccBits;
       };
       function fromString(string) {
         if (typeof string !== "string") {
@@ -3057,16 +3057,16 @@
       var isArray = require_isarray();
       var G18 = 1 << 12 | 1 << 11 | 1 << 10 | 1 << 9 | 1 << 8 | 1 << 5 | 1 << 2 | 1 << 0;
       var G18_BCH = Utils.getBCHDigit(G18);
-      function getBestVersionForDataLength(mode, length, errorCorrectionLevel) {
+      function getBestVersionForDataLength(mode2, length, errorCorrectionLevel) {
         for (var currentVersion = 1; currentVersion <= 40; currentVersion++) {
-          if (length <= exports.getCapacity(currentVersion, errorCorrectionLevel, mode)) {
+          if (length <= exports.getCapacity(currentVersion, errorCorrectionLevel, mode2)) {
             return currentVersion;
           }
         }
         return void 0;
       }
-      function getReservedBitsCount(mode, version) {
-        return Mode.getCharCountIndicator(mode, version) + 4;
+      function getReservedBitsCount(mode2, version) {
+        return Mode.getCharCountIndicator(mode2, version) + 4;
       }
       function getTotalBitsFromDataArray(segments, version) {
         var totalBits = 0;
@@ -3091,19 +3091,19 @@
         }
         return defaultValue;
       };
-      exports.getCapacity = function getCapacity(version, errorCorrectionLevel, mode) {
+      exports.getCapacity = function getCapacity(version, errorCorrectionLevel, mode2) {
         if (!VersionCheck.isValid(version)) {
           throw new Error("Invalid QR Code version");
         }
-        if (typeof mode === "undefined")
-          mode = Mode.BYTE;
+        if (typeof mode2 === "undefined")
+          mode2 = Mode.BYTE;
         var totalCodewords = Utils.getSymbolTotalCodewords(version);
         var ecTotalCodewords = ECCode.getTotalCodewordsCount(version, errorCorrectionLevel);
         var dataTotalCodewordsBits = (totalCodewords - ecTotalCodewords) * 8;
-        if (mode === Mode.MIXED)
+        if (mode2 === Mode.MIXED)
           return dataTotalCodewordsBits;
-        var usableBits = dataTotalCodewordsBits - getReservedBitsCount(mode, version);
-        switch (mode) {
+        var usableBits = dataTotalCodewordsBits - getReservedBitsCount(mode2, version);
+        switch (mode2) {
           case Mode.NUMERIC:
             return Math.floor(usableBits / 10 * 3);
           case Mode.ALPHANUMERIC:
@@ -3442,14 +3442,14 @@
       function getStringByteLength(str) {
         return unescape(encodeURIComponent(str)).length;
       }
-      function getSegments(regex, mode, str) {
+      function getSegments(regex, mode2, str) {
         var segments = [];
         var result;
         while ((result = regex.exec(str)) !== null) {
           segments.push({
             data: result[0],
             index: result.index,
-            mode,
+            mode: mode2,
             length: result[0].length
           });
         }
@@ -3478,8 +3478,8 @@
           };
         });
       }
-      function getSegmentBitsLength(length, mode) {
-        switch (mode) {
+      function getSegmentBitsLength(length, mode2) {
+        switch (mode2) {
           case Mode.NUMERIC:
             return NumericData.getBitsLength(length);
           case Mode.ALPHANUMERIC:
@@ -3566,16 +3566,16 @@
         return { map: graph, table };
       }
       function buildSingleSegment(data, modesHint) {
-        var mode;
+        var mode2;
         var bestMode = Mode.getBestModeForData(data);
-        mode = Mode.from(modesHint, bestMode);
-        if (mode !== Mode.BYTE && mode.bit < bestMode.bit) {
-          throw new Error('"' + data + '" cannot be encoded with mode ' + Mode.toString(mode) + ".\n Suggested mode is: " + Mode.toString(bestMode));
+        mode2 = Mode.from(modesHint, bestMode);
+        if (mode2 !== Mode.BYTE && mode2.bit < bestMode.bit) {
+          throw new Error('"' + data + '" cannot be encoded with mode ' + Mode.toString(mode2) + ".\n Suggested mode is: " + Mode.toString(bestMode));
         }
-        if (mode === Mode.KANJI && !Utils.isKanjiModeEnabled()) {
-          mode = Mode.BYTE;
+        if (mode2 === Mode.KANJI && !Utils.isKanjiModeEnabled()) {
+          mode2 = Mode.BYTE;
         }
-        switch (mode) {
+        switch (mode2) {
           case Mode.NUMERIC:
             return new NumericData(data);
           case Mode.ALPHANUMERIC:
@@ -4239,15 +4239,46 @@
   };
 
   // src/main.ts
+  var queryParams = new URLSearchParams(location.search);
+  var mode = queryParams.get("mode") || "generate";
+  var updateMode = (newMode) => {
+    mode = newMode;
+    const generate = mode === "generate";
+    const scan = mode === "scan";
+    const toggleElementClass = (selector, enabled, className = "hidden") => {
+      const el = document.querySelector(selector);
+      if (el) {
+        if (!enabled) {
+          el.classList.add(className);
+        } else {
+          el.classList.remove(className);
+        }
+      }
+    };
+    toggleElementClass("#mode-generate-button", !generate, "primary");
+    toggleElementClass("#mode-scan-button", !scan, "primary");
+    toggleElementClass(".input-row", generate);
+    toggleElementClass(".qr-code-container", generate);
+    toggleElementClass("#button-download", generate);
+  };
+  updateMode(mode);
   var canvas = document.querySelector("#qr-code-canvas");
   var canvasTimeout;
-  function updateQrCode() {
+  var updateQrCode = () => {
     debounce(canvasTimeout, 400, () => paintQrCodeToCanvas(input.value, canvas));
-  }
+  };
   var body = document.querySelector("body");
   body.onresize = updateQrCode;
   var input = document.querySelector("#url-input");
   input.oninput = updateQrCode;
+  var modeGenerateButton = document.querySelector("#mode-generate-button");
+  modeGenerateButton.onclick = () => {
+    updateMode("generate");
+  };
+  var modeScanButton = document.querySelector("#mode-scan-button");
+  modeScanButton.onclick = () => {
+    updateMode("scan");
+  };
   var githubButton = document.querySelector("#button-github");
   githubButton.onclick = () => {
     window.open("https://github.com/rodolfoThePig/easy-qr-code");
@@ -4279,10 +4310,6 @@
   shareButton.onclick = async () => {
     const blob = await qrCodeToBlob(input.value, canvas);
     shareBlobImage(blob, "Qr-code.png");
-  };
-  var fullscreenButton = document.querySelector("#button-fullscreen");
-  fullscreenButton.onclick = () => {
-    canvas.requestFullscreen();
   };
 })();
 /*!
