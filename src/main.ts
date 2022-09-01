@@ -3,10 +3,13 @@ import './main.css';
 import { paintQrCodeToCanvas, qrCodeToBlob } from './utils/qr-code';
 import { downloadBlob, shareBlobImage } from './utils/blob';
 import { debounce } from './utils/time';
+import { initializeScanner } from './utils/qr-scanner';
+import QrScanner from 'qr-scanner';
 
 let queryParams = new URLSearchParams(location.search);
 type Mode = 'generate' | 'scan';
 let mode: Mode = queryParams.get('mode') as Mode || 'generate';
+let scanner: QrScanner;
 
 const updateMode = (newMode: Mode) => {
   mode = newMode;
@@ -29,7 +32,15 @@ const updateMode = (newMode: Mode) => {
 
   toggleElementClass('.input-row', generate);
   toggleElementClass('.qr-code-container', generate);
+  toggleElementClass('.qr-scanner-container', scan);
   toggleElementClass('#button-download', generate);
+
+  if (scan) {
+    scanner = initializeScanner(document.querySelector('#qr-scanner-video') as HTMLVideoElement, (result) => console.log(result));
+  } else {
+    scanner?.stop();
+    scanner?.destroy();
+  }
 }
 updateMode(mode);
 
