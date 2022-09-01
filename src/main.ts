@@ -3,10 +3,50 @@ import './main.css';
 import { paintQrCodeToCanvas, qrCodeToBlob } from './utils/qr-code';
 import { downloadBlob, shareBlobImage } from './utils/blob';
 import { debounce } from './utils/time';
+import { initializeScanner } from './utils/qr-scanner';
+import QrScanner from 'qr-scanner';
+
+let queryParams = new URLSearchParams(location.search);
+type Mode = 'generate' | 'scan';
+let mode: Mode = queryParams.get('mode') as Mode || 'generate';
+let scanner: QrScanner;
+
+const updateMode = (newMode: Mode) => {
+  mode = newMode;
+  const generate = (mode === 'generate');
+  const scan = (mode === 'scan');
+
+  const toggleElementClass = (selector: string, enabled: boolean, className = 'hidden',) => {
+    const el = document.querySelector(selector) as HTMLElement;
+    if (el) {
+      if (!enabled) {
+        el.classList.add(className);
+      } else {
+        el.classList.remove(className);
+      }
+    }
+  }
+
+  toggleElementClass('#mode-generate-button', !generate, 'primary');
+  toggleElementClass('#mode-scan-button', !scan, 'primary');
+
+  toggleElementClass('.input-row', generate);
+  toggleElementClass('.qr-code-container', generate);
+  toggleElementClass('.qr-scanner-container', scan);
+  toggleElementClass('#button-download', generate);
+
+  if (scan) {
+    scanner = initializeScanner(document.querySelector('#qr-scanner-video') as HTMLVideoElement, (result) => console.log(result));
+  } else {
+    scanner?.stop();
+    scanner?.destroy();
+  }
+}
+updateMode(mode);
 
 const canvas = document.querySelector('#qr-code-canvas') as HTMLCanvasElement;
 let canvasTimeout;
-function updateQrCode() {
+const updateQrCode = () => {
   // const input = document.querySelector('#url-input') as HTMLInputElement;
   debounce(canvasTimeout, 400, () => paintQrCodeToCanvas(input.value, canvas,));
 }
@@ -17,10 +57,14 @@ body.onresize = updateQrCode;
 const input = document.querySelector('#url-input') as HTMLInputElement;
 input.oninput = updateQrCode;
 
-// const installButton = document.querySelector('#button-install') as HTMLImageElement;
-// installButton.onclick = async () => {
-//   // todo: implement install button and manifest
-// }
+const modeGenerateButton = document.querySelector('#mode-generate-button') as HTMLAnchorElement;
+modeGenerateButton.onclick = () => {
+  updateMode('generate');
+}
+const modeScanButton = document.querySelector('#mode-scan-button') as HTMLAnchorElement;
+modeScanButton.onclick = () => {
+  updateMode('scan');
+}
 
 const githubButton = document.querySelector('#button-github') as HTMLImageElement;
 githubButton.onclick = () => {
@@ -58,9 +102,4 @@ const shareButton = document.querySelector('#button-share') as HTMLImageElement;
 shareButton.onclick = async () => {
   const blob = await qrCodeToBlob(input.value, canvas);
   shareBlobImage(blob, 'Qr-code.png')
-}
-
-const fullscreenButton = document.querySelector('#button-fullscreen') as HTMLImageElement;
-fullscreenButton.onclick = () => {
-  canvas.requestFullscreen();
 }

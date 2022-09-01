@@ -5,49 +5,57 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <base href="/easy-qr-code/build/">
-  <!-- <base href="/build/"> -->
-  <script type="module" async defer src="main.js"></script>
+  <!-- <base href="/easy-qr-code/build/"> -->
+  <base href="/build/">
   <link rel="stylesheet" type="text/css" href="main.css">
+  <script type="module" async defer src="main.js"></script>
   <link rel="icon" type="image/png" href="assets/favicon16.png" sizes="16x16">
   <link rel="icon" type="image/png" href="assets/favicon32.png" sizes="32x32">
   <link rel="icon" type="image/png" href="assets/favicon96.png" sizes="96x96">
   <title>Easy QR Code</title>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </head>
 
 <body>
   <div class="row top-row">
-    <div class="top-title">
-      <h4 class="text-primary"><b>Easy QR Code</b></h4>
+    <div class="nav-left">
+      <a id="mode-generate-button" class="button primary">Generate</a>
+      <a id="mode-scan-button" class="button">Scan</a>
     </div>
     <div class="top-icons">
-      <img id="button-github" src="assets/logo-github.svg" alt="View on Github" class="icon icon-button">
+      <ion-icon id="button-github" name="logo-github" alt="View on Github" class="icon icon-button">
+      </ion-icon>
     </div>
   </div>
 
-  <div class="card">
-    <div class="row input-row">
-      <h5><label for="url-input">Insert URL</label></h5>
-      <div class="row input-icon-row">
-        <img id="button-clear" src="assets/trash-bin.svg" alt="Clear url" class="icon icon-sm icon-button">
-        <img id="button-paste" src="assets/clipboard.svg" alt="Paste URL from clipboard" class="icon icon-sm icon-button">
-      </div>
+  <div class="row input-row">
+    <!-- <h5><label for="url-input">Insert URL</label></h5> -->
+    <input type="url" id="url-input" placeholder="URL">
+    <div class="row input-icon-row margin-right">
+      <ion-icon id="button-clear" name="trash-bin" alt="Clear url" class="icon icon-sm icon-button icon-danger">
+      </ion-icon>
+      <ion-icon id="button-paste" name="clipboard" alt="Paste URL from clipboard"
+        class="icon icon-sm icon-button icon-success"></ion-icon>
     </div>
-    <input type="url" id="url-input">
   </div>
+
   <div class="spacer"></div>
   <div class="card">
     <div class="qr-code-container">
       <canvas id="qr-code-canvas"></canvas>
     </div>
+    <div class="qr-scanner-container" hidden="true">
+      <video id="qr-scanner-video"></video>
+    </div>
   </div>
   <div class="spacer"></div>
   <div class="card">
     <div class="row bottom-row">
-      <img id="button-download" src="assets/download.svg" alt="Download image file" class="icon icon-button">
-      <img id="button-copy" src="assets/copy.svg" alt="Copy to clipboard" class="icon icon-button">
-      <img id="button-share" src="assets/share-social.svg" alt="Share image" class="icon icon-button">
-      <img id="button-fullscreen" src="assets/expand.svg" alt="Expand to Fullscreen" class="icon icon-button">
+      <ion-icon id="button-download" name="cloud-download" alt="Download image file" class="icon icon-button icon-secondary">
+      </ion-icon>
+      <ion-icon id="button-copy" name="copy" alt="Copy to clipboard" class="icon icon-button icon-primary"></ion-icon>
+      <ion-icon id="button-share" name="share-social" alt="Share image" class="icon icon-button icon-teriary"></ion-icon>
     </div>
   </div>
 </body>

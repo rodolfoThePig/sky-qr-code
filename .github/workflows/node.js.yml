@@ -42,6 +42,7 @@ jobs:
         git checkout prod
         git merge -X theirs stable --allow-unrelated-histories
 
+    - run: npm i
     - run: npm ci
 
     - name: build static site
