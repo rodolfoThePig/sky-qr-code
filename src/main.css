@@ -6,10 +6,10 @@ body {
 
 .nav-left {
   justify-content: start !important;
-  margin: 0px 0px 14px 14px;
+  margin: 0px 0px 8px 8px;
 }
 
-.qr-code-container {
+.qr-code-container, .qr-scanner-container {
   min-height: calc(100vh - 236px);
   max-height: calc(100vh - 236px);
   min-width: calc(100vw - 64px);
@@ -22,17 +22,10 @@ body {
 }
 
 .icon {
-  /* width: 36px;
-  height: 36px;
-  padding: 4px 4px;
-  margin: 0px 4px; */
   font-size: 28px;
   color: #474747;
 }
 .icon-sm {
-  /* width: 32px;
-  height: 32px;
-  padding: 4px 4px; */
   margin: 0px 4px;
   font-size: 24px;
 }
