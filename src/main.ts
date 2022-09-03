@@ -37,6 +37,7 @@ const updateMode = (newMode: Mode) => {
 
   if (scan) {
     scanner = initializeScanner(document.querySelector('#qr-scanner-video') as HTMLVideoElement, (result) => console.log(result));
+    scanner.start();
   } else {
     scanner?.stop();
     scanner?.destroy();
