@@ -11,7 +11,7 @@
     "clear-build": "npx rimraf build/",
     "assets": "npx run-p copy-index copy-assets",
     "assets-watch": "chokidar \"src/**/*.html\" \"src/assets/**/*.*\" -c \"npm run assets\"",
-    "copy-index": "cp src/index.html index.html",
+    "copy-index": "cp -r src/index.html index.html",
     "copy-assets": "npx ncp src/assets build/assets",
     "serve": "npx snowpack dev"
   },
