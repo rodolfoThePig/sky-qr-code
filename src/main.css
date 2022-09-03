@@ -9,11 +9,21 @@ body {
   margin: 0px 0px 8px 8px;
 }
 
-.qr-code-container, .qr-scanner-container {
+.qr-code-container {
+  min-height: calc(100vh - 300px);
+  max-height: calc(100vh - 300px);
+  min-width: calc(100vw - 64px);
+  max-width: calc(100vw - 64px);
+}
+.qr-scanner-container {
   min-height: calc(100vh - 236px);
   max-height: calc(100vh - 236px);
   min-width: calc(100vw - 64px);
   max-width: calc(100vw - 64px);
+}
+#qr-scanner-video {
+  min-width: 100%;
+  max-width: 100%;
 }
 
 .spacer {
