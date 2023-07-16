@@ -2,7 +2,7 @@ Easy QR Code
 ====
 
 Minimal web app to generate QR Codes from an URL or just plain text.
-[Check it out](vitorTheDev.github.io/easy-qr-code/)
+[Check it out](vitorTheDev.github.io/easy-qr-code)
 
 To-do
 ----
