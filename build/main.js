@@ -1,11 +1,4164 @@
-(()=>{var eo=Object.create;var Re=Object.defineProperty;var ro=Object.getOwnPropertyDescriptor;var to=Object.getOwnPropertyNames;var oo=Object.getPrototypeOf,no=Object.prototype.hasOwnProperty;var ao=(o,e)=>()=>(o&&(e=o(o=0)),e);var w=(o,e)=>()=>(e||o((e={exports:{}}).exports,e),e.exports),io=(o,e)=>{for(var r in e)Re(o,r,{get:e[r],enumerable:!0})},so=(o,e,r,t)=>{if(e&&typeof e=="object"||typeof e=="function")for(let n of to(e))!no.call(o,n)&&n!==r&&Re(o,n,{get:()=>e[n],enumerable:!(t=ro(e,n))||t.enumerable});return o};var co=(o,e,r)=>(r=o!=null?eo(oo(o)):{},so(e||!o||!o.__esModule?Re(r,"default",{value:o,enumerable:!0}):r,o));var Cr=w((ua,pr)=>{pr.exports=function(){return typeof Promise=="function"&&Promise.prototype&&Promise.prototype.then}});var fe=w((fa,vr)=>{var lo={}.toString;vr.exports=Array.isArray||function(o){return lo.call(o)=="[object Array]"}});var z=w((ha,Ne)=>{"use strict";var uo=fe();function fo(){try{var o=new Uint8Array(1);return o.__proto__={__proto__:Uint8Array.prototype,foo:function(){return 42}},o.foo()===42}catch{return!1}}k.TYPED_ARRAY_SUPPORT=fo();var yr=k.TYPED_ARRAY_SUPPORT?2147483647:1073741823;function k(o,e,r){return!k.TYPED_ARRAY_SUPPORT&&!(this instanceof k)?new k(o,e,r):typeof o=="number"?br(this,o):po(this,o,e,r)}k.TYPED_ARRAY_SUPPORT&&(k.prototype.__proto__=Uint8Array.prototype,k.__proto__=Uint8Array,typeof Symbol<"u"&&Symbol.species&&k[Symbol.species]===k&&Object.defineProperty(k,Symbol.species,{value:null,configurable:!0,enumerable:!1,writable:!1}));function Ue(o){if(o>=yr)throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x"+yr.toString(16)+" bytes");return o|0}function ho(o){return o!==o}function J(o,e){var r;return k.TYPED_ARRAY_SUPPORT?(r=new Uint8Array(e),r.__proto__=k.prototype):(r=o,r===null&&(r=new k(e)),r.length=e),r}function br(o,e){var r=J(o,e<0?0:Ue(e)|0);if(!k.TYPED_ARRAY_SUPPORT)for(var t=0;t<e;++t)r[t]=0;return r}function Bo(o,e){var r=xr(e)|0,t=J(o,r),n=t.write(e);return n!==r&&(t=t.slice(0,n)),t}function Fe(o,e){for(var r=e.length<0?0:Ue(e.length)|0,t=J(o,r),n=0;n<r;n+=1)t[n]=e[n]&255;return t}function mo(o,e,r,t){if(r<0||e.byteLength<r)throw new RangeError("'offset' is out of bounds");if(e.byteLength<r+(t||0))throw new RangeError("'length' is out of bounds");var n;return r===void 0&&t===void 0?n=new Uint8Array(e):t===void 0?n=new Uint8Array(e,r):n=new Uint8Array(e,r,t),k.TYPED_ARRAY_SUPPORT?n.__proto__=k.prototype:n=Fe(o,n),n}function ko(o,e){if(k.isBuffer(e)){var r=Ue(e.length)|0,t=J(o,r);return t.length===0||e.copy(t,0,0,r),t}if(e){if(typeof ArrayBuffer<"u"&&e.buffer instanceof ArrayBuffer||"length"in e)return typeof e.length!="number"||ho(e.length)?J(o,0):Fe(o,e);if(e.type==="Buffer"&&Array.isArray(e.data))return Fe(o,e.data)}throw new TypeError("First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.")}function Pr(o,e){e=e||1/0;for(var r,t=o.length,n=null,a=[],i=0;i<t;++i){if(r=o.charCodeAt(i),r>55295&&r<57344){if(!n){if(r>56319){(e-=3)>-1&&a.push(239,191,189);continue}else if(i+1===t){(e-=3)>-1&&a.push(239,191,189);continue}n=r;continue}if(r<56320){(e-=3)>-1&&a.push(239,191,189),n=r;continue}r=(n-55296<<10|r-56320)+65536}else n&&(e-=3)>-1&&a.push(239,191,189);if(n=null,r<128){if((e-=1)<0)break;a.push(r)}else if(r<2048){if((e-=2)<0)break;a.push(r>>6|192,r&63|128)}else if(r<65536){if((e-=3)<0)break;a.push(r>>12|224,r>>6&63|128,r&63|128)}else if(r<1114112){if((e-=4)<0)break;a.push(r>>18|240,r>>12&63|128,r>>6&63|128,r&63|128)}else throw new Error("Invalid code point")}return a}function xr(o){if(k.isBuffer(o))return o.length;if(typeof ArrayBuffer<"u"&&typeof ArrayBuffer.isView=="function"&&(ArrayBuffer.isView(o)||o instanceof ArrayBuffer))return o.byteLength;typeof o!="string"&&(o=""+o);var e=o.length;return e===0?0:Pr(o).length}function wo(o,e,r,t){for(var n=0;n<t&&!(n+r>=e.length||n>=o.length);++n)e[n+r]=o[n];return n}function go(o,e,r,t){return wo(Pr(e,o.length-r),o,r,t)}function po(o,e,r,t){if(typeof e=="number")throw new TypeError('"value" argument must not be a number');return typeof ArrayBuffer<"u"&&e instanceof ArrayBuffer?mo(o,e,r,t):typeof e=="string"?Bo(o,e,r):ko(o,e)}k.prototype.write=function(e,r,t){r===void 0?(t=this.length,r=0):t===void 0&&typeof r=="string"?(t=this.length,r=0):isFinite(r)&&(r=r|0,isFinite(t)?t=t|0:t=void 0);var n=this.length-r;if((t===void 0||t>n)&&(t=n),e.length>0&&(t<0||r<0)||r>this.length)throw new RangeError("Attempt to write outside buffer bounds");return go(this,e,r,t)};k.prototype.slice=function(e,r){var t=this.length;e=~~e,r=r===void 0?t:~~r,e<0?(e+=t,e<0&&(e=0)):e>t&&(e=t),r<0?(r+=t,r<0&&(r=0)):r>t&&(r=t),r<e&&(r=e);var n;if(k.TYPED_ARRAY_SUPPORT)n=this.subarray(e,r),n.__proto__=k.prototype;else{var a=r-e;n=new k(a,void 0);for(var i=0;i<a;++i)n[i]=this[i+e]}return n};k.prototype.copy=function(e,r,t,n){if(t||(t=0),!n&&n!==0&&(n=this.length),r>=e.length&&(r=e.length),r||(r=0),n>0&&n<t&&(n=t),n===t||e.length===0||this.length===0)return 0;if(r<0)throw new RangeError("targetStart out of bounds");if(t<0||t>=this.length)throw new RangeError("sourceStart out of bounds");if(n<0)throw new RangeError("sourceEnd out of bounds");n>this.length&&(n=this.length),e.length-r<n-t&&(n=e.length-r+t);var a=n-t,i;if(this===e&&t<r&&r<n)for(i=a-1;i>=0;--i)e[i+r]=this[i+t];else if(a<1e3||!k.TYPED_ARRAY_SUPPORT)for(i=0;i<a;++i)e[i+r]=this[i+t];else Uint8Array.prototype.set.call(e,this.subarray(t,t+a),r);return a};k.prototype.fill=function(e,r,t){if(typeof e=="string"){if(typeof r=="string"?(r=0,t=this.length):typeof t=="string"&&(t=this.length),e.length===1){var n=e.charCodeAt(0);n<256&&(e=n)}}else typeof e=="number"&&(e=e&255);if(r<0||this.length<r||this.length<t)throw new RangeError("Out of range index");if(t<=r)return this;r=r>>>0,t=t===void 0?this.length:t>>>0,e||(e=0);var a;if(typeof e=="number")for(a=r;a<t;++a)this[a]=e;else{var i=k.isBuffer(e)?e:new k(e),s=i.length;for(a=0;a<t-r;++a)this[a+r]=i[a%s]}return this};k.concat=function(e,r){if(!uo(e))throw new TypeError('"list" argument must be an Array of Buffers');if(e.length===0)return J(null,0);var t;if(r===void 0)for(r=0,t=0;t<e.length;++t)r+=e[t].length;var n=br(null,r),a=0;for(t=0;t<e.length;++t){var i=e[t];if(!k.isBuffer(i))throw new TypeError('"list" argument must be an Array of Buffers');i.copy(n,a),a+=i.length}return n};k.byteLength=xr;k.prototype._isBuffer=!0;k.isBuffer=function(e){return!!(e!=null&&e._isBuffer)};Ne.exports.alloc=function(o){var e=new k(o);return e.fill(0),e};Ne.exports.from=function(o){return new k(o)}});var N=w(H=>{var De,Co=[0,26,44,70,100,134,172,196,242,292,346,404,466,532,581,655,733,815,901,991,1085,1156,1258,1364,1474,1588,1706,1828,1921,2051,2185,2323,2465,2611,2761,2876,3034,3196,3362,3532,3706];H.getSymbolSize=function(e){if(!e)throw new Error('"version" cannot be null or undefined');if(e<1||e>40)throw new Error('"version" should be in range from 1 to 40');return e*4+17};H.getSymbolTotalCodewords=function(e){return Co[e]};H.getBCHDigit=function(o){for(var e=0;o!==0;)e++,o>>>=1;return e};H.setToSJISFunction=function(e){if(typeof e!="function")throw new Error('"toSJISFunc" is not a valid function.');De=e};H.isKanjiModeEnabled=function(){return typeof De<"u"};H.toSJIS=function(e){return De(e)}});var he=w(M=>{M.L={bit:1};M.M={bit:0};M.Q={bit:3};M.H={bit:2};function vo(o){if(typeof o!="string")throw new Error("Param is not a string");var e=o.toLowerCase();switch(e){case"l":case"low":return M.L;case"m":case"medium":return M.M;case"q":case"quartile":return M.Q;case"h":case"high":return M.H;default:throw new Error("Unknown EC Level: "+o)}}M.isValid=function(e){return e&&typeof e.bit<"u"&&e.bit>=0&&e.bit<4};M.from=function(e,r){if(M.isValid(e))return e;try{return vo(e)}catch{return r}}});var Mr=w((ka,Ar)=>{function Er(){this.buffer=[],this.length=0}Er.prototype={get:function(o){var e=Math.floor(o/8);return(this.buffer[e]>>>7-o%8&1)===1},put:function(o,e){for(var r=0;r<e;r++)this.putBit((o>>>e-r-1&1)===1)},getLengthInBits:function(){return this.length},putBit:function(o){var e=Math.floor(this.length/8);this.buffer.length<=e&&this.buffer.push(0),o&&(this.buffer[e]|=128>>>this.length%8),this.length++}};Ar.exports=Er});var Sr=w((wa,Ir)=>{var _r=z();function ne(o){if(!o||o<1)throw new Error("BitMatrix size must be defined and greater than 0");this.size=o,this.data=_r.alloc(o*o),this.reservedBit=_r.alloc(o*o)}ne.prototype.set=function(o,e,r,t){var n=o*this.size+e;this.data[n]=r,t&&(this.reservedBit[n]=!0)};ne.prototype.get=function(o,e){return this.data[o*this.size+e]};ne.prototype.xor=function(o,e,r){this.data[o*this.size+e]^=r};ne.prototype.isReserved=function(o,e){return this.reservedBit[o*this.size+e]};Ir.exports=ne});var Lr=w(Be=>{var yo=N().getSymbolSize;Be.getRowColCoords=function(e){if(e===1)return[];for(var r=Math.floor(e/7)+2,t=yo(e),n=t===145?26:Math.ceil((t-13)/(2*r-2))*2,a=[t-7],i=1;i<r-1;i++)a[i]=a[i-1]-n;return a.push(6),a.reverse()};Be.getPositions=function(e){for(var r=[],t=Be.getRowColCoords(e),n=t.length,a=0;a<n;a++)for(var i=0;i<n;i++)a===0&&i===0||a===0&&i===n-1||a===n-1&&i===0||r.push([t[a],t[i]]);return r}});var Fr=w(Rr=>{var bo=N().getSymbolSize,Tr=7;Rr.getPositions=function(e){var r=bo(e);return[[0,0],[r-Tr,0],[0,r-Tr]]}});var Ur=w(p=>{p.Patterns={PATTERN000:0,PATTERN001:1,PATTERN010:2,PATTERN011:3,PATTERN100:4,PATTERN101:5,PATTERN110:6,PATTERN111:7};var $={N1:3,N2:3,N3:40,N4:10};p.isValid=function(e){return e!=null&&e!==""&&!isNaN(e)&&e>=0&&e<=7};p.from=function(e){return p.isValid(e)?parseInt(e,10):void 0};p.getPenaltyN1=function(e){for(var r=e.size,t=0,n=0,a=0,i=null,s=null,c=0;c<r;c++){n=a=0,i=s=null;for(var u=0;u<r;u++){var d=e.get(c,u);d===i?n++:(n>=5&&(t+=$.N1+(n-5)),i=d,n=1),d=e.get(u,c),d===s?a++:(a>=5&&(t+=$.N1+(a-5)),s=d,a=1)}n>=5&&(t+=$.N1+(n-5)),a>=5&&(t+=$.N1+(a-5))}return t};p.getPenaltyN2=function(e){for(var r=e.size,t=0,n=0;n<r-1;n++)for(var a=0;a<r-1;a++){var i=e.get(n,a)+e.get(n,a+1)+e.get(n+1,a)+e.get(n+1,a+1);(i===4||i===0)&&t++}return t*$.N2};p.getPenaltyN3=function(e){for(var r=e.size,t=0,n=0,a=0,i=0;i<r;i++){n=a=0;for(var s=0;s<r;s++)n=n<<1&2047|e.get(i,s),s>=10&&(n===1488||n===93)&&t++,a=a<<1&2047|e.get(s,i),s>=10&&(a===1488||a===93)&&t++}return t*$.N3};p.getPenaltyN4=function(e){for(var r=0,t=e.data.length,n=0;n<t;n++)r+=e.data[n];var a=Math.abs(Math.ceil(r*100/t/5)-10);return a*$.N4};function Po(o,e,r){switch(o){case p.Patterns.PATTERN000:return(e+r)%2===0;case p.Patterns.PATTERN001:return e%2===0;case p.Patterns.PATTERN010:return r%3===0;case p.Patterns.PATTERN011:return(e+r)%3===0;case p.Patterns.PATTERN100:return(Math.floor(e/2)+Math.floor(r/3))%2===0;case p.Patterns.PATTERN101:return e*r%2+e*r%3===0;case p.Patterns.PATTERN110:return(e*r%2+e*r%3)%2===0;case p.Patterns.PATTERN111:return(e*r%3+(e+r)%2)%2===0;default:throw new Error("bad maskPattern:"+o)}}p.applyMask=function(e,r){for(var t=r.size,n=0;n<t;n++)for(var a=0;a<t;a++)r.isReserved(a,n)||r.xor(a,n,Po(e,a,n))};p.getBestMask=function(e,r){for(var t=Object.keys(p.Patterns).length,n=0,a=1/0,i=0;i<t;i++){r(i),p.applyMask(i,e);var s=p.getPenaltyN1(e)+p.getPenaltyN2(e)+p.getPenaltyN3(e)+p.getPenaltyN4(e);p.applyMask(i,e),s<a&&(a=s,n=i)}return n}});var Oe=w(qe=>{var D=he(),me=[1,1,1,1,1,1,1,1,1,1,2,2,1,2,2,4,1,2,4,4,2,4,4,4,2,4,6,5,2,4,6,6,2,5,8,8,4,5,8,8,4,5,8,11,4,8,10,11,4,9,12,16,4,9,16,16,6,10,12,18,6,10,17,16,6,11,16,19,6,13,18,21,7,14,21,25,8,16,20,25,8,17,23,25,9,17,23,34,9,18,25,30,10,20,27,32,12,21,29,35,12,23,34,37,12,25,34,40,13,26,35,42,14,28,38,45,15,29,40,48,16,31,43,51,17,33,45,54,18,35,48,57,19,37,51,60,19,38,53,63,20,40,56,66,21,43,59,70,22,45,62,74,24,47,65,77,25,49,68,81],ke=[7,10,13,17,10,16,22,28,15,26,36,44,20,36,52,64,26,48,72,88,36,64,96,112,40,72,108,130,48,88,132,156,60,110,160,192,72,130,192,224,80,150,224,264,96,176,260,308,104,198,288,352,120,216,320,384,132,240,360,432,144,280,408,480,168,308,448,532,180,338,504,588,196,364,546,650,224,416,600,700,224,442,644,750,252,476,690,816,270,504,750,900,300,560,810,960,312,588,870,1050,336,644,952,1110,360,700,1020,1200,390,728,1050,1260,420,784,1140,1350,450,812,1200,1440,480,868,1290,1530,510,924,1350,1620,540,980,1440,1710,570,1036,1530,1800,570,1064,1590,1890,600,1120,1680,1980,630,1204,1770,2100,660,1260,1860,2220,720,1316,1950,2310,750,1372,2040,2430];qe.getBlocksCount=function(e,r){switch(r){case D.L:return me[(e-1)*4+0];case D.M:return me[(e-1)*4+1];case D.Q:return me[(e-1)*4+2];case D.H:return me[(e-1)*4+3];default:return}};qe.getTotalCodewordsCount=function(e,r){switch(r){case D.L:return ke[(e-1)*4+0];case D.M:return ke[(e-1)*4+1];case D.Q:return ke[(e-1)*4+2];case D.H:return ke[(e-1)*4+3];default:return}}});var Dr=w(ge=>{var Nr=z(),ae=Nr.alloc(512),we=Nr.alloc(256);(function(){for(var e=1,r=0;r<255;r++)ae[r]=e,we[e]=r,e<<=1,e&256&&(e^=285);for(r=255;r<512;r++)ae[r]=ae[r-255]})();ge.log=function(e){if(e<1)throw new Error("log("+e+")");return we[e]};ge.exp=function(e){return ae[e]};ge.mul=function(e,r){return e===0||r===0?0:ae[we[e]+we[r]]}});var qr=w(ie=>{var ze=z(),He=Dr();ie.mul=function(e,r){for(var t=ze.alloc(e.length+r.length-1),n=0;n<e.length;n++)for(var a=0;a<r.length;a++)t[n+a]^=He.mul(e[n],r[a]);return t};ie.mod=function(e,r){for(var t=ze.from(e);t.length-r.length>=0;){for(var n=t[0],a=0;a<r.length;a++)t[a]^=He.mul(r[a],n);for(var i=0;i<t.length&&t[i]===0;)i++;t=t.slice(i)}return t};ie.generateECPolynomial=function(e){for(var r=ze.from([1]),t=0;t<e;t++)r=ie.mul(r,[1,He.exp(t)]);return r}});var Hr=w(pe=>{"use strict";pe.byteLength=Eo;pe.toByteArray=Mo;pe.fromByteArray=So;var I=[],_=[],xo=typeof Uint8Array<"u"?Uint8Array:Array,$e="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";for(W=0,Or=$e.length;W<Or;++W)I[W]=$e[W],_[$e.charCodeAt(W)]=W;var W,Or;_["-".charCodeAt(0)]=62;_["_".charCodeAt(0)]=63;function zr(o){var e=o.length;if(e%4>0)throw new Error("Invalid string. Length must be a multiple of 4");var r=o.indexOf("=");r===-1&&(r=e);var t=r===e?0:4-r%4;return[r,t]}function Eo(o){var e=zr(o),r=e[0],t=e[1];return(r+t)*3/4-t}function Ao(o,e,r){return(e+r)*3/4-r}function Mo(o){var e,r=zr(o),t=r[0],n=r[1],a=new xo(Ao(o,t,n)),i=0,s=n>0?t-4:t,c;for(c=0;c<s;c+=4)e=_[o.charCodeAt(c)]<<18|_[o.charCodeAt(c+1)]<<12|_[o.charCodeAt(c+2)]<<6|_[o.charCodeAt(c+3)],a[i++]=e>>16&255,a[i++]=e>>8&255,a[i++]=e&255;return n===2&&(e=_[o.charCodeAt(c)]<<2|_[o.charCodeAt(c+1)]>>4,a[i++]=e&255),n===1&&(e=_[o.charCodeAt(c)]<<10|_[o.charCodeAt(c+1)]<<4|_[o.charCodeAt(c+2)]>>2,a[i++]=e>>8&255,a[i++]=e&255),a}function _o(o){return I[o>>18&63]+I[o>>12&63]+I[o>>6&63]+I[o&63]}function Io(o,e,r){for(var t,n=[],a=e;a<r;a+=3)t=(o[a]<<16&16711680)+(o[a+1]<<8&65280)+(o[a+2]&255),n.push(_o(t));return n.join("")}function So(o){for(var e,r=o.length,t=r%3,n=[],a=16383,i=0,s=r-t;i<s;i+=a)n.push(Io(o,i,i+a>s?s:i+a));return t===1?(e=o[r-1],n.push(I[e>>2]+I[e<<4&63]+"==")):t===2&&(e=(o[r-2]<<8)+o[r-1],n.push(I[e>>10]+I[e>>4&63]+I[e<<2&63]+"=")),n.join("")}});var $r=w(We=>{We.read=function(o,e,r,t,n){var a,i,s=n*8-t-1,c=(1<<s)-1,u=c>>1,d=-7,f=r?n-1:0,h=r?-1:1,B=o[e+f];for(f+=h,a=B&(1<<-d)-1,B>>=-d,d+=s;d>0;a=a*256+o[e+f],f+=h,d-=8);for(i=a&(1<<-d)-1,a>>=-d,d+=t;d>0;i=i*256+o[e+f],f+=h,d-=8);if(a===0)a=1-u;else{if(a===c)return i?NaN:(B?-1:1)*(1/0);i=i+Math.pow(2,t),a=a-u}return(B?-1:1)*i*Math.pow(2,a-t)};We.write=function(o,e,r,t,n,a){var i,s,c,u=a*8-n-1,d=(1<<u)-1,f=d>>1,h=n===23?Math.pow(2,-24)-Math.pow(2,-77):0,B=t?0:a-1,C=t?1:-1,b=e<0||e===0&&1/e<0?1:0;for(e=Math.abs(e),isNaN(e)||e===1/0?(s=isNaN(e)?1:0,i=d):(i=Math.floor(Math.log(e)/Math.LN2),e*(c=Math.pow(2,-i))<1&&(i--,c*=2),i+f>=1?e+=h/c:e+=h*Math.pow(2,1-f),e*c>=2&&(i++,c/=2),i+f>=d?(s=0,i=d):i+f>=1?(s=(e*c-1)*Math.pow(2,n),i=i+f):(s=e*Math.pow(2,f-1)*Math.pow(2,n),i=0));n>=8;o[r+B]=s&255,B+=C,s/=256,n-=8);for(i=i<<n|s,u+=n;u>0;o[r+B]=i&255,B+=C,i/=256,u-=8);o[r+B-C]|=b*128}});var tt=w(Z=>{"use strict";var Ye=Hr(),G=$r(),Wr=typeof Symbol=="function"&&typeof Symbol.for=="function"?Symbol.for("nodejs.util.inspect.custom"):null;Z.Buffer=l;Z.SlowBuffer=No;Z.INSPECT_MAX_BYTES=50;var Ce=2147483647;Z.kMaxLength=Ce;l.TYPED_ARRAY_SUPPORT=Lo();!l.TYPED_ARRAY_SUPPORT&&typeof console<"u"&&typeof console.error=="function"&&console.error("This browser lacks typed array (Uint8Array) support which is required by `buffer` v5.x. Use `buffer` v4.x if you require old browser support.");function Lo(){try{var o=new Uint8Array(1),e={foo:function(){return 42}};return Object.setPrototypeOf(e,Uint8Array.prototype),Object.setPrototypeOf(o,e),o.foo()===42}catch{return!1}}Object.defineProperty(l.prototype,"parent",{enumerable:!0,get:function(){if(!!l.isBuffer(this))return this.buffer}});Object.defineProperty(l.prototype,"offset",{enumerable:!0,get:function(){if(!!l.isBuffer(this))return this.byteOffset}});function F(o){if(o>Ce)throw new RangeError('The value "'+o+'" is invalid for option "size"');var e=new Uint8Array(o);return Object.setPrototypeOf(e,l.prototype),e}function l(o,e,r){if(typeof o=="number"){if(typeof e=="string")throw new TypeError('The "string" argument must be of type string. Received type number');return Qe(o)}return Xr(o,e,r)}l.poolSize=8192;function Xr(o,e,r){if(typeof o=="string")return Ro(o,e);if(ArrayBuffer.isView(o))return Fo(o);if(o==null)throw new TypeError("The first argument must be one of type string, Buffer, ArrayBuffer, Array, or Array-like Object. Received type "+typeof o);if(S(o,ArrayBuffer)||o&&S(o.buffer,ArrayBuffer)||typeof SharedArrayBuffer<"u"&&(S(o,SharedArrayBuffer)||o&&S(o.buffer,SharedArrayBuffer)))return Xe(o,e,r);if(typeof o=="number")throw new TypeError('The "value" argument must not be of type number. Received type number');var t=o.valueOf&&o.valueOf();if(t!=null&&t!==o)return l.from(t,e,r);var n=Uo(o);if(n)return n;if(typeof Symbol<"u"&&Symbol.toPrimitive!=null&&typeof o[Symbol.toPrimitive]=="function")return l.from(o[Symbol.toPrimitive]("string"),e,r);throw new TypeError("The first argument must be one of type string, Buffer, ArrayBuffer, Array, or Array-like Object. Received type "+typeof o)}l.from=function(o,e,r){return Xr(o,e,r)};Object.setPrototypeOf(l.prototype,Uint8Array.prototype);Object.setPrototypeOf(l,Uint8Array);function Kr(o){if(typeof o!="number")throw new TypeError('"size" argument must be of type number');if(o<0)throw new RangeError('The value "'+o+'" is invalid for option "size"')}function To(o,e,r){return Kr(o),o<=0?F(o):e!==void 0?typeof r=="string"?F(o).fill(e,r):F(o).fill(e):F(o)}l.alloc=function(o,e,r){return To(o,e,r)};function Qe(o){return Kr(o),F(o<0?0:Je(o)|0)}l.allocUnsafe=function(o){return Qe(o)};l.allocUnsafeSlow=function(o){return Qe(o)};function Ro(o,e){if((typeof e!="string"||e==="")&&(e="utf8"),!l.isEncoding(e))throw new TypeError("Unknown encoding: "+e);var r=Qr(o,e)|0,t=F(r),n=t.write(o,e);return n!==r&&(t=t.slice(0,n)),t}function Ve(o){for(var e=o.length<0?0:Je(o.length)|0,r=F(e),t=0;t<e;t+=1)r[t]=o[t]&255;return r}function Fo(o){if(S(o,Uint8Array)){var e=new Uint8Array(o);return Xe(e.buffer,e.byteOffset,e.byteLength)}return Ve(o)}function Xe(o,e,r){if(e<0||o.byteLength<e)throw new RangeError('"offset" is outside of buffer bounds');if(o.byteLength<e+(r||0))throw new RangeError('"length" is outside of buffer bounds');var t;return e===void 0&&r===void 0?t=new Uint8Array(o):r===void 0?t=new Uint8Array(o,e):t=new Uint8Array(o,e,r),Object.setPrototypeOf(t,l.prototype),t}function Uo(o){if(l.isBuffer(o)){var e=Je(o.length)|0,r=F(e);return r.length===0||o.copy(r,0,0,e),r}if(o.length!==void 0)return typeof o.length!="number"||Ge(o.length)?F(0):Ve(o);if(o.type==="Buffer"&&Array.isArray(o.data))return Ve(o.data)}function Je(o){if(o>=Ce)throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x"+Ce.toString(16)+" bytes");return o|0}function No(o){return+o!=o&&(o=0),l.alloc(+o)}l.isBuffer=function(e){return e!=null&&e._isBuffer===!0&&e!==l.prototype};l.compare=function(e,r){if(S(e,Uint8Array)&&(e=l.from(e,e.offset,e.byteLength)),S(r,Uint8Array)&&(r=l.from(r,r.offset,r.byteLength)),!l.isBuffer(e)||!l.isBuffer(r))throw new TypeError('The "buf1", "buf2" arguments must be one of type Buffer or Uint8Array');if(e===r)return 0;for(var t=e.length,n=r.length,a=0,i=Math.min(t,n);a<i;++a)if(e[a]!==r[a]){t=e[a],n=r[a];break}return t<n?-1:n<t?1:0};l.isEncoding=function(e){switch(String(e).toLowerCase()){case"hex":case"utf8":case"utf-8":case"ascii":case"latin1":case"binary":case"base64":case"ucs2":case"ucs-2":case"utf16le":case"utf-16le":return!0;default:return!1}};l.concat=function(e,r){if(!Array.isArray(e))throw new TypeError('"list" argument must be an Array of Buffers');if(e.length===0)return l.alloc(0);var t;if(r===void 0)for(r=0,t=0;t<e.length;++t)r+=e[t].length;var n=l.allocUnsafe(r),a=0;for(t=0;t<e.length;++t){var i=e[t];if(S(i,Uint8Array))a+i.length>n.length?l.from(i).copy(n,a):Uint8Array.prototype.set.call(n,i,a);else if(l.isBuffer(i))i.copy(n,a);else throw new TypeError('"list" argument must be an Array of Buffers');a+=i.length}return n};function Qr(o,e){if(l.isBuffer(o))return o.length;if(ArrayBuffer.isView(o)||S(o,ArrayBuffer))return o.byteLength;if(typeof o!="string")throw new TypeError('The "string" argument must be one of type string, Buffer, or ArrayBuffer. Received type '+typeof o);var r=o.length,t=arguments.length>2&&arguments[2]===!0;if(!t&&r===0)return 0;for(var n=!1;;)switch(e){case"ascii":case"latin1":case"binary":return r;case"utf8":case"utf-8":return Ke(o).length;case"ucs2":case"ucs-2":case"utf16le":case"utf-16le":return r*2;case"hex":return r>>>1;case"base64":return rt(o).length;default:if(n)return t?-1:Ke(o).length;e=(""+e).toLowerCase(),n=!0}}l.byteLength=Qr;function Do(o,e,r){var t=!1;if((e===void 0||e<0)&&(e=0),e>this.length||((r===void 0||r>this.length)&&(r=this.length),r<=0)||(r>>>=0,e>>>=0,r<=e))return"";for(o||(o="utf8");;)switch(o){case"hex":return Ko(this,e,r);case"utf8":case"utf-8":return Gr(this,e,r);case"ascii":return Vo(this,e,r);case"latin1":case"binary":return Xo(this,e,r);case"base64":return Wo(this,e,r);case"ucs2":case"ucs-2":case"utf16le":case"utf-16le":return Qo(this,e,r);default:if(t)throw new TypeError("Unknown encoding: "+o);o=(o+"").toLowerCase(),t=!0}}l.prototype._isBuffer=!0;function Y(o,e,r){var t=o[e];o[e]=o[r],o[r]=t}l.prototype.swap16=function(){var e=this.length;if(e%2!==0)throw new RangeError("Buffer size must be a multiple of 16-bits");for(var r=0;r<e;r+=2)Y(this,r,r+1);return this};l.prototype.swap32=function(){var e=this.length;if(e%4!==0)throw new RangeError("Buffer size must be a multiple of 32-bits");for(var r=0;r<e;r+=4)Y(this,r,r+3),Y(this,r+1,r+2);return this};l.prototype.swap64=function(){var e=this.length;if(e%8!==0)throw new RangeError("Buffer size must be a multiple of 64-bits");for(var r=0;r<e;r+=8)Y(this,r,r+7),Y(this,r+1,r+6),Y(this,r+2,r+5),Y(this,r+3,r+4);return this};l.prototype.toString=function(){var e=this.length;return e===0?"":arguments.length===0?Gr(this,0,e):Do.apply(this,arguments)};l.prototype.toLocaleString=l.prototype.toString;l.prototype.equals=function(e){if(!l.isBuffer(e))throw new TypeError("Argument must be a Buffer");return this===e?!0:l.compare(this,e)===0};l.prototype.inspect=function(){var e="",r=Z.INSPECT_MAX_BYTES;return e=this.toString("hex",0,r).replace(/(.{2})/g,"$1 ").trim(),this.length>r&&(e+=" ... "),"<Buffer "+e+">"};Wr&&(l.prototype[Wr]=l.prototype.inspect);l.prototype.compare=function(e,r,t,n,a){if(S(e,Uint8Array)&&(e=l.from(e,e.offset,e.byteLength)),!l.isBuffer(e))throw new TypeError('The "target" argument must be one of type Buffer or Uint8Array. Received type '+typeof e);if(r===void 0&&(r=0),t===void 0&&(t=e?e.length:0),n===void 0&&(n=0),a===void 0&&(a=this.length),r<0||t>e.length||n<0||a>this.length)throw new RangeError("out of range index");if(n>=a&&r>=t)return 0;if(n>=a)return-1;if(r>=t)return 1;if(r>>>=0,t>>>=0,n>>>=0,a>>>=0,this===e)return 0;for(var i=a-n,s=t-r,c=Math.min(i,s),u=this.slice(n,a),d=e.slice(r,t),f=0;f<c;++f)if(u[f]!==d[f]){i=u[f],s=d[f];break}return i<s?-1:s<i?1:0};function Jr(o,e,r,t,n){if(o.length===0)return-1;if(typeof r=="string"?(t=r,r=0):r>2147483647?r=2147483647:r<-2147483648&&(r=-2147483648),r=+r,Ge(r)&&(r=n?0:o.length-1),r<0&&(r=o.length+r),r>=o.length){if(n)return-1;r=o.length-1}else if(r<0)if(n)r=0;else return-1;if(typeof e=="string"&&(e=l.from(e,t)),l.isBuffer(e))return e.length===0?-1:Yr(o,e,r,t,n);if(typeof e=="number")return e=e&255,typeof Uint8Array.prototype.indexOf=="function"?n?Uint8Array.prototype.indexOf.call(o,e,r):Uint8Array.prototype.lastIndexOf.call(o,e,r):Yr(o,[e],r,t,n);throw new TypeError("val must be string, number or Buffer")}function Yr(o,e,r,t,n){var a=1,i=o.length,s=e.length;if(t!==void 0&&(t=String(t).toLowerCase(),t==="ucs2"||t==="ucs-2"||t==="utf16le"||t==="utf-16le")){if(o.length<2||e.length<2)return-1;a=2,i/=2,s/=2,r/=2}function c(B,C){return a===1?B[C]:B.readUInt16BE(C*a)}var u;if(n){var d=-1;for(u=r;u<i;u++)if(c(o,u)===c(e,d===-1?0:u-d)){if(d===-1&&(d=u),u-d+1===s)return d*a}else d!==-1&&(u-=u-d),d=-1}else for(r+s>i&&(r=i-s),u=r;u>=0;u--){for(var f=!0,h=0;h<s;h++)if(c(o,u+h)!==c(e,h)){f=!1;break}if(f)return u}return-1}l.prototype.includes=function(e,r,t){return this.indexOf(e,r,t)!==-1};l.prototype.indexOf=function(e,r,t){return Jr(this,e,r,t,!0)};l.prototype.lastIndexOf=function(e,r,t){return Jr(this,e,r,t,!1)};function qo(o,e,r,t){r=Number(r)||0;var n=o.length-r;t?(t=Number(t),t>n&&(t=n)):t=n;var a=e.length;t>a/2&&(t=a/2);for(var i=0;i<t;++i){var s=parseInt(e.substr(i*2,2),16);if(Ge(s))return i;o[r+i]=s}return i}function Oo(o,e,r,t){return ve(Ke(e,o.length-r),o,r,t)}function zo(o,e,r,t){return ve(Zo(e),o,r,t)}function Ho(o,e,r,t){return ve(rt(e),o,r,t)}function $o(o,e,r,t){return ve(jo(e,o.length-r),o,r,t)}l.prototype.write=function(e,r,t,n){if(r===void 0)n="utf8",t=this.length,r=0;else if(t===void 0&&typeof r=="string")n=r,t=this.length,r=0;else if(isFinite(r))r=r>>>0,isFinite(t)?(t=t>>>0,n===void 0&&(n="utf8")):(n=t,t=void 0);else throw new Error("Buffer.write(string, encoding, offset[, length]) is no longer supported");var a=this.length-r;if((t===void 0||t>a)&&(t=a),e.length>0&&(t<0||r<0)||r>this.length)throw new RangeError("Attempt to write outside buffer bounds");n||(n="utf8");for(var i=!1;;)switch(n){case"hex":return qo(this,e,r,t);case"utf8":case"utf-8":return Oo(this,e,r,t);case"ascii":case"latin1":case"binary":return zo(this,e,r,t);case"base64":return Ho(this,e,r,t);case"ucs2":case"ucs-2":case"utf16le":case"utf-16le":return $o(this,e,r,t);default:if(i)throw new TypeError("Unknown encoding: "+n);n=(""+n).toLowerCase(),i=!0}};l.prototype.toJSON=function(){return{type:"Buffer",data:Array.prototype.slice.call(this._arr||this,0)}};function Wo(o,e,r){return e===0&&r===o.length?Ye.fromByteArray(o):Ye.fromByteArray(o.slice(e,r))}function Gr(o,e,r){r=Math.min(o.length,r);for(var t=[],n=e;n<r;){var a=o[n],i=null,s=a>239?4:a>223?3:a>191?2:1;if(n+s<=r){var c,u,d,f;switch(s){case 1:a<128&&(i=a);break;case 2:c=o[n+1],(c&192)===128&&(f=(a&31)<<6|c&63,f>127&&(i=f));break;case 3:c=o[n+1],u=o[n+2],(c&192)===128&&(u&192)===128&&(f=(a&15)<<12|(c&63)<<6|u&63,f>2047&&(f<55296||f>57343)&&(i=f));break;case 4:c=o[n+1],u=o[n+2],d=o[n+3],(c&192)===128&&(u&192)===128&&(d&192)===128&&(f=(a&15)<<18|(c&63)<<12|(u&63)<<6|d&63,f>65535&&f<1114112&&(i=f))}}i===null?(i=65533,s=1):i>65535&&(i-=65536,t.push(i>>>10&1023|55296),i=56320|i&1023),t.push(i),n+=s}return Yo(t)}var Vr=4096;function Yo(o){var e=o.length;if(e<=Vr)return String.fromCharCode.apply(String,o);for(var r="",t=0;t<e;)r+=String.fromCharCode.apply(String,o.slice(t,t+=Vr));return r}function Vo(o,e,r){var t="";r=Math.min(o.length,r);for(var n=e;n<r;++n)t+=String.fromCharCode(o[n]&127);return t}function Xo(o,e,r){var t="";r=Math.min(o.length,r);for(var n=e;n<r;++n)t+=String.fromCharCode(o[n]);return t}function Ko(o,e,r){var t=o.length;(!e||e<0)&&(e=0),(!r||r<0||r>t)&&(r=t);for(var n="",a=e;a<r;++a)n+=en[o[a]];return n}function Qo(o,e,r){for(var t=o.slice(e,r),n="",a=0;a<t.length-1;a+=2)n+=String.fromCharCode(t[a]+t[a+1]*256);return n}l.prototype.slice=function(e,r){var t=this.length;e=~~e,r=r===void 0?t:~~r,e<0?(e+=t,e<0&&(e=0)):e>t&&(e=t),r<0?(r+=t,r<0&&(r=0)):r>t&&(r=t),r<e&&(r=e);var n=this.subarray(e,r);return Object.setPrototypeOf(n,l.prototype),n};function y(o,e,r){if(o%1!==0||o<0)throw new RangeError("offset is not uint");if(o+e>r)throw new RangeError("Trying to access beyond buffer length")}l.prototype.readUintLE=l.prototype.readUIntLE=function(e,r,t){e=e>>>0,r=r>>>0,t||y(e,r,this.length);for(var n=this[e],a=1,i=0;++i<r&&(a*=256);)n+=this[e+i]*a;return n};l.prototype.readUintBE=l.prototype.readUIntBE=function(e,r,t){e=e>>>0,r=r>>>0,t||y(e,r,this.length);for(var n=this[e+--r],a=1;r>0&&(a*=256);)n+=this[e+--r]*a;return n};l.prototype.readUint8=l.prototype.readUInt8=function(e,r){return e=e>>>0,r||y(e,1,this.length),this[e]};l.prototype.readUint16LE=l.prototype.readUInt16LE=function(e,r){return e=e>>>0,r||y(e,2,this.length),this[e]|this[e+1]<<8};l.prototype.readUint16BE=l.prototype.readUInt16BE=function(e,r){return e=e>>>0,r||y(e,2,this.length),this[e]<<8|this[e+1]};l.prototype.readUint32LE=l.prototype.readUInt32LE=function(e,r){return e=e>>>0,r||y(e,4,this.length),(this[e]|this[e+1]<<8|this[e+2]<<16)+this[e+3]*16777216};l.prototype.readUint32BE=l.prototype.readUInt32BE=function(e,r){return e=e>>>0,r||y(e,4,this.length),this[e]*16777216+(this[e+1]<<16|this[e+2]<<8|this[e+3])};l.prototype.readIntLE=function(e,r,t){e=e>>>0,r=r>>>0,t||y(e,r,this.length);for(var n=this[e],a=1,i=0;++i<r&&(a*=256);)n+=this[e+i]*a;return a*=128,n>=a&&(n-=Math.pow(2,8*r)),n};l.prototype.readIntBE=function(e,r,t){e=e>>>0,r=r>>>0,t||y(e,r,this.length);for(var n=r,a=1,i=this[e+--n];n>0&&(a*=256);)i+=this[e+--n]*a;return a*=128,i>=a&&(i-=Math.pow(2,8*r)),i};l.prototype.readInt8=function(e,r){return e=e>>>0,r||y(e,1,this.length),this[e]&128?(255-this[e]+1)*-1:this[e]};l.prototype.readInt16LE=function(e,r){e=e>>>0,r||y(e,2,this.length);var t=this[e]|this[e+1]<<8;return t&32768?t|4294901760:t};l.prototype.readInt16BE=function(e,r){e=e>>>0,r||y(e,2,this.length);var t=this[e+1]|this[e]<<8;return t&32768?t|4294901760:t};l.prototype.readInt32LE=function(e,r){return e=e>>>0,r||y(e,4,this.length),this[e]|this[e+1]<<8|this[e+2]<<16|this[e+3]<<24};l.prototype.readInt32BE=function(e,r){return e=e>>>0,r||y(e,4,this.length),this[e]<<24|this[e+1]<<16|this[e+2]<<8|this[e+3]};l.prototype.readFloatLE=function(e,r){return e=e>>>0,r||y(e,4,this.length),G.read(this,e,!0,23,4)};l.prototype.readFloatBE=function(e,r){return e=e>>>0,r||y(e,4,this.length),G.read(this,e,!1,23,4)};l.prototype.readDoubleLE=function(e,r){return e=e>>>0,r||y(e,8,this.length),G.read(this,e,!0,52,8)};l.prototype.readDoubleBE=function(e,r){return e=e>>>0,r||y(e,8,this.length),G.read(this,e,!1,52,8)};function P(o,e,r,t,n,a){if(!l.isBuffer(o))throw new TypeError('"buffer" argument must be a Buffer instance');if(e>n||e<a)throw new RangeError('"value" argument is out of bounds');if(r+t>o.length)throw new RangeError("Index out of range")}l.prototype.writeUintLE=l.prototype.writeUIntLE=function(e,r,t,n){if(e=+e,r=r>>>0,t=t>>>0,!n){var a=Math.pow(2,8*t)-1;P(this,e,r,t,a,0)}var i=1,s=0;for(this[r]=e&255;++s<t&&(i*=256);)this[r+s]=e/i&255;return r+t};l.prototype.writeUintBE=l.prototype.writeUIntBE=function(e,r,t,n){if(e=+e,r=r>>>0,t=t>>>0,!n){var a=Math.pow(2,8*t)-1;P(this,e,r,t,a,0)}var i=t-1,s=1;for(this[r+i]=e&255;--i>=0&&(s*=256);)this[r+i]=e/s&255;return r+t};l.prototype.writeUint8=l.prototype.writeUInt8=function(e,r,t){return e=+e,r=r>>>0,t||P(this,e,r,1,255,0),this[r]=e&255,r+1};l.prototype.writeUint16LE=l.prototype.writeUInt16LE=function(e,r,t){return e=+e,r=r>>>0,t||P(this,e,r,2,65535,0),this[r]=e&255,this[r+1]=e>>>8,r+2};l.prototype.writeUint16BE=l.prototype.writeUInt16BE=function(e,r,t){return e=+e,r=r>>>0,t||P(this,e,r,2,65535,0),this[r]=e>>>8,this[r+1]=e&255,r+2};l.prototype.writeUint32LE=l.prototype.writeUInt32LE=function(e,r,t){return e=+e,r=r>>>0,t||P(this,e,r,4,4294967295,0),this[r+3]=e>>>24,this[r+2]=e>>>16,this[r+1]=e>>>8,this[r]=e&255,r+4};l.prototype.writeUint32BE=l.prototype.writeUInt32BE=function(e,r,t){return e=+e,r=r>>>0,t||P(this,e,r,4,4294967295,0),this[r]=e>>>24,this[r+1]=e>>>16,this[r+2]=e>>>8,this[r+3]=e&255,r+4};l.prototype.writeIntLE=function(e,r,t,n){if(e=+e,r=r>>>0,!n){var a=Math.pow(2,8*t-1);P(this,e,r,t,a-1,-a)}var i=0,s=1,c=0;for(this[r]=e&255;++i<t&&(s*=256);)e<0&&c===0&&this[r+i-1]!==0&&(c=1),this[r+i]=(e/s>>0)-c&255;return r+t};l.prototype.writeIntBE=function(e,r,t,n){if(e=+e,r=r>>>0,!n){var a=Math.pow(2,8*t-1);P(this,e,r,t,a-1,-a)}var i=t-1,s=1,c=0;for(this[r+i]=e&255;--i>=0&&(s*=256);)e<0&&c===0&&this[r+i+1]!==0&&(c=1),this[r+i]=(e/s>>0)-c&255;return r+t};l.prototype.writeInt8=function(e,r,t){return e=+e,r=r>>>0,t||P(this,e,r,1,127,-128),e<0&&(e=255+e+1),this[r]=e&255,r+1};l.prototype.writeInt16LE=function(e,r,t){return e=+e,r=r>>>0,t||P(this,e,r,2,32767,-32768),this[r]=e&255,this[r+1]=e>>>8,r+2};l.prototype.writeInt16BE=function(e,r,t){return e=+e,r=r>>>0,t||P(this,e,r,2,32767,-32768),this[r]=e>>>8,this[r+1]=e&255,r+2};l.prototype.writeInt32LE=function(e,r,t){return e=+e,r=r>>>0,t||P(this,e,r,4,2147483647,-2147483648),this[r]=e&255,this[r+1]=e>>>8,this[r+2]=e>>>16,this[r+3]=e>>>24,r+4};l.prototype.writeInt32BE=function(e,r,t){return e=+e,r=r>>>0,t||P(this,e,r,4,2147483647,-2147483648),e<0&&(e=4294967295+e+1),this[r]=e>>>24,this[r+1]=e>>>16,this[r+2]=e>>>8,this[r+3]=e&255,r+4};function Zr(o,e,r,t,n,a){if(r+t>o.length)throw new RangeError("Index out of range");if(r<0)throw new RangeError("Index out of range")}function jr(o,e,r,t,n){return e=+e,r=r>>>0,n||Zr(o,e,r,4,34028234663852886e22,-34028234663852886e22),G.write(o,e,r,t,23,4),r+4}l.prototype.writeFloatLE=function(e,r,t){return jr(this,e,r,!0,t)};l.prototype.writeFloatBE=function(e,r,t){return jr(this,e,r,!1,t)};function et(o,e,r,t,n){return e=+e,r=r>>>0,n||Zr(o,e,r,8,17976931348623157e292,-17976931348623157e292),G.write(o,e,r,t,52,8),r+8}l.prototype.writeDoubleLE=function(e,r,t){return et(this,e,r,!0,t)};l.prototype.writeDoubleBE=function(e,r,t){return et(this,e,r,!1,t)};l.prototype.copy=function(e,r,t,n){if(!l.isBuffer(e))throw new TypeError("argument should be a Buffer");if(t||(t=0),!n&&n!==0&&(n=this.length),r>=e.length&&(r=e.length),r||(r=0),n>0&&n<t&&(n=t),n===t||e.length===0||this.length===0)return 0;if(r<0)throw new RangeError("targetStart out of bounds");if(t<0||t>=this.length)throw new RangeError("Index out of range");if(n<0)throw new RangeError("sourceEnd out of bounds");n>this.length&&(n=this.length),e.length-r<n-t&&(n=e.length-r+t);var a=n-t;return this===e&&typeof Uint8Array.prototype.copyWithin=="function"?this.copyWithin(r,t,n):Uint8Array.prototype.set.call(e,this.subarray(t,n),r),a};l.prototype.fill=function(e,r,t,n){if(typeof e=="string"){if(typeof r=="string"?(n=r,r=0,t=this.length):typeof t=="string"&&(n=t,t=this.length),n!==void 0&&typeof n!="string")throw new TypeError("encoding must be a string");if(typeof n=="string"&&!l.isEncoding(n))throw new TypeError("Unknown encoding: "+n);if(e.length===1){var a=e.charCodeAt(0);(n==="utf8"&&a<128||n==="latin1")&&(e=a)}}else typeof e=="number"?e=e&255:typeof e=="boolean"&&(e=Number(e));if(r<0||this.length<r||this.length<t)throw new RangeError("Out of range index");if(t<=r)return this;r=r>>>0,t=t===void 0?this.length:t>>>0,e||(e=0);var i;if(typeof e=="number")for(i=r;i<t;++i)this[i]=e;else{var s=l.isBuffer(e)?e:l.from(e,n),c=s.length;if(c===0)throw new TypeError('The value "'+e+'" is invalid for argument "value"');for(i=0;i<t-r;++i)this[i+r]=s[i%c]}return this};var Jo=/[^+/0-9A-Za-z-_]/g;function Go(o){if(o=o.split("=")[0],o=o.trim().replace(Jo,""),o.length<2)return"";for(;o.length%4!==0;)o=o+"=";return o}function Ke(o,e){e=e||1/0;for(var r,t=o.length,n=null,a=[],i=0;i<t;++i){if(r=o.charCodeAt(i),r>55295&&r<57344){if(!n){if(r>56319){(e-=3)>-1&&a.push(239,191,189);continue}else if(i+1===t){(e-=3)>-1&&a.push(239,191,189);continue}n=r;continue}if(r<56320){(e-=3)>-1&&a.push(239,191,189),n=r;continue}r=(n-55296<<10|r-56320)+65536}else n&&(e-=3)>-1&&a.push(239,191,189);if(n=null,r<128){if((e-=1)<0)break;a.push(r)}else if(r<2048){if((e-=2)<0)break;a.push(r>>6|192,r&63|128)}else if(r<65536){if((e-=3)<0)break;a.push(r>>12|224,r>>6&63|128,r&63|128)}else if(r<1114112){if((e-=4)<0)break;a.push(r>>18|240,r>>12&63|128,r>>6&63|128,r&63|128)}else throw new Error("Invalid code point")}return a}function Zo(o){for(var e=[],r=0;r<o.length;++r)e.push(o.charCodeAt(r)&255);return e}function jo(o,e){for(var r,t,n,a=[],i=0;i<o.length&&!((e-=2)<0);++i)r=o.charCodeAt(i),t=r>>8,n=r%256,a.push(n),a.push(t);return a}function rt(o){return Ye.toByteArray(Go(o))}function ve(o,e,r,t){for(var n=0;n<t&&!(n+r>=e.length||n>=o.length);++n)e[n+r]=o[n];return n}function S(o,e){return o instanceof e||o!=null&&o.constructor!=null&&o.constructor.name!=null&&o.constructor.name===e.name}function Ge(o){return o!==o}var en=function(){for(var o="0123456789abcdef",e=new Array(256),r=0;r<16;++r)for(var t=r*16,n=0;n<16;++n)e[t+n]=o[r]+o[n];return e}()});var it=w((Aa,at)=>{var ot=z(),nt=qr(),rn=tt().Buffer;function Ze(o){this.genPoly=void 0,this.degree=o,this.degree&&this.initialize(this.degree)}Ze.prototype.initialize=function(e){this.degree=e,this.genPoly=nt.generateECPolynomial(this.degree)};Ze.prototype.encode=function(e){if(!this.genPoly)throw new Error("Encoder not initialized");var r=ot.alloc(this.degree),t=rn.concat([e,r],e.length+this.degree),n=nt.mod(t,this.genPoly),a=this.degree-n.length;if(a>0){var i=ot.alloc(this.degree);return n.copy(i,a),i}return n};at.exports=Ze});var je=w(st=>{st.isValid=function(e){return!isNaN(e)&&e>=1&&e<=40}});var er=w(U=>{var ct="[0-9]+",tn="[A-Z $%*+\\-./:]+",se="(?:[u3000-u303F]|[u3040-u309F]|[u30A0-u30FF]|[uFF00-uFFEF]|[u4E00-u9FAF]|[u2605-u2606]|[u2190-u2195]|u203B|[u2010u2015u2018u2019u2025u2026u201Cu201Du2225u2260]|[u0391-u0451]|[u00A7u00A8u00B1u00B4u00D7u00F7])+";se=se.replace(/u/g,"\\u");var on="(?:(?![A-Z0-9 $%*+\\-./:]|"+se+`)(?:.|[\r
-]))+`;U.KANJI=new RegExp(se,"g");U.BYTE_KANJI=new RegExp("[^A-Z0-9 $%*+\\-./:]+","g");U.BYTE=new RegExp(on,"g");U.NUMERIC=new RegExp(ct,"g");U.ALPHANUMERIC=new RegExp(tn,"g");var nn=new RegExp("^"+se+"$"),an=new RegExp("^"+ct+"$"),sn=new RegExp("^[A-Z0-9 $%*+\\-./:]+$");U.testKanji=function(e){return nn.test(e)};U.testNumeric=function(e){return an.test(e)};U.testAlphanumeric=function(e){return sn.test(e)}});var q=w(v=>{var cn=je(),rr=er();v.NUMERIC={id:"Numeric",bit:1<<0,ccBits:[10,12,14]};v.ALPHANUMERIC={id:"Alphanumeric",bit:1<<1,ccBits:[9,11,13]};v.BYTE={id:"Byte",bit:1<<2,ccBits:[8,16,16]};v.KANJI={id:"Kanji",bit:1<<3,ccBits:[8,10,12]};v.MIXED={bit:-1};v.getCharCountIndicator=function(e,r){if(!e.ccBits)throw new Error("Invalid mode: "+e);if(!cn.isValid(r))throw new Error("Invalid version: "+r);return r>=1&&r<10?e.ccBits[0]:r<27?e.ccBits[1]:e.ccBits[2]};v.getBestModeForData=function(e){return rr.testNumeric(e)?v.NUMERIC:rr.testAlphanumeric(e)?v.ALPHANUMERIC:rr.testKanji(e)?v.KANJI:v.BYTE};v.toString=function(e){if(e&&e.id)return e.id;throw new Error("Invalid mode")};v.isValid=function(e){return e&&e.bit&&e.ccBits};function ln(o){if(typeof o!="string")throw new Error("Param is not a string");var e=o.toLowerCase();switch(e){case"numeric":return v.NUMERIC;case"alphanumeric":return v.ALPHANUMERIC;case"kanji":return v.KANJI;case"byte":return v.BYTE;default:throw new Error("Unknown mode: "+o)}}v.from=function(e,r){if(v.isValid(e))return e;try{return ln(e)}catch{return r}}});var ht=w(V=>{var ye=N(),dn=Oe(),lt=he(),O=q(),tr=je(),un=fe(),ut=1<<12|1<<11|1<<10|1<<9|1<<8|1<<5|1<<2|1<<0,dt=ye.getBCHDigit(ut);function fn(o,e,r){for(var t=1;t<=40;t++)if(e<=V.getCapacity(t,r,o))return t}function ft(o,e){return O.getCharCountIndicator(o,e)+4}function hn(o,e){var r=0;return o.forEach(function(t){var n=ft(t.mode,e);r+=n+t.getBitsLength()}),r}function Bn(o,e){for(var r=1;r<=40;r++){var t=hn(o,r);if(t<=V.getCapacity(r,e,O.MIXED))return r}}V.from=function(e,r){return tr.isValid(e)?parseInt(e,10):r};V.getCapacity=function(e,r,t){if(!tr.isValid(e))throw new Error("Invalid QR Code version");typeof t>"u"&&(t=O.BYTE);var n=ye.getSymbolTotalCodewords(e),a=dn.getTotalCodewordsCount(e,r),i=(n-a)*8;if(t===O.MIXED)return i;var s=i-ft(t,e);switch(t){case O.NUMERIC:return Math.floor(s/10*3);case O.ALPHANUMERIC:return Math.floor(s/11*2);case O.KANJI:return Math.floor(s/13);case O.BYTE:default:return Math.floor(s/8)}};V.getBestVersionForData=function(e,r){var t,n=lt.from(r,lt.M);if(un(e)){if(e.length>1)return Bn(e,n);if(e.length===0)return 1;t=e[0]}else t=e;return fn(t.mode,t.getLength(),n)};V.getEncodedBits=function(e){if(!tr.isValid(e)||e<7)throw new Error("Invalid QR Code version");for(var r=e<<12;ye.getBCHDigit(r)-dt>=0;)r^=ut<<ye.getBCHDigit(r)-dt;return e<<12|r}});var wt=w(kt=>{var or=N(),mt=1<<10|1<<8|1<<5|1<<4|1<<2|1<<1|1<<0,mn=1<<14|1<<12|1<<10|1<<4|1<<1,Bt=or.getBCHDigit(mt);kt.getEncodedBits=function(e,r){for(var t=e.bit<<3|r,n=t<<10;or.getBCHDigit(n)-Bt>=0;)n^=mt<<or.getBCHDigit(n)-Bt;return(t<<10|n)^mn}});var pt=w((Ta,gt)=>{var kn=q();function j(o){this.mode=kn.NUMERIC,this.data=o.toString()}j.getBitsLength=function(e){return 10*Math.floor(e/3)+(e%3?e%3*3+1:0)};j.prototype.getLength=function(){return this.data.length};j.prototype.getBitsLength=function(){return j.getBitsLength(this.data.length)};j.prototype.write=function(e){var r,t,n;for(r=0;r+3<=this.data.length;r+=3)t=this.data.substr(r,3),n=parseInt(t,10),e.put(n,10);var a=this.data.length-r;a>0&&(t=this.data.substr(r),n=parseInt(t,10),e.put(n,a*3+1))};gt.exports=j});var vt=w((Ra,Ct)=>{var wn=q(),nr=["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"," ","$","%","*","+","-",".","/",":"];function ee(o){this.mode=wn.ALPHANUMERIC,this.data=o}ee.getBitsLength=function(e){return 11*Math.floor(e/2)+6*(e%2)};ee.prototype.getLength=function(){return this.data.length};ee.prototype.getBitsLength=function(){return ee.getBitsLength(this.data.length)};ee.prototype.write=function(e){var r;for(r=0;r+2<=this.data.length;r+=2){var t=nr.indexOf(this.data[r])*45;t+=nr.indexOf(this.data[r+1]),e.put(t,11)}this.data.length%2&&e.put(nr.indexOf(this.data[r]),6)};Ct.exports=ee});var bt=w((Fa,yt)=>{var gn=z(),pn=q();function re(o){this.mode=pn.BYTE,this.data=gn.from(o)}re.getBitsLength=function(e){return e*8};re.prototype.getLength=function(){return this.data.length};re.prototype.getBitsLength=function(){return re.getBitsLength(this.data.length)};re.prototype.write=function(o){for(var e=0,r=this.data.length;e<r;e++)o.put(this.data[e],8)};yt.exports=re});var xt=w((Ua,Pt)=>{var Cn=q(),vn=N();function te(o){this.mode=Cn.KANJI,this.data=o}te.getBitsLength=function(e){return e*13};te.prototype.getLength=function(){return this.data.length};te.prototype.getBitsLength=function(){return te.getBitsLength(this.data.length)};te.prototype.write=function(o){var e;for(e=0;e<this.data.length;e++){var r=vn.toSJIS(this.data[e]);if(r>=33088&&r<=40956)r-=33088;else if(r>=57408&&r<=60351)r-=49472;else throw new Error("Invalid SJIS character: "+this.data[e]+`
-Make sure your charset is UTF-8`);r=(r>>>8&255)*192+(r&255),o.put(r,13)}};Pt.exports=te});var Et=w((Na,ar)=>{"use strict";var ce={single_source_shortest_paths:function(o,e,r){var t={},n={};n[e]=0;var a=ce.PriorityQueue.make();a.push(e,0);for(var i,s,c,u,d,f,h,B,C;!a.empty();){i=a.pop(),s=i.value,u=i.cost,d=o[s]||{};for(c in d)d.hasOwnProperty(c)&&(f=d[c],h=u+f,B=n[c],C=typeof n[c]>"u",(C||B>h)&&(n[c]=h,a.push(c,h),t[c]=s))}if(typeof r<"u"&&typeof n[r]>"u"){var b=["Could not find a path from ",e," to ",r,"."].join("");throw new Error(b)}return t},extract_shortest_path_from_predecessor_list:function(o,e){for(var r=[],t=e,n;t;)r.push(t),n=o[t],t=o[t];return r.reverse(),r},find_path:function(o,e,r){var t=ce.single_source_shortest_paths(o,e,r);return ce.extract_shortest_path_from_predecessor_list(t,r)},PriorityQueue:{make:function(o){var e=ce.PriorityQueue,r={},t;o=o||{};for(t in e)e.hasOwnProperty(t)&&(r[t]=e[t]);return r.queue=[],r.sorter=o.sorter||e.default_sorter,r},default_sorter:function(o,e){return o.cost-e.cost},push:function(o,e){var r={value:o,cost:e};this.queue.push(r),this.queue.sort(this.sorter)},pop:function(){return this.queue.shift()},empty:function(){return this.queue.length===0}}};typeof ar<"u"&&(ar.exports=ce)});var Rt=w(oe=>{var g=q(),_t=pt(),It=vt(),St=bt(),Lt=xt(),le=er(),be=N(),yn=Et();function At(o){return unescape(encodeURIComponent(o)).length}function de(o,e,r){for(var t=[],n;(n=o.exec(r))!==null;)t.push({data:n[0],index:n.index,mode:e,length:n[0].length});return t}function Tt(o){var e=de(le.NUMERIC,g.NUMERIC,o),r=de(le.ALPHANUMERIC,g.ALPHANUMERIC,o),t,n;be.isKanjiModeEnabled()?(t=de(le.BYTE,g.BYTE,o),n=de(le.KANJI,g.KANJI,o)):(t=de(le.BYTE_KANJI,g.BYTE,o),n=[]);var a=e.concat(r,t,n);return a.sort(function(i,s){return i.index-s.index}).map(function(i){return{data:i.data,mode:i.mode,length:i.length}})}function ir(o,e){switch(e){case g.NUMERIC:return _t.getBitsLength(o);case g.ALPHANUMERIC:return It.getBitsLength(o);case g.KANJI:return Lt.getBitsLength(o);case g.BYTE:return St.getBitsLength(o)}}function bn(o){return o.reduce(function(e,r){var t=e.length-1>=0?e[e.length-1]:null;return t&&t.mode===r.mode?(e[e.length-1].data+=r.data,e):(e.push(r),e)},[])}function Pn(o){for(var e=[],r=0;r<o.length;r++){var t=o[r];switch(t.mode){case g.NUMERIC:e.push([t,{data:t.data,mode:g.ALPHANUMERIC,length:t.length},{data:t.data,mode:g.BYTE,length:t.length}]);break;case g.ALPHANUMERIC:e.push([t,{data:t.data,mode:g.BYTE,length:t.length}]);break;case g.KANJI:e.push([t,{data:t.data,mode:g.BYTE,length:At(t.data)}]);break;case g.BYTE:e.push([{data:t.data,mode:g.BYTE,length:At(t.data)}])}}return e}function xn(o,e){for(var r={},t={start:{}},n=["start"],a=0;a<o.length;a++){for(var i=o[a],s=[],c=0;c<i.length;c++){var u=i[c],d=""+a+c;s.push(d),r[d]={node:u,lastCount:0},t[d]={};for(var f=0;f<n.length;f++){var h=n[f];r[h]&&r[h].node.mode===u.mode?(t[h][d]=ir(r[h].lastCount+u.length,u.mode)-ir(r[h].lastCount,u.mode),r[h].lastCount+=u.length):(r[h]&&(r[h].lastCount=u.length),t[h][d]=ir(u.length,u.mode)+4+g.getCharCountIndicator(u.mode,e))}}n=s}for(f=0;f<n.length;f++)t[n[f]].end=0;return{map:t,table:r}}function Mt(o,e){var r,t=g.getBestModeForData(o);if(r=g.from(e,t),r!==g.BYTE&&r.bit<t.bit)throw new Error('"'+o+'" cannot be encoded with mode '+g.toString(r)+`.
- Suggested mode is: `+g.toString(t));switch(r===g.KANJI&&!be.isKanjiModeEnabled()&&(r=g.BYTE),r){case g.NUMERIC:return new _t(o);case g.ALPHANUMERIC:return new It(o);case g.KANJI:return new Lt(o);case g.BYTE:return new St(o)}}oe.fromArray=function(e){return e.reduce(function(r,t){return typeof t=="string"?r.push(Mt(t,null)):t.data&&r.push(Mt(t.data,t.mode)),r},[])};oe.fromString=function(e,r){for(var t=Tt(e,be.isKanjiModeEnabled()),n=Pn(t),a=xn(n,r),i=yn.find_path(a.map,"start","end"),s=[],c=1;c<i.length-1;c++)s.push(a.table[i[c]].node);return oe.fromArray(bn(s))};oe.rawSplit=function(e){return oe.fromArray(Tt(e,be.isKanjiModeEnabled()))}});var Nt=w(Ut=>{var Ft=z(),xe=N(),sr=he(),En=Mr(),An=Sr(),Mn=Lr(),_n=Fr(),dr=Ur(),ur=Oe(),In=it(),Pe=ht(),Sn=wt(),Ln=q(),cr=Rt(),Tn=fe();function Rn(o,e){for(var r=o.size,t=_n.getPositions(e),n=0;n<t.length;n++)for(var a=t[n][0],i=t[n][1],s=-1;s<=7;s++)if(!(a+s<=-1||r<=a+s))for(var c=-1;c<=7;c++)i+c<=-1||r<=i+c||(s>=0&&s<=6&&(c===0||c===6)||c>=0&&c<=6&&(s===0||s===6)||s>=2&&s<=4&&c>=2&&c<=4?o.set(a+s,i+c,!0,!0):o.set(a+s,i+c,!1,!0))}function Fn(o){for(var e=o.size,r=8;r<e-8;r++){var t=r%2===0;o.set(r,6,t,!0),o.set(6,r,t,!0)}}function Un(o,e){for(var r=Mn.getPositions(e),t=0;t<r.length;t++)for(var n=r[t][0],a=r[t][1],i=-2;i<=2;i++)for(var s=-2;s<=2;s++)i===-2||i===2||s===-2||s===2||i===0&&s===0?o.set(n+i,a+s,!0,!0):o.set(n+i,a+s,!1,!0)}function Nn(o,e){for(var r=o.size,t=Pe.getEncodedBits(e),n,a,i,s=0;s<18;s++)n=Math.floor(s/3),a=s%3+r-8-3,i=(t>>s&1)===1,o.set(n,a,i,!0),o.set(a,n,i,!0)}function lr(o,e,r){var t=o.size,n=Sn.getEncodedBits(e,r),a,i;for(a=0;a<15;a++)i=(n>>a&1)===1,a<6?o.set(a,8,i,!0):a<8?o.set(a+1,8,i,!0):o.set(t-15+a,8,i,!0),a<8?o.set(8,t-a-1,i,!0):a<9?o.set(8,15-a-1+1,i,!0):o.set(8,15-a-1,i,!0);o.set(t-8,8,1,!0)}function Dn(o,e){for(var r=o.size,t=-1,n=r-1,a=7,i=0,s=r-1;s>0;s-=2)for(s===6&&s--;;){for(var c=0;c<2;c++)if(!o.isReserved(n,s-c)){var u=!1;i<e.length&&(u=(e[i]>>>a&1)===1),o.set(n,s-c,u),a--,a===-1&&(i++,a=7)}if(n+=t,n<0||r<=n){n-=t,t=-t;break}}}function qn(o,e,r){var t=new En;r.forEach(function(u){t.put(u.mode.bit,4),t.put(u.getLength(),Ln.getCharCountIndicator(u.mode,o)),u.write(t)});var n=xe.getSymbolTotalCodewords(o),a=ur.getTotalCodewordsCount(o,e),i=(n-a)*8;for(t.getLengthInBits()+4<=i&&t.put(0,4);t.getLengthInBits()%8!==0;)t.putBit(0);for(var s=(i-t.getLengthInBits())/8,c=0;c<s;c++)t.put(c%2?17:236,8);return On(t,o,e)}function On(o,e,r){for(var t=xe.getSymbolTotalCodewords(e),n=ur.getTotalCodewordsCount(e,r),a=t-n,i=ur.getBlocksCount(e,r),s=t%i,c=i-s,u=Math.floor(t/i),d=Math.floor(a/i),f=d+1,h=u-d,B=new In(h),C=0,b=new Array(i),L=new Array(i),x=0,Q=Ft.from(o.buffer),E=0;E<i;E++){var A=E<c?d:f;b[E]=Q.slice(C,C+A),L[E]=B.encode(b[E]),C+=A,x=Math.max(x,A)}var Te=Ft.alloc(t),gr=0,T,R;for(T=0;T<x;T++)for(R=0;R<i;R++)T<b[R].length&&(Te[gr++]=b[R][T]);for(T=0;T<h;T++)for(R=0;R<i;R++)Te[gr++]=L[R][T];return Te}function zn(o,e,r,t){var n;if(Tn(o))n=cr.fromArray(o);else if(typeof o=="string"){var a=e;if(!a){var i=cr.rawSplit(o);a=Pe.getBestVersionForData(i,r)}n=cr.fromString(o,a||40)}else throw new Error("Invalid data");var s=Pe.getBestVersionForData(n,r);if(!s)throw new Error("The amount of data is too big to be stored in a QR Code");if(!e)e=s;else if(e<s)throw new Error(`
-The chosen QR Code version cannot contain this amount of data.
-Minimum version required to store current data is: `+s+`.
-`);var c=qn(e,r,n),u=xe.getSymbolSize(e),d=new An(u);return Rn(d,e),Fn(d),Un(d,e),lr(d,r,0),e>=7&&Nn(d,e),Dn(d,c),isNaN(t)&&(t=dr.getBestMask(d,lr.bind(null,d,r))),dr.applyMask(t,d),lr(d,r,t),{modules:d,version:e,errorCorrectionLevel:r,maskPattern:t,segments:n}}Ut.create=function(e,r){if(typeof e>"u"||e==="")throw new Error("No input text");var t=sr.M,n,a;return typeof r<"u"&&(t=sr.from(r.errorCorrectionLevel,sr.M),n=Pe.from(r.version),a=dr.from(r.maskPattern),r.toSJISFunc&&xe.setToSJISFunction(r.toSJISFunc)),zn(e,n,t,a)}});var fr=w(X=>{function Dt(o){if(typeof o=="number"&&(o=o.toString()),typeof o!="string")throw new Error("Color should be defined as hex string");var e=o.slice().replace("#","").split("");if(e.length<3||e.length===5||e.length>8)throw new Error("Invalid hex color: "+o);(e.length===3||e.length===4)&&(e=Array.prototype.concat.apply([],e.map(function(t){return[t,t]}))),e.length===6&&e.push("F","F");var r=parseInt(e.join(""),16);return{r:r>>24&255,g:r>>16&255,b:r>>8&255,a:r&255,hex:"#"+e.slice(0,6).join("")}}X.getOptions=function(e){e||(e={}),e.color||(e.color={});var r=typeof e.margin>"u"||e.margin===null||e.margin<0?4:e.margin,t=e.width&&e.width>=21?e.width:void 0,n=e.scale||4;return{width:t,scale:t?4:n,margin:r,color:{dark:Dt(e.color.dark||"#000000ff"),light:Dt(e.color.light||"#ffffffff")},type:e.type,rendererOpts:e.rendererOpts||{}}};X.getScale=function(e,r){return r.width&&r.width>=e+r.margin*2?r.width/(e+r.margin*2):r.scale};X.getImageWidth=function(e,r){var t=X.getScale(e,r);return Math.floor((e+r.margin*2)*t)};X.qrToImageData=function(e,r,t){for(var n=r.modules.size,a=r.modules.data,i=X.getScale(n,t),s=Math.floor((n+t.margin*2)*i),c=t.margin*i,u=[t.color.light,t.color.dark],d=0;d<s;d++)for(var f=0;f<s;f++){var h=(d*s+f)*4,B=t.color.light;if(d>=c&&f>=c&&d<s-c&&f<s-c){var C=Math.floor((d-c)/i),b=Math.floor((f-c)/i);B=u[a[C*n+b]?1:0]}e[h++]=B.r,e[h++]=B.g,e[h++]=B.b,e[h]=B.a}}});var qt=w(Ee=>{var hr=fr();function Hn(o,e,r){o.clearRect(0,0,e.width,e.height),e.style||(e.style={}),e.height=r,e.width=r,e.style.height=r+"px",e.style.width=r+"px"}function $n(){try{return document.createElement("canvas")}catch{throw new Error("You need to specify a canvas element")}}Ee.render=function(e,r,t){var n=t,a=r;typeof n>"u"&&(!r||!r.getContext)&&(n=r,r=void 0),r||(a=$n()),n=hr.getOptions(n);var i=hr.getImageWidth(e.modules.size,n),s=a.getContext("2d"),c=s.createImageData(i,i);return hr.qrToImageData(c.data,e,n),Hn(s,a,i),s.putImageData(c,0,0),a};Ee.renderToDataURL=function(e,r,t){var n=t;typeof n>"u"&&(!r||!r.getContext)&&(n=r,r=void 0),n||(n={});var a=Ee.render(e,r,n),i=n.type||"image/png",s=n.rendererOpts||{};return a.toDataURL(i,s.quality)}});var Ht=w(zt=>{var Wn=fr();function Ot(o,e){var r=o.a/255,t=e+'="'+o.hex+'"';return r<1?t+" "+e+'-opacity="'+r.toFixed(2).slice(1)+'"':t}function Br(o,e,r){var t=o+e;return typeof r<"u"&&(t+=" "+r),t}function Yn(o,e,r){for(var t="",n=0,a=!1,i=0,s=0;s<o.length;s++){var c=Math.floor(s%e),u=Math.floor(s/e);!c&&!a&&(a=!0),o[s]?(i++,s>0&&c>0&&o[s-1]||(t+=a?Br("M",c+r,.5+u+r):Br("m",n,0),n=0,a=!1),c+1<e&&o[s+1]||(t+=Br("h",i),i=0)):n++}return t}zt.render=function(e,r,t){var n=Wn.getOptions(r),a=e.modules.size,i=e.modules.data,s=a+n.margin*2,c=n.color.light.a?"<path "+Ot(n.color.light,"fill")+' d="M0 0h'+s+"v"+s+'H0z"/>':"",u="<path "+Ot(n.color.dark,"stroke")+' d="'+Yn(i,a,n.margin)+'"/>',d='viewBox="0 0 '+s+" "+s+'"',f=n.width?'width="'+n.width+'" height="'+n.width+'" ':"",h='<svg xmlns="http://www.w3.org/2000/svg" '+f+d+' shape-rendering="crispEdges">'+c+u+`</svg>
-`;return typeof t=="function"&&t(null,h),h}});var Wt=w(ue=>{var Vn=Cr(),mr=Nt(),$t=qt(),Xn=Ht();function kr(o,e,r,t,n){var a=[].slice.call(arguments,1),i=a.length,s=typeof a[i-1]=="function";if(!s&&!Vn())throw new Error("Callback required as last argument");if(s){if(i<2)throw new Error("Too few arguments provided");i===2?(n=r,r=e,e=t=void 0):i===3&&(e.getContext&&typeof n>"u"?(n=t,t=void 0):(n=t,t=r,r=e,e=void 0))}else{if(i<1)throw new Error("Too few arguments provided");return i===1?(r=e,e=t=void 0):i===2&&!e.getContext&&(t=r,r=e,e=void 0),new Promise(function(u,d){try{var f=mr.create(r,t);u(o(f,e,t))}catch(h){d(h)}})}try{var c=mr.create(r,t);n(null,o(c,e,t))}catch(u){n(u)}}ue.create=mr.create;ue.toCanvas=kr.bind(null,$t.render);ue.toDataURL=kr.bind(null,$t.renderToDataURL);ue.toString=kr.bind(null,function(o,e,r){return Xn.render(o,r)})});var Jt={};io(Jt,{createWorker:()=>Kn});var Kn,Gt=ao(()=>{Kn=()=>new Worker(URL.createObjectURL(new Blob([`class x{constructor(a,b){this.width=b;this.height=a.length/b;this.data=a}static createEmpty(a,b){return new x(new Uint8ClampedArray(a*b),a)}get(a,b){return 0>a||a>=this.width||0>b||b>=this.height?!1:!!this.data[b*this.width+a]}set(a,b,c){this.data[b*this.width+a]=c?1:0}setRegion(a,b,c,d,e){for(let f=b;f<b+d;f++)for(let g=a;g<a+c;g++)this.set(g,f,!!e)}}
+(() => {
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __markAsModule = (target) => __defProp(target, "__esModule", { value: true });
+  var __require = typeof require !== "undefined" ? require : (x) => {
+    throw new Error('Dynamic require of "' + x + '" is not supported');
+  };
+  var __esm = (fn, res) => function __init() {
+    return fn && (res = (0, fn[Object.keys(fn)[0]])(fn = 0)), res;
+  };
+  var __commonJS = (cb, mod) => function __require2() {
+    return mod || (0, cb[Object.keys(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+  var __export = (target, all) => {
+    __markAsModule(target);
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __reExport = (target, module, desc) => {
+    if (module && typeof module === "object" || typeof module === "function") {
+      for (let key of __getOwnPropNames(module))
+        if (!__hasOwnProp.call(target, key) && key !== "default")
+          __defProp(target, key, { get: () => module[key], enumerable: !(desc = __getOwnPropDesc(module, key)) || desc.enumerable });
+    }
+    return target;
+  };
+  var __toModule = (module) => {
+    return __reExport(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", module && module.__esModule && "default" in module ? { get: () => module.default, enumerable: true } : { value: module, enumerable: true })), module);
+  };
+
+  // node_modules/qrcode/lib/can-promise.js
+  var require_can_promise = __commonJS({
+    "node_modules/qrcode/lib/can-promise.js"(exports, module) {
+      module.exports = function() {
+        return typeof Promise === "function" && Promise.prototype && Promise.prototype.then;
+      };
+    }
+  });
+
+  // node_modules/qrcode/node_modules/isarray/index.js
+  var require_isarray = __commonJS({
+    "node_modules/qrcode/node_modules/isarray/index.js"(exports, module) {
+      var toString = {}.toString;
+      module.exports = Array.isArray || function(arr) {
+        return toString.call(arr) == "[object Array]";
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/utils/typedarray-buffer.js
+  var require_typedarray_buffer = __commonJS({
+    "node_modules/qrcode/lib/utils/typedarray-buffer.js"(exports, module) {
+      "use strict";
+      var isArray = require_isarray();
+      function typedArraySupport() {
+        try {
+          var arr = new Uint8Array(1);
+          arr.__proto__ = { __proto__: Uint8Array.prototype, foo: function() {
+            return 42;
+          } };
+          return arr.foo() === 42;
+        } catch (e2) {
+          return false;
+        }
+      }
+      Buffer2.TYPED_ARRAY_SUPPORT = typedArraySupport();
+      var K_MAX_LENGTH = Buffer2.TYPED_ARRAY_SUPPORT ? 2147483647 : 1073741823;
+      function Buffer2(arg, offset, length) {
+        if (!Buffer2.TYPED_ARRAY_SUPPORT && !(this instanceof Buffer2)) {
+          return new Buffer2(arg, offset, length);
+        }
+        if (typeof arg === "number") {
+          return allocUnsafe(this, arg);
+        }
+        return from(this, arg, offset, length);
+      }
+      if (Buffer2.TYPED_ARRAY_SUPPORT) {
+        Buffer2.prototype.__proto__ = Uint8Array.prototype;
+        Buffer2.__proto__ = Uint8Array;
+        if (typeof Symbol !== "undefined" && Symbol.species && Buffer2[Symbol.species] === Buffer2) {
+          Object.defineProperty(Buffer2, Symbol.species, {
+            value: null,
+            configurable: true,
+            enumerable: false,
+            writable: false
+          });
+        }
+      }
+      function checked(length) {
+        if (length >= K_MAX_LENGTH) {
+          throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x" + K_MAX_LENGTH.toString(16) + " bytes");
+        }
+        return length | 0;
+      }
+      function isnan(val) {
+        return val !== val;
+      }
+      function createBuffer(that, length) {
+        var buf;
+        if (Buffer2.TYPED_ARRAY_SUPPORT) {
+          buf = new Uint8Array(length);
+          buf.__proto__ = Buffer2.prototype;
+        } else {
+          buf = that;
+          if (buf === null) {
+            buf = new Buffer2(length);
+          }
+          buf.length = length;
+        }
+        return buf;
+      }
+      function allocUnsafe(that, size) {
+        var buf = createBuffer(that, size < 0 ? 0 : checked(size) | 0);
+        if (!Buffer2.TYPED_ARRAY_SUPPORT) {
+          for (var i = 0; i < size; ++i) {
+            buf[i] = 0;
+          }
+        }
+        return buf;
+      }
+      function fromString(that, string) {
+        var length = byteLength(string) | 0;
+        var buf = createBuffer(that, length);
+        var actual = buf.write(string);
+        if (actual !== length) {
+          buf = buf.slice(0, actual);
+        }
+        return buf;
+      }
+      function fromArrayLike(that, array) {
+        var length = array.length < 0 ? 0 : checked(array.length) | 0;
+        var buf = createBuffer(that, length);
+        for (var i = 0; i < length; i += 1) {
+          buf[i] = array[i] & 255;
+        }
+        return buf;
+      }
+      function fromArrayBuffer(that, array, byteOffset, length) {
+        if (byteOffset < 0 || array.byteLength < byteOffset) {
+          throw new RangeError("'offset' is out of bounds");
+        }
+        if (array.byteLength < byteOffset + (length || 0)) {
+          throw new RangeError("'length' is out of bounds");
+        }
+        var buf;
+        if (byteOffset === void 0 && length === void 0) {
+          buf = new Uint8Array(array);
+        } else if (length === void 0) {
+          buf = new Uint8Array(array, byteOffset);
+        } else {
+          buf = new Uint8Array(array, byteOffset, length);
+        }
+        if (Buffer2.TYPED_ARRAY_SUPPORT) {
+          buf.__proto__ = Buffer2.prototype;
+        } else {
+          buf = fromArrayLike(that, buf);
+        }
+        return buf;
+      }
+      function fromObject(that, obj) {
+        if (Buffer2.isBuffer(obj)) {
+          var len = checked(obj.length) | 0;
+          var buf = createBuffer(that, len);
+          if (buf.length === 0) {
+            return buf;
+          }
+          obj.copy(buf, 0, 0, len);
+          return buf;
+        }
+        if (obj) {
+          if (typeof ArrayBuffer !== "undefined" && obj.buffer instanceof ArrayBuffer || "length" in obj) {
+            if (typeof obj.length !== "number" || isnan(obj.length)) {
+              return createBuffer(that, 0);
+            }
+            return fromArrayLike(that, obj);
+          }
+          if (obj.type === "Buffer" && Array.isArray(obj.data)) {
+            return fromArrayLike(that, obj.data);
+          }
+        }
+        throw new TypeError("First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.");
+      }
+      function utf8ToBytes(string, units) {
+        units = units || Infinity;
+        var codePoint;
+        var length = string.length;
+        var leadSurrogate = null;
+        var bytes = [];
+        for (var i = 0; i < length; ++i) {
+          codePoint = string.charCodeAt(i);
+          if (codePoint > 55295 && codePoint < 57344) {
+            if (!leadSurrogate) {
+              if (codePoint > 56319) {
+                if ((units -= 3) > -1)
+                  bytes.push(239, 191, 189);
+                continue;
+              } else if (i + 1 === length) {
+                if ((units -= 3) > -1)
+                  bytes.push(239, 191, 189);
+                continue;
+              }
+              leadSurrogate = codePoint;
+              continue;
+            }
+            if (codePoint < 56320) {
+              if ((units -= 3) > -1)
+                bytes.push(239, 191, 189);
+              leadSurrogate = codePoint;
+              continue;
+            }
+            codePoint = (leadSurrogate - 55296 << 10 | codePoint - 56320) + 65536;
+          } else if (leadSurrogate) {
+            if ((units -= 3) > -1)
+              bytes.push(239, 191, 189);
+          }
+          leadSurrogate = null;
+          if (codePoint < 128) {
+            if ((units -= 1) < 0)
+              break;
+            bytes.push(codePoint);
+          } else if (codePoint < 2048) {
+            if ((units -= 2) < 0)
+              break;
+            bytes.push(codePoint >> 6 | 192, codePoint & 63 | 128);
+          } else if (codePoint < 65536) {
+            if ((units -= 3) < 0)
+              break;
+            bytes.push(codePoint >> 12 | 224, codePoint >> 6 & 63 | 128, codePoint & 63 | 128);
+          } else if (codePoint < 1114112) {
+            if ((units -= 4) < 0)
+              break;
+            bytes.push(codePoint >> 18 | 240, codePoint >> 12 & 63 | 128, codePoint >> 6 & 63 | 128, codePoint & 63 | 128);
+          } else {
+            throw new Error("Invalid code point");
+          }
+        }
+        return bytes;
+      }
+      function byteLength(string) {
+        if (Buffer2.isBuffer(string)) {
+          return string.length;
+        }
+        if (typeof ArrayBuffer !== "undefined" && typeof ArrayBuffer.isView === "function" && (ArrayBuffer.isView(string) || string instanceof ArrayBuffer)) {
+          return string.byteLength;
+        }
+        if (typeof string !== "string") {
+          string = "" + string;
+        }
+        var len = string.length;
+        if (len === 0)
+          return 0;
+        return utf8ToBytes(string).length;
+      }
+      function blitBuffer(src, dst, offset, length) {
+        for (var i = 0; i < length; ++i) {
+          if (i + offset >= dst.length || i >= src.length)
+            break;
+          dst[i + offset] = src[i];
+        }
+        return i;
+      }
+      function utf8Write(buf, string, offset, length) {
+        return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length);
+      }
+      function from(that, value, offset, length) {
+        if (typeof value === "number") {
+          throw new TypeError('"value" argument must not be a number');
+        }
+        if (typeof ArrayBuffer !== "undefined" && value instanceof ArrayBuffer) {
+          return fromArrayBuffer(that, value, offset, length);
+        }
+        if (typeof value === "string") {
+          return fromString(that, value, offset);
+        }
+        return fromObject(that, value);
+      }
+      Buffer2.prototype.write = function write(string, offset, length) {
+        if (offset === void 0) {
+          length = this.length;
+          offset = 0;
+        } else if (length === void 0 && typeof offset === "string") {
+          length = this.length;
+          offset = 0;
+        } else if (isFinite(offset)) {
+          offset = offset | 0;
+          if (isFinite(length)) {
+            length = length | 0;
+          } else {
+            length = void 0;
+          }
+        }
+        var remaining = this.length - offset;
+        if (length === void 0 || length > remaining)
+          length = remaining;
+        if (string.length > 0 && (length < 0 || offset < 0) || offset > this.length) {
+          throw new RangeError("Attempt to write outside buffer bounds");
+        }
+        return utf8Write(this, string, offset, length);
+      };
+      Buffer2.prototype.slice = function slice(start, end) {
+        var len = this.length;
+        start = ~~start;
+        end = end === void 0 ? len : ~~end;
+        if (start < 0) {
+          start += len;
+          if (start < 0)
+            start = 0;
+        } else if (start > len) {
+          start = len;
+        }
+        if (end < 0) {
+          end += len;
+          if (end < 0)
+            end = 0;
+        } else if (end > len) {
+          end = len;
+        }
+        if (end < start)
+          end = start;
+        var newBuf;
+        if (Buffer2.TYPED_ARRAY_SUPPORT) {
+          newBuf = this.subarray(start, end);
+          newBuf.__proto__ = Buffer2.prototype;
+        } else {
+          var sliceLen = end - start;
+          newBuf = new Buffer2(sliceLen, void 0);
+          for (var i = 0; i < sliceLen; ++i) {
+            newBuf[i] = this[i + start];
+          }
+        }
+        return newBuf;
+      };
+      Buffer2.prototype.copy = function copy(target, targetStart, start, end) {
+        if (!start)
+          start = 0;
+        if (!end && end !== 0)
+          end = this.length;
+        if (targetStart >= target.length)
+          targetStart = target.length;
+        if (!targetStart)
+          targetStart = 0;
+        if (end > 0 && end < start)
+          end = start;
+        if (end === start)
+          return 0;
+        if (target.length === 0 || this.length === 0)
+          return 0;
+        if (targetStart < 0) {
+          throw new RangeError("targetStart out of bounds");
+        }
+        if (start < 0 || start >= this.length)
+          throw new RangeError("sourceStart out of bounds");
+        if (end < 0)
+          throw new RangeError("sourceEnd out of bounds");
+        if (end > this.length)
+          end = this.length;
+        if (target.length - targetStart < end - start) {
+          end = target.length - targetStart + start;
+        }
+        var len = end - start;
+        var i;
+        if (this === target && start < targetStart && targetStart < end) {
+          for (i = len - 1; i >= 0; --i) {
+            target[i + targetStart] = this[i + start];
+          }
+        } else if (len < 1e3 || !Buffer2.TYPED_ARRAY_SUPPORT) {
+          for (i = 0; i < len; ++i) {
+            target[i + targetStart] = this[i + start];
+          }
+        } else {
+          Uint8Array.prototype.set.call(target, this.subarray(start, start + len), targetStart);
+        }
+        return len;
+      };
+      Buffer2.prototype.fill = function fill(val, start, end) {
+        if (typeof val === "string") {
+          if (typeof start === "string") {
+            start = 0;
+            end = this.length;
+          } else if (typeof end === "string") {
+            end = this.length;
+          }
+          if (val.length === 1) {
+            var code = val.charCodeAt(0);
+            if (code < 256) {
+              val = code;
+            }
+          }
+        } else if (typeof val === "number") {
+          val = val & 255;
+        }
+        if (start < 0 || this.length < start || this.length < end) {
+          throw new RangeError("Out of range index");
+        }
+        if (end <= start) {
+          return this;
+        }
+        start = start >>> 0;
+        end = end === void 0 ? this.length : end >>> 0;
+        if (!val)
+          val = 0;
+        var i;
+        if (typeof val === "number") {
+          for (i = start; i < end; ++i) {
+            this[i] = val;
+          }
+        } else {
+          var bytes = Buffer2.isBuffer(val) ? val : new Buffer2(val);
+          var len = bytes.length;
+          for (i = 0; i < end - start; ++i) {
+            this[i + start] = bytes[i % len];
+          }
+        }
+        return this;
+      };
+      Buffer2.concat = function concat(list, length) {
+        if (!isArray(list)) {
+          throw new TypeError('"list" argument must be an Array of Buffers');
+        }
+        if (list.length === 0) {
+          return createBuffer(null, 0);
+        }
+        var i;
+        if (length === void 0) {
+          length = 0;
+          for (i = 0; i < list.length; ++i) {
+            length += list[i].length;
+          }
+        }
+        var buffer = allocUnsafe(null, length);
+        var pos = 0;
+        for (i = 0; i < list.length; ++i) {
+          var buf = list[i];
+          if (!Buffer2.isBuffer(buf)) {
+            throw new TypeError('"list" argument must be an Array of Buffers');
+          }
+          buf.copy(buffer, pos);
+          pos += buf.length;
+        }
+        return buffer;
+      };
+      Buffer2.byteLength = byteLength;
+      Buffer2.prototype._isBuffer = true;
+      Buffer2.isBuffer = function isBuffer(b) {
+        return !!(b != null && b._isBuffer);
+      };
+      module.exports.alloc = function(size) {
+        var buffer = new Buffer2(size);
+        buffer.fill(0);
+        return buffer;
+      };
+      module.exports.from = function(data) {
+        return new Buffer2(data);
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/core/utils.js
+  var require_utils = __commonJS({
+    "node_modules/qrcode/lib/core/utils.js"(exports) {
+      var toSJISFunction;
+      var CODEWORDS_COUNT = [
+        0,
+        26,
+        44,
+        70,
+        100,
+        134,
+        172,
+        196,
+        242,
+        292,
+        346,
+        404,
+        466,
+        532,
+        581,
+        655,
+        733,
+        815,
+        901,
+        991,
+        1085,
+        1156,
+        1258,
+        1364,
+        1474,
+        1588,
+        1706,
+        1828,
+        1921,
+        2051,
+        2185,
+        2323,
+        2465,
+        2611,
+        2761,
+        2876,
+        3034,
+        3196,
+        3362,
+        3532,
+        3706
+      ];
+      exports.getSymbolSize = function getSymbolSize(version) {
+        if (!version)
+          throw new Error('"version" cannot be null or undefined');
+        if (version < 1 || version > 40)
+          throw new Error('"version" should be in range from 1 to 40');
+        return version * 4 + 17;
+      };
+      exports.getSymbolTotalCodewords = function getSymbolTotalCodewords(version) {
+        return CODEWORDS_COUNT[version];
+      };
+      exports.getBCHDigit = function(data) {
+        var digit = 0;
+        while (data !== 0) {
+          digit++;
+          data >>>= 1;
+        }
+        return digit;
+      };
+      exports.setToSJISFunction = function setToSJISFunction(f) {
+        if (typeof f !== "function") {
+          throw new Error('"toSJISFunc" is not a valid function.');
+        }
+        toSJISFunction = f;
+      };
+      exports.isKanjiModeEnabled = function() {
+        return typeof toSJISFunction !== "undefined";
+      };
+      exports.toSJIS = function toSJIS(kanji) {
+        return toSJISFunction(kanji);
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/core/error-correction-level.js
+  var require_error_correction_level = __commonJS({
+    "node_modules/qrcode/lib/core/error-correction-level.js"(exports) {
+      exports.L = { bit: 1 };
+      exports.M = { bit: 0 };
+      exports.Q = { bit: 3 };
+      exports.H = { bit: 2 };
+      function fromString(string) {
+        if (typeof string !== "string") {
+          throw new Error("Param is not a string");
+        }
+        var lcStr = string.toLowerCase();
+        switch (lcStr) {
+          case "l":
+          case "low":
+            return exports.L;
+          case "m":
+          case "medium":
+            return exports.M;
+          case "q":
+          case "quartile":
+            return exports.Q;
+          case "h":
+          case "high":
+            return exports.H;
+          default:
+            throw new Error("Unknown EC Level: " + string);
+        }
+      }
+      exports.isValid = function isValid(level) {
+        return level && typeof level.bit !== "undefined" && level.bit >= 0 && level.bit < 4;
+      };
+      exports.from = function from(value, defaultValue) {
+        if (exports.isValid(value)) {
+          return value;
+        }
+        try {
+          return fromString(value);
+        } catch (e2) {
+          return defaultValue;
+        }
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/core/bit-buffer.js
+  var require_bit_buffer = __commonJS({
+    "node_modules/qrcode/lib/core/bit-buffer.js"(exports, module) {
+      function BitBuffer() {
+        this.buffer = [];
+        this.length = 0;
+      }
+      BitBuffer.prototype = {
+        get: function(index) {
+          var bufIndex = Math.floor(index / 8);
+          return (this.buffer[bufIndex] >>> 7 - index % 8 & 1) === 1;
+        },
+        put: function(num, length) {
+          for (var i = 0; i < length; i++) {
+            this.putBit((num >>> length - i - 1 & 1) === 1);
+          }
+        },
+        getLengthInBits: function() {
+          return this.length;
+        },
+        putBit: function(bit) {
+          var bufIndex = Math.floor(this.length / 8);
+          if (this.buffer.length <= bufIndex) {
+            this.buffer.push(0);
+          }
+          if (bit) {
+            this.buffer[bufIndex] |= 128 >>> this.length % 8;
+          }
+          this.length++;
+        }
+      };
+      module.exports = BitBuffer;
+    }
+  });
+
+  // node_modules/qrcode/lib/core/bit-matrix.js
+  var require_bit_matrix = __commonJS({
+    "node_modules/qrcode/lib/core/bit-matrix.js"(exports, module) {
+      var BufferUtil = require_typedarray_buffer();
+      function BitMatrix(size) {
+        if (!size || size < 1) {
+          throw new Error("BitMatrix size must be defined and greater than 0");
+        }
+        this.size = size;
+        this.data = BufferUtil.alloc(size * size);
+        this.reservedBit = BufferUtil.alloc(size * size);
+      }
+      BitMatrix.prototype.set = function(row, col, value, reserved) {
+        var index = row * this.size + col;
+        this.data[index] = value;
+        if (reserved)
+          this.reservedBit[index] = true;
+      };
+      BitMatrix.prototype.get = function(row, col) {
+        return this.data[row * this.size + col];
+      };
+      BitMatrix.prototype.xor = function(row, col, value) {
+        this.data[row * this.size + col] ^= value;
+      };
+      BitMatrix.prototype.isReserved = function(row, col) {
+        return this.reservedBit[row * this.size + col];
+      };
+      module.exports = BitMatrix;
+    }
+  });
+
+  // node_modules/qrcode/lib/core/alignment-pattern.js
+  var require_alignment_pattern = __commonJS({
+    "node_modules/qrcode/lib/core/alignment-pattern.js"(exports) {
+      var getSymbolSize = require_utils().getSymbolSize;
+      exports.getRowColCoords = function getRowColCoords(version) {
+        if (version === 1)
+          return [];
+        var posCount = Math.floor(version / 7) + 2;
+        var size = getSymbolSize(version);
+        var intervals = size === 145 ? 26 : Math.ceil((size - 13) / (2 * posCount - 2)) * 2;
+        var positions = [size - 7];
+        for (var i = 1; i < posCount - 1; i++) {
+          positions[i] = positions[i - 1] - intervals;
+        }
+        positions.push(6);
+        return positions.reverse();
+      };
+      exports.getPositions = function getPositions(version) {
+        var coords = [];
+        var pos = exports.getRowColCoords(version);
+        var posLength = pos.length;
+        for (var i = 0; i < posLength; i++) {
+          for (var j = 0; j < posLength; j++) {
+            if (i === 0 && j === 0 || i === 0 && j === posLength - 1 || i === posLength - 1 && j === 0) {
+              continue;
+            }
+            coords.push([pos[i], pos[j]]);
+          }
+        }
+        return coords;
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/core/finder-pattern.js
+  var require_finder_pattern = __commonJS({
+    "node_modules/qrcode/lib/core/finder-pattern.js"(exports) {
+      var getSymbolSize = require_utils().getSymbolSize;
+      var FINDER_PATTERN_SIZE = 7;
+      exports.getPositions = function getPositions(version) {
+        var size = getSymbolSize(version);
+        return [
+          [0, 0],
+          [size - FINDER_PATTERN_SIZE, 0],
+          [0, size - FINDER_PATTERN_SIZE]
+        ];
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/core/mask-pattern.js
+  var require_mask_pattern = __commonJS({
+    "node_modules/qrcode/lib/core/mask-pattern.js"(exports) {
+      exports.Patterns = {
+        PATTERN000: 0,
+        PATTERN001: 1,
+        PATTERN010: 2,
+        PATTERN011: 3,
+        PATTERN100: 4,
+        PATTERN101: 5,
+        PATTERN110: 6,
+        PATTERN111: 7
+      };
+      var PenaltyScores = {
+        N1: 3,
+        N2: 3,
+        N3: 40,
+        N4: 10
+      };
+      exports.isValid = function isValid(mask) {
+        return mask != null && mask !== "" && !isNaN(mask) && mask >= 0 && mask <= 7;
+      };
+      exports.from = function from(value) {
+        return exports.isValid(value) ? parseInt(value, 10) : void 0;
+      };
+      exports.getPenaltyN1 = function getPenaltyN1(data) {
+        var size = data.size;
+        var points = 0;
+        var sameCountCol = 0;
+        var sameCountRow = 0;
+        var lastCol = null;
+        var lastRow = null;
+        for (var row = 0; row < size; row++) {
+          sameCountCol = sameCountRow = 0;
+          lastCol = lastRow = null;
+          for (var col = 0; col < size; col++) {
+            var module2 = data.get(row, col);
+            if (module2 === lastCol) {
+              sameCountCol++;
+            } else {
+              if (sameCountCol >= 5)
+                points += PenaltyScores.N1 + (sameCountCol - 5);
+              lastCol = module2;
+              sameCountCol = 1;
+            }
+            module2 = data.get(col, row);
+            if (module2 === lastRow) {
+              sameCountRow++;
+            } else {
+              if (sameCountRow >= 5)
+                points += PenaltyScores.N1 + (sameCountRow - 5);
+              lastRow = module2;
+              sameCountRow = 1;
+            }
+          }
+          if (sameCountCol >= 5)
+            points += PenaltyScores.N1 + (sameCountCol - 5);
+          if (sameCountRow >= 5)
+            points += PenaltyScores.N1 + (sameCountRow - 5);
+        }
+        return points;
+      };
+      exports.getPenaltyN2 = function getPenaltyN2(data) {
+        var size = data.size;
+        var points = 0;
+        for (var row = 0; row < size - 1; row++) {
+          for (var col = 0; col < size - 1; col++) {
+            var last = data.get(row, col) + data.get(row, col + 1) + data.get(row + 1, col) + data.get(row + 1, col + 1);
+            if (last === 4 || last === 0)
+              points++;
+          }
+        }
+        return points * PenaltyScores.N2;
+      };
+      exports.getPenaltyN3 = function getPenaltyN3(data) {
+        var size = data.size;
+        var points = 0;
+        var bitsCol = 0;
+        var bitsRow = 0;
+        for (var row = 0; row < size; row++) {
+          bitsCol = bitsRow = 0;
+          for (var col = 0; col < size; col++) {
+            bitsCol = bitsCol << 1 & 2047 | data.get(row, col);
+            if (col >= 10 && (bitsCol === 1488 || bitsCol === 93))
+              points++;
+            bitsRow = bitsRow << 1 & 2047 | data.get(col, row);
+            if (col >= 10 && (bitsRow === 1488 || bitsRow === 93))
+              points++;
+          }
+        }
+        return points * PenaltyScores.N3;
+      };
+      exports.getPenaltyN4 = function getPenaltyN4(data) {
+        var darkCount = 0;
+        var modulesCount = data.data.length;
+        for (var i = 0; i < modulesCount; i++)
+          darkCount += data.data[i];
+        var k = Math.abs(Math.ceil(darkCount * 100 / modulesCount / 5) - 10);
+        return k * PenaltyScores.N4;
+      };
+      function getMaskAt(maskPattern, i, j) {
+        switch (maskPattern) {
+          case exports.Patterns.PATTERN000:
+            return (i + j) % 2 === 0;
+          case exports.Patterns.PATTERN001:
+            return i % 2 === 0;
+          case exports.Patterns.PATTERN010:
+            return j % 3 === 0;
+          case exports.Patterns.PATTERN011:
+            return (i + j) % 3 === 0;
+          case exports.Patterns.PATTERN100:
+            return (Math.floor(i / 2) + Math.floor(j / 3)) % 2 === 0;
+          case exports.Patterns.PATTERN101:
+            return i * j % 2 + i * j % 3 === 0;
+          case exports.Patterns.PATTERN110:
+            return (i * j % 2 + i * j % 3) % 2 === 0;
+          case exports.Patterns.PATTERN111:
+            return (i * j % 3 + (i + j) % 2) % 2 === 0;
+          default:
+            throw new Error("bad maskPattern:" + maskPattern);
+        }
+      }
+      exports.applyMask = function applyMask(pattern, data) {
+        var size = data.size;
+        for (var col = 0; col < size; col++) {
+          for (var row = 0; row < size; row++) {
+            if (data.isReserved(row, col))
+              continue;
+            data.xor(row, col, getMaskAt(pattern, row, col));
+          }
+        }
+      };
+      exports.getBestMask = function getBestMask(data, setupFormatFunc) {
+        var numPatterns = Object.keys(exports.Patterns).length;
+        var bestPattern = 0;
+        var lowerPenalty = Infinity;
+        for (var p = 0; p < numPatterns; p++) {
+          setupFormatFunc(p);
+          exports.applyMask(p, data);
+          var penalty = exports.getPenaltyN1(data) + exports.getPenaltyN2(data) + exports.getPenaltyN3(data) + exports.getPenaltyN4(data);
+          exports.applyMask(p, data);
+          if (penalty < lowerPenalty) {
+            lowerPenalty = penalty;
+            bestPattern = p;
+          }
+        }
+        return bestPattern;
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/core/error-correction-code.js
+  var require_error_correction_code = __commonJS({
+    "node_modules/qrcode/lib/core/error-correction-code.js"(exports) {
+      var ECLevel = require_error_correction_level();
+      var EC_BLOCKS_TABLE = [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        2,
+        2,
+        4,
+        1,
+        2,
+        4,
+        4,
+        2,
+        4,
+        4,
+        4,
+        2,
+        4,
+        6,
+        5,
+        2,
+        4,
+        6,
+        6,
+        2,
+        5,
+        8,
+        8,
+        4,
+        5,
+        8,
+        8,
+        4,
+        5,
+        8,
+        11,
+        4,
+        8,
+        10,
+        11,
+        4,
+        9,
+        12,
+        16,
+        4,
+        9,
+        16,
+        16,
+        6,
+        10,
+        12,
+        18,
+        6,
+        10,
+        17,
+        16,
+        6,
+        11,
+        16,
+        19,
+        6,
+        13,
+        18,
+        21,
+        7,
+        14,
+        21,
+        25,
+        8,
+        16,
+        20,
+        25,
+        8,
+        17,
+        23,
+        25,
+        9,
+        17,
+        23,
+        34,
+        9,
+        18,
+        25,
+        30,
+        10,
+        20,
+        27,
+        32,
+        12,
+        21,
+        29,
+        35,
+        12,
+        23,
+        34,
+        37,
+        12,
+        25,
+        34,
+        40,
+        13,
+        26,
+        35,
+        42,
+        14,
+        28,
+        38,
+        45,
+        15,
+        29,
+        40,
+        48,
+        16,
+        31,
+        43,
+        51,
+        17,
+        33,
+        45,
+        54,
+        18,
+        35,
+        48,
+        57,
+        19,
+        37,
+        51,
+        60,
+        19,
+        38,
+        53,
+        63,
+        20,
+        40,
+        56,
+        66,
+        21,
+        43,
+        59,
+        70,
+        22,
+        45,
+        62,
+        74,
+        24,
+        47,
+        65,
+        77,
+        25,
+        49,
+        68,
+        81
+      ];
+      var EC_CODEWORDS_TABLE = [
+        7,
+        10,
+        13,
+        17,
+        10,
+        16,
+        22,
+        28,
+        15,
+        26,
+        36,
+        44,
+        20,
+        36,
+        52,
+        64,
+        26,
+        48,
+        72,
+        88,
+        36,
+        64,
+        96,
+        112,
+        40,
+        72,
+        108,
+        130,
+        48,
+        88,
+        132,
+        156,
+        60,
+        110,
+        160,
+        192,
+        72,
+        130,
+        192,
+        224,
+        80,
+        150,
+        224,
+        264,
+        96,
+        176,
+        260,
+        308,
+        104,
+        198,
+        288,
+        352,
+        120,
+        216,
+        320,
+        384,
+        132,
+        240,
+        360,
+        432,
+        144,
+        280,
+        408,
+        480,
+        168,
+        308,
+        448,
+        532,
+        180,
+        338,
+        504,
+        588,
+        196,
+        364,
+        546,
+        650,
+        224,
+        416,
+        600,
+        700,
+        224,
+        442,
+        644,
+        750,
+        252,
+        476,
+        690,
+        816,
+        270,
+        504,
+        750,
+        900,
+        300,
+        560,
+        810,
+        960,
+        312,
+        588,
+        870,
+        1050,
+        336,
+        644,
+        952,
+        1110,
+        360,
+        700,
+        1020,
+        1200,
+        390,
+        728,
+        1050,
+        1260,
+        420,
+        784,
+        1140,
+        1350,
+        450,
+        812,
+        1200,
+        1440,
+        480,
+        868,
+        1290,
+        1530,
+        510,
+        924,
+        1350,
+        1620,
+        540,
+        980,
+        1440,
+        1710,
+        570,
+        1036,
+        1530,
+        1800,
+        570,
+        1064,
+        1590,
+        1890,
+        600,
+        1120,
+        1680,
+        1980,
+        630,
+        1204,
+        1770,
+        2100,
+        660,
+        1260,
+        1860,
+        2220,
+        720,
+        1316,
+        1950,
+        2310,
+        750,
+        1372,
+        2040,
+        2430
+      ];
+      exports.getBlocksCount = function getBlocksCount(version, errorCorrectionLevel) {
+        switch (errorCorrectionLevel) {
+          case ECLevel.L:
+            return EC_BLOCKS_TABLE[(version - 1) * 4 + 0];
+          case ECLevel.M:
+            return EC_BLOCKS_TABLE[(version - 1) * 4 + 1];
+          case ECLevel.Q:
+            return EC_BLOCKS_TABLE[(version - 1) * 4 + 2];
+          case ECLevel.H:
+            return EC_BLOCKS_TABLE[(version - 1) * 4 + 3];
+          default:
+            return void 0;
+        }
+      };
+      exports.getTotalCodewordsCount = function getTotalCodewordsCount(version, errorCorrectionLevel) {
+        switch (errorCorrectionLevel) {
+          case ECLevel.L:
+            return EC_CODEWORDS_TABLE[(version - 1) * 4 + 0];
+          case ECLevel.M:
+            return EC_CODEWORDS_TABLE[(version - 1) * 4 + 1];
+          case ECLevel.Q:
+            return EC_CODEWORDS_TABLE[(version - 1) * 4 + 2];
+          case ECLevel.H:
+            return EC_CODEWORDS_TABLE[(version - 1) * 4 + 3];
+          default:
+            return void 0;
+        }
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/core/galois-field.js
+  var require_galois_field = __commonJS({
+    "node_modules/qrcode/lib/core/galois-field.js"(exports) {
+      var BufferUtil = require_typedarray_buffer();
+      var EXP_TABLE = BufferUtil.alloc(512);
+      var LOG_TABLE = BufferUtil.alloc(256);
+      (function initTables() {
+        var x = 1;
+        for (var i = 0; i < 255; i++) {
+          EXP_TABLE[i] = x;
+          LOG_TABLE[x] = i;
+          x <<= 1;
+          if (x & 256) {
+            x ^= 285;
+          }
+        }
+        for (i = 255; i < 512; i++) {
+          EXP_TABLE[i] = EXP_TABLE[i - 255];
+        }
+      })();
+      exports.log = function log(n) {
+        if (n < 1)
+          throw new Error("log(" + n + ")");
+        return LOG_TABLE[n];
+      };
+      exports.exp = function exp(n) {
+        return EXP_TABLE[n];
+      };
+      exports.mul = function mul(x, y) {
+        if (x === 0 || y === 0)
+          return 0;
+        return EXP_TABLE[LOG_TABLE[x] + LOG_TABLE[y]];
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/core/polynomial.js
+  var require_polynomial = __commonJS({
+    "node_modules/qrcode/lib/core/polynomial.js"(exports) {
+      var BufferUtil = require_typedarray_buffer();
+      var GF = require_galois_field();
+      exports.mul = function mul(p1, p2) {
+        var coeff = BufferUtil.alloc(p1.length + p2.length - 1);
+        for (var i = 0; i < p1.length; i++) {
+          for (var j = 0; j < p2.length; j++) {
+            coeff[i + j] ^= GF.mul(p1[i], p2[j]);
+          }
+        }
+        return coeff;
+      };
+      exports.mod = function mod(divident, divisor) {
+        var result = BufferUtil.from(divident);
+        while (result.length - divisor.length >= 0) {
+          var coeff = result[0];
+          for (var i = 0; i < divisor.length; i++) {
+            result[i] ^= GF.mul(divisor[i], coeff);
+          }
+          var offset = 0;
+          while (offset < result.length && result[offset] === 0)
+            offset++;
+          result = result.slice(offset);
+        }
+        return result;
+      };
+      exports.generateECPolynomial = function generateECPolynomial(degree) {
+        var poly = BufferUtil.from([1]);
+        for (var i = 0; i < degree; i++) {
+          poly = exports.mul(poly, [1, GF.exp(i)]);
+        }
+        return poly;
+      };
+    }
+  });
+
+  // node_modules/base64-js/index.js
+  var require_base64_js = __commonJS({
+    "node_modules/base64-js/index.js"(exports) {
+      "use strict";
+      exports.byteLength = byteLength;
+      exports.toByteArray = toByteArray;
+      exports.fromByteArray = fromByteArray;
+      var lookup = [];
+      var revLookup = [];
+      var Arr = typeof Uint8Array !== "undefined" ? Uint8Array : Array;
+      var code = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+      for (i = 0, len = code.length; i < len; ++i) {
+        lookup[i] = code[i];
+        revLookup[code.charCodeAt(i)] = i;
+      }
+      var i;
+      var len;
+      revLookup["-".charCodeAt(0)] = 62;
+      revLookup["_".charCodeAt(0)] = 63;
+      function getLens(b64) {
+        var len2 = b64.length;
+        if (len2 % 4 > 0) {
+          throw new Error("Invalid string. Length must be a multiple of 4");
+        }
+        var validLen = b64.indexOf("=");
+        if (validLen === -1)
+          validLen = len2;
+        var placeHoldersLen = validLen === len2 ? 0 : 4 - validLen % 4;
+        return [validLen, placeHoldersLen];
+      }
+      function byteLength(b64) {
+        var lens = getLens(b64);
+        var validLen = lens[0];
+        var placeHoldersLen = lens[1];
+        return (validLen + placeHoldersLen) * 3 / 4 - placeHoldersLen;
+      }
+      function _byteLength(b64, validLen, placeHoldersLen) {
+        return (validLen + placeHoldersLen) * 3 / 4 - placeHoldersLen;
+      }
+      function toByteArray(b64) {
+        var tmp;
+        var lens = getLens(b64);
+        var validLen = lens[0];
+        var placeHoldersLen = lens[1];
+        var arr = new Arr(_byteLength(b64, validLen, placeHoldersLen));
+        var curByte = 0;
+        var len2 = placeHoldersLen > 0 ? validLen - 4 : validLen;
+        var i2;
+        for (i2 = 0; i2 < len2; i2 += 4) {
+          tmp = revLookup[b64.charCodeAt(i2)] << 18 | revLookup[b64.charCodeAt(i2 + 1)] << 12 | revLookup[b64.charCodeAt(i2 + 2)] << 6 | revLookup[b64.charCodeAt(i2 + 3)];
+          arr[curByte++] = tmp >> 16 & 255;
+          arr[curByte++] = tmp >> 8 & 255;
+          arr[curByte++] = tmp & 255;
+        }
+        if (placeHoldersLen === 2) {
+          tmp = revLookup[b64.charCodeAt(i2)] << 2 | revLookup[b64.charCodeAt(i2 + 1)] >> 4;
+          arr[curByte++] = tmp & 255;
+        }
+        if (placeHoldersLen === 1) {
+          tmp = revLookup[b64.charCodeAt(i2)] << 10 | revLookup[b64.charCodeAt(i2 + 1)] << 4 | revLookup[b64.charCodeAt(i2 + 2)] >> 2;
+          arr[curByte++] = tmp >> 8 & 255;
+          arr[curByte++] = tmp & 255;
+        }
+        return arr;
+      }
+      function tripletToBase64(num) {
+        return lookup[num >> 18 & 63] + lookup[num >> 12 & 63] + lookup[num >> 6 & 63] + lookup[num & 63];
+      }
+      function encodeChunk(uint8, start, end) {
+        var tmp;
+        var output = [];
+        for (var i2 = start; i2 < end; i2 += 3) {
+          tmp = (uint8[i2] << 16 & 16711680) + (uint8[i2 + 1] << 8 & 65280) + (uint8[i2 + 2] & 255);
+          output.push(tripletToBase64(tmp));
+        }
+        return output.join("");
+      }
+      function fromByteArray(uint8) {
+        var tmp;
+        var len2 = uint8.length;
+        var extraBytes = len2 % 3;
+        var parts = [];
+        var maxChunkLength = 16383;
+        for (var i2 = 0, len22 = len2 - extraBytes; i2 < len22; i2 += maxChunkLength) {
+          parts.push(encodeChunk(uint8, i2, i2 + maxChunkLength > len22 ? len22 : i2 + maxChunkLength));
+        }
+        if (extraBytes === 1) {
+          tmp = uint8[len2 - 1];
+          parts.push(lookup[tmp >> 2] + lookup[tmp << 4 & 63] + "==");
+        } else if (extraBytes === 2) {
+          tmp = (uint8[len2 - 2] << 8) + uint8[len2 - 1];
+          parts.push(lookup[tmp >> 10] + lookup[tmp >> 4 & 63] + lookup[tmp << 2 & 63] + "=");
+        }
+        return parts.join("");
+      }
+    }
+  });
+
+  // node_modules/ieee754/index.js
+  var require_ieee754 = __commonJS({
+    "node_modules/ieee754/index.js"(exports) {
+      exports.read = function(buffer, offset, isLE, mLen, nBytes) {
+        var e2, m;
+        var eLen = nBytes * 8 - mLen - 1;
+        var eMax = (1 << eLen) - 1;
+        var eBias = eMax >> 1;
+        var nBits = -7;
+        var i = isLE ? nBytes - 1 : 0;
+        var d = isLE ? -1 : 1;
+        var s = buffer[offset + i];
+        i += d;
+        e2 = s & (1 << -nBits) - 1;
+        s >>= -nBits;
+        nBits += eLen;
+        for (; nBits > 0; e2 = e2 * 256 + buffer[offset + i], i += d, nBits -= 8) {
+        }
+        m = e2 & (1 << -nBits) - 1;
+        e2 >>= -nBits;
+        nBits += mLen;
+        for (; nBits > 0; m = m * 256 + buffer[offset + i], i += d, nBits -= 8) {
+        }
+        if (e2 === 0) {
+          e2 = 1 - eBias;
+        } else if (e2 === eMax) {
+          return m ? NaN : (s ? -1 : 1) * Infinity;
+        } else {
+          m = m + Math.pow(2, mLen);
+          e2 = e2 - eBias;
+        }
+        return (s ? -1 : 1) * m * Math.pow(2, e2 - mLen);
+      };
+      exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
+        var e2, m, c;
+        var eLen = nBytes * 8 - mLen - 1;
+        var eMax = (1 << eLen) - 1;
+        var eBias = eMax >> 1;
+        var rt = mLen === 23 ? Math.pow(2, -24) - Math.pow(2, -77) : 0;
+        var i = isLE ? 0 : nBytes - 1;
+        var d = isLE ? 1 : -1;
+        var s = value < 0 || value === 0 && 1 / value < 0 ? 1 : 0;
+        value = Math.abs(value);
+        if (isNaN(value) || value === Infinity) {
+          m = isNaN(value) ? 1 : 0;
+          e2 = eMax;
+        } else {
+          e2 = Math.floor(Math.log(value) / Math.LN2);
+          if (value * (c = Math.pow(2, -e2)) < 1) {
+            e2--;
+            c *= 2;
+          }
+          if (e2 + eBias >= 1) {
+            value += rt / c;
+          } else {
+            value += rt * Math.pow(2, 1 - eBias);
+          }
+          if (value * c >= 2) {
+            e2++;
+            c /= 2;
+          }
+          if (e2 + eBias >= eMax) {
+            m = 0;
+            e2 = eMax;
+          } else if (e2 + eBias >= 1) {
+            m = (value * c - 1) * Math.pow(2, mLen);
+            e2 = e2 + eBias;
+          } else {
+            m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen);
+            e2 = 0;
+          }
+        }
+        for (; mLen >= 8; buffer[offset + i] = m & 255, i += d, m /= 256, mLen -= 8) {
+        }
+        e2 = e2 << mLen | m;
+        eLen += mLen;
+        for (; eLen > 0; buffer[offset + i] = e2 & 255, i += d, e2 /= 256, eLen -= 8) {
+        }
+        buffer[offset + i - d] |= s * 128;
+      };
+    }
+  });
+
+  // node_modules/buffer/index.js
+  var require_buffer = __commonJS({
+    "node_modules/buffer/index.js"(exports) {
+      "use strict";
+      var base64 = require_base64_js();
+      var ieee754 = require_ieee754();
+      var customInspectSymbol = typeof Symbol === "function" && typeof Symbol["for"] === "function" ? Symbol["for"]("nodejs.util.inspect.custom") : null;
+      exports.Buffer = Buffer2;
+      exports.SlowBuffer = SlowBuffer;
+      exports.INSPECT_MAX_BYTES = 50;
+      var K_MAX_LENGTH = 2147483647;
+      exports.kMaxLength = K_MAX_LENGTH;
+      Buffer2.TYPED_ARRAY_SUPPORT = typedArraySupport();
+      if (!Buffer2.TYPED_ARRAY_SUPPORT && typeof console !== "undefined" && typeof console.error === "function") {
+        console.error("This browser lacks typed array (Uint8Array) support which is required by `buffer` v5.x. Use `buffer` v4.x if you require old browser support.");
+      }
+      function typedArraySupport() {
+        try {
+          var arr = new Uint8Array(1);
+          var proto = { foo: function() {
+            return 42;
+          } };
+          Object.setPrototypeOf(proto, Uint8Array.prototype);
+          Object.setPrototypeOf(arr, proto);
+          return arr.foo() === 42;
+        } catch (e2) {
+          return false;
+        }
+      }
+      Object.defineProperty(Buffer2.prototype, "parent", {
+        enumerable: true,
+        get: function() {
+          if (!Buffer2.isBuffer(this))
+            return void 0;
+          return this.buffer;
+        }
+      });
+      Object.defineProperty(Buffer2.prototype, "offset", {
+        enumerable: true,
+        get: function() {
+          if (!Buffer2.isBuffer(this))
+            return void 0;
+          return this.byteOffset;
+        }
+      });
+      function createBuffer(length) {
+        if (length > K_MAX_LENGTH) {
+          throw new RangeError('The value "' + length + '" is invalid for option "size"');
+        }
+        var buf = new Uint8Array(length);
+        Object.setPrototypeOf(buf, Buffer2.prototype);
+        return buf;
+      }
+      function Buffer2(arg, encodingOrOffset, length) {
+        if (typeof arg === "number") {
+          if (typeof encodingOrOffset === "string") {
+            throw new TypeError('The "string" argument must be of type string. Received type number');
+          }
+          return allocUnsafe(arg);
+        }
+        return from(arg, encodingOrOffset, length);
+      }
+      Buffer2.poolSize = 8192;
+      function from(value, encodingOrOffset, length) {
+        if (typeof value === "string") {
+          return fromString(value, encodingOrOffset);
+        }
+        if (ArrayBuffer.isView(value)) {
+          return fromArrayView(value);
+        }
+        if (value == null) {
+          throw new TypeError("The first argument must be one of type string, Buffer, ArrayBuffer, Array, or Array-like Object. Received type " + typeof value);
+        }
+        if (isInstance(value, ArrayBuffer) || value && isInstance(value.buffer, ArrayBuffer)) {
+          return fromArrayBuffer(value, encodingOrOffset, length);
+        }
+        if (typeof SharedArrayBuffer !== "undefined" && (isInstance(value, SharedArrayBuffer) || value && isInstance(value.buffer, SharedArrayBuffer))) {
+          return fromArrayBuffer(value, encodingOrOffset, length);
+        }
+        if (typeof value === "number") {
+          throw new TypeError('The "value" argument must not be of type number. Received type number');
+        }
+        var valueOf = value.valueOf && value.valueOf();
+        if (valueOf != null && valueOf !== value) {
+          return Buffer2.from(valueOf, encodingOrOffset, length);
+        }
+        var b = fromObject(value);
+        if (b)
+          return b;
+        if (typeof Symbol !== "undefined" && Symbol.toPrimitive != null && typeof value[Symbol.toPrimitive] === "function") {
+          return Buffer2.from(value[Symbol.toPrimitive]("string"), encodingOrOffset, length);
+        }
+        throw new TypeError("The first argument must be one of type string, Buffer, ArrayBuffer, Array, or Array-like Object. Received type " + typeof value);
+      }
+      Buffer2.from = function(value, encodingOrOffset, length) {
+        return from(value, encodingOrOffset, length);
+      };
+      Object.setPrototypeOf(Buffer2.prototype, Uint8Array.prototype);
+      Object.setPrototypeOf(Buffer2, Uint8Array);
+      function assertSize(size) {
+        if (typeof size !== "number") {
+          throw new TypeError('"size" argument must be of type number');
+        } else if (size < 0) {
+          throw new RangeError('The value "' + size + '" is invalid for option "size"');
+        }
+      }
+      function alloc(size, fill, encoding) {
+        assertSize(size);
+        if (size <= 0) {
+          return createBuffer(size);
+        }
+        if (fill !== void 0) {
+          return typeof encoding === "string" ? createBuffer(size).fill(fill, encoding) : createBuffer(size).fill(fill);
+        }
+        return createBuffer(size);
+      }
+      Buffer2.alloc = function(size, fill, encoding) {
+        return alloc(size, fill, encoding);
+      };
+      function allocUnsafe(size) {
+        assertSize(size);
+        return createBuffer(size < 0 ? 0 : checked(size) | 0);
+      }
+      Buffer2.allocUnsafe = function(size) {
+        return allocUnsafe(size);
+      };
+      Buffer2.allocUnsafeSlow = function(size) {
+        return allocUnsafe(size);
+      };
+      function fromString(string, encoding) {
+        if (typeof encoding !== "string" || encoding === "") {
+          encoding = "utf8";
+        }
+        if (!Buffer2.isEncoding(encoding)) {
+          throw new TypeError("Unknown encoding: " + encoding);
+        }
+        var length = byteLength(string, encoding) | 0;
+        var buf = createBuffer(length);
+        var actual = buf.write(string, encoding);
+        if (actual !== length) {
+          buf = buf.slice(0, actual);
+        }
+        return buf;
+      }
+      function fromArrayLike(array) {
+        var length = array.length < 0 ? 0 : checked(array.length) | 0;
+        var buf = createBuffer(length);
+        for (var i = 0; i < length; i += 1) {
+          buf[i] = array[i] & 255;
+        }
+        return buf;
+      }
+      function fromArrayView(arrayView) {
+        if (isInstance(arrayView, Uint8Array)) {
+          var copy = new Uint8Array(arrayView);
+          return fromArrayBuffer(copy.buffer, copy.byteOffset, copy.byteLength);
+        }
+        return fromArrayLike(arrayView);
+      }
+      function fromArrayBuffer(array, byteOffset, length) {
+        if (byteOffset < 0 || array.byteLength < byteOffset) {
+          throw new RangeError('"offset" is outside of buffer bounds');
+        }
+        if (array.byteLength < byteOffset + (length || 0)) {
+          throw new RangeError('"length" is outside of buffer bounds');
+        }
+        var buf;
+        if (byteOffset === void 0 && length === void 0) {
+          buf = new Uint8Array(array);
+        } else if (length === void 0) {
+          buf = new Uint8Array(array, byteOffset);
+        } else {
+          buf = new Uint8Array(array, byteOffset, length);
+        }
+        Object.setPrototypeOf(buf, Buffer2.prototype);
+        return buf;
+      }
+      function fromObject(obj) {
+        if (Buffer2.isBuffer(obj)) {
+          var len = checked(obj.length) | 0;
+          var buf = createBuffer(len);
+          if (buf.length === 0) {
+            return buf;
+          }
+          obj.copy(buf, 0, 0, len);
+          return buf;
+        }
+        if (obj.length !== void 0) {
+          if (typeof obj.length !== "number" || numberIsNaN(obj.length)) {
+            return createBuffer(0);
+          }
+          return fromArrayLike(obj);
+        }
+        if (obj.type === "Buffer" && Array.isArray(obj.data)) {
+          return fromArrayLike(obj.data);
+        }
+      }
+      function checked(length) {
+        if (length >= K_MAX_LENGTH) {
+          throw new RangeError("Attempt to allocate Buffer larger than maximum size: 0x" + K_MAX_LENGTH.toString(16) + " bytes");
+        }
+        return length | 0;
+      }
+      function SlowBuffer(length) {
+        if (+length != length) {
+          length = 0;
+        }
+        return Buffer2.alloc(+length);
+      }
+      Buffer2.isBuffer = function isBuffer(b) {
+        return b != null && b._isBuffer === true && b !== Buffer2.prototype;
+      };
+      Buffer2.compare = function compare(a, b) {
+        if (isInstance(a, Uint8Array))
+          a = Buffer2.from(a, a.offset, a.byteLength);
+        if (isInstance(b, Uint8Array))
+          b = Buffer2.from(b, b.offset, b.byteLength);
+        if (!Buffer2.isBuffer(a) || !Buffer2.isBuffer(b)) {
+          throw new TypeError('The "buf1", "buf2" arguments must be one of type Buffer or Uint8Array');
+        }
+        if (a === b)
+          return 0;
+        var x = a.length;
+        var y = b.length;
+        for (var i = 0, len = Math.min(x, y); i < len; ++i) {
+          if (a[i] !== b[i]) {
+            x = a[i];
+            y = b[i];
+            break;
+          }
+        }
+        if (x < y)
+          return -1;
+        if (y < x)
+          return 1;
+        return 0;
+      };
+      Buffer2.isEncoding = function isEncoding(encoding) {
+        switch (String(encoding).toLowerCase()) {
+          case "hex":
+          case "utf8":
+          case "utf-8":
+          case "ascii":
+          case "latin1":
+          case "binary":
+          case "base64":
+          case "ucs2":
+          case "ucs-2":
+          case "utf16le":
+          case "utf-16le":
+            return true;
+          default:
+            return false;
+        }
+      };
+      Buffer2.concat = function concat(list, length) {
+        if (!Array.isArray(list)) {
+          throw new TypeError('"list" argument must be an Array of Buffers');
+        }
+        if (list.length === 0) {
+          return Buffer2.alloc(0);
+        }
+        var i;
+        if (length === void 0) {
+          length = 0;
+          for (i = 0; i < list.length; ++i) {
+            length += list[i].length;
+          }
+        }
+        var buffer = Buffer2.allocUnsafe(length);
+        var pos = 0;
+        for (i = 0; i < list.length; ++i) {
+          var buf = list[i];
+          if (isInstance(buf, Uint8Array)) {
+            if (pos + buf.length > buffer.length) {
+              Buffer2.from(buf).copy(buffer, pos);
+            } else {
+              Uint8Array.prototype.set.call(buffer, buf, pos);
+            }
+          } else if (!Buffer2.isBuffer(buf)) {
+            throw new TypeError('"list" argument must be an Array of Buffers');
+          } else {
+            buf.copy(buffer, pos);
+          }
+          pos += buf.length;
+        }
+        return buffer;
+      };
+      function byteLength(string, encoding) {
+        if (Buffer2.isBuffer(string)) {
+          return string.length;
+        }
+        if (ArrayBuffer.isView(string) || isInstance(string, ArrayBuffer)) {
+          return string.byteLength;
+        }
+        if (typeof string !== "string") {
+          throw new TypeError('The "string" argument must be one of type string, Buffer, or ArrayBuffer. Received type ' + typeof string);
+        }
+        var len = string.length;
+        var mustMatch = arguments.length > 2 && arguments[2] === true;
+        if (!mustMatch && len === 0)
+          return 0;
+        var loweredCase = false;
+        for (; ; ) {
+          switch (encoding) {
+            case "ascii":
+            case "latin1":
+            case "binary":
+              return len;
+            case "utf8":
+            case "utf-8":
+              return utf8ToBytes(string).length;
+            case "ucs2":
+            case "ucs-2":
+            case "utf16le":
+            case "utf-16le":
+              return len * 2;
+            case "hex":
+              return len >>> 1;
+            case "base64":
+              return base64ToBytes(string).length;
+            default:
+              if (loweredCase) {
+                return mustMatch ? -1 : utf8ToBytes(string).length;
+              }
+              encoding = ("" + encoding).toLowerCase();
+              loweredCase = true;
+          }
+        }
+      }
+      Buffer2.byteLength = byteLength;
+      function slowToString(encoding, start, end) {
+        var loweredCase = false;
+        if (start === void 0 || start < 0) {
+          start = 0;
+        }
+        if (start > this.length) {
+          return "";
+        }
+        if (end === void 0 || end > this.length) {
+          end = this.length;
+        }
+        if (end <= 0) {
+          return "";
+        }
+        end >>>= 0;
+        start >>>= 0;
+        if (end <= start) {
+          return "";
+        }
+        if (!encoding)
+          encoding = "utf8";
+        while (true) {
+          switch (encoding) {
+            case "hex":
+              return hexSlice(this, start, end);
+            case "utf8":
+            case "utf-8":
+              return utf8Slice(this, start, end);
+            case "ascii":
+              return asciiSlice(this, start, end);
+            case "latin1":
+            case "binary":
+              return latin1Slice(this, start, end);
+            case "base64":
+              return base64Slice(this, start, end);
+            case "ucs2":
+            case "ucs-2":
+            case "utf16le":
+            case "utf-16le":
+              return utf16leSlice(this, start, end);
+            default:
+              if (loweredCase)
+                throw new TypeError("Unknown encoding: " + encoding);
+              encoding = (encoding + "").toLowerCase();
+              loweredCase = true;
+          }
+        }
+      }
+      Buffer2.prototype._isBuffer = true;
+      function swap(b, n, m) {
+        var i = b[n];
+        b[n] = b[m];
+        b[m] = i;
+      }
+      Buffer2.prototype.swap16 = function swap16() {
+        var len = this.length;
+        if (len % 2 !== 0) {
+          throw new RangeError("Buffer size must be a multiple of 16-bits");
+        }
+        for (var i = 0; i < len; i += 2) {
+          swap(this, i, i + 1);
+        }
+        return this;
+      };
+      Buffer2.prototype.swap32 = function swap32() {
+        var len = this.length;
+        if (len % 4 !== 0) {
+          throw new RangeError("Buffer size must be a multiple of 32-bits");
+        }
+        for (var i = 0; i < len; i += 4) {
+          swap(this, i, i + 3);
+          swap(this, i + 1, i + 2);
+        }
+        return this;
+      };
+      Buffer2.prototype.swap64 = function swap64() {
+        var len = this.length;
+        if (len % 8 !== 0) {
+          throw new RangeError("Buffer size must be a multiple of 64-bits");
+        }
+        for (var i = 0; i < len; i += 8) {
+          swap(this, i, i + 7);
+          swap(this, i + 1, i + 6);
+          swap(this, i + 2, i + 5);
+          swap(this, i + 3, i + 4);
+        }
+        return this;
+      };
+      Buffer2.prototype.toString = function toString() {
+        var length = this.length;
+        if (length === 0)
+          return "";
+        if (arguments.length === 0)
+          return utf8Slice(this, 0, length);
+        return slowToString.apply(this, arguments);
+      };
+      Buffer2.prototype.toLocaleString = Buffer2.prototype.toString;
+      Buffer2.prototype.equals = function equals(b) {
+        if (!Buffer2.isBuffer(b))
+          throw new TypeError("Argument must be a Buffer");
+        if (this === b)
+          return true;
+        return Buffer2.compare(this, b) === 0;
+      };
+      Buffer2.prototype.inspect = function inspect() {
+        var str = "";
+        var max = exports.INSPECT_MAX_BYTES;
+        str = this.toString("hex", 0, max).replace(/(.{2})/g, "$1 ").trim();
+        if (this.length > max)
+          str += " ... ";
+        return "<Buffer " + str + ">";
+      };
+      if (customInspectSymbol) {
+        Buffer2.prototype[customInspectSymbol] = Buffer2.prototype.inspect;
+      }
+      Buffer2.prototype.compare = function compare(target, start, end, thisStart, thisEnd) {
+        if (isInstance(target, Uint8Array)) {
+          target = Buffer2.from(target, target.offset, target.byteLength);
+        }
+        if (!Buffer2.isBuffer(target)) {
+          throw new TypeError('The "target" argument must be one of type Buffer or Uint8Array. Received type ' + typeof target);
+        }
+        if (start === void 0) {
+          start = 0;
+        }
+        if (end === void 0) {
+          end = target ? target.length : 0;
+        }
+        if (thisStart === void 0) {
+          thisStart = 0;
+        }
+        if (thisEnd === void 0) {
+          thisEnd = this.length;
+        }
+        if (start < 0 || end > target.length || thisStart < 0 || thisEnd > this.length) {
+          throw new RangeError("out of range index");
+        }
+        if (thisStart >= thisEnd && start >= end) {
+          return 0;
+        }
+        if (thisStart >= thisEnd) {
+          return -1;
+        }
+        if (start >= end) {
+          return 1;
+        }
+        start >>>= 0;
+        end >>>= 0;
+        thisStart >>>= 0;
+        thisEnd >>>= 0;
+        if (this === target)
+          return 0;
+        var x = thisEnd - thisStart;
+        var y = end - start;
+        var len = Math.min(x, y);
+        var thisCopy = this.slice(thisStart, thisEnd);
+        var targetCopy = target.slice(start, end);
+        for (var i = 0; i < len; ++i) {
+          if (thisCopy[i] !== targetCopy[i]) {
+            x = thisCopy[i];
+            y = targetCopy[i];
+            break;
+          }
+        }
+        if (x < y)
+          return -1;
+        if (y < x)
+          return 1;
+        return 0;
+      };
+      function bidirectionalIndexOf(buffer, val, byteOffset, encoding, dir) {
+        if (buffer.length === 0)
+          return -1;
+        if (typeof byteOffset === "string") {
+          encoding = byteOffset;
+          byteOffset = 0;
+        } else if (byteOffset > 2147483647) {
+          byteOffset = 2147483647;
+        } else if (byteOffset < -2147483648) {
+          byteOffset = -2147483648;
+        }
+        byteOffset = +byteOffset;
+        if (numberIsNaN(byteOffset)) {
+          byteOffset = dir ? 0 : buffer.length - 1;
+        }
+        if (byteOffset < 0)
+          byteOffset = buffer.length + byteOffset;
+        if (byteOffset >= buffer.length) {
+          if (dir)
+            return -1;
+          else
+            byteOffset = buffer.length - 1;
+        } else if (byteOffset < 0) {
+          if (dir)
+            byteOffset = 0;
+          else
+            return -1;
+        }
+        if (typeof val === "string") {
+          val = Buffer2.from(val, encoding);
+        }
+        if (Buffer2.isBuffer(val)) {
+          if (val.length === 0) {
+            return -1;
+          }
+          return arrayIndexOf(buffer, val, byteOffset, encoding, dir);
+        } else if (typeof val === "number") {
+          val = val & 255;
+          if (typeof Uint8Array.prototype.indexOf === "function") {
+            if (dir) {
+              return Uint8Array.prototype.indexOf.call(buffer, val, byteOffset);
+            } else {
+              return Uint8Array.prototype.lastIndexOf.call(buffer, val, byteOffset);
+            }
+          }
+          return arrayIndexOf(buffer, [val], byteOffset, encoding, dir);
+        }
+        throw new TypeError("val must be string, number or Buffer");
+      }
+      function arrayIndexOf(arr, val, byteOffset, encoding, dir) {
+        var indexSize = 1;
+        var arrLength = arr.length;
+        var valLength = val.length;
+        if (encoding !== void 0) {
+          encoding = String(encoding).toLowerCase();
+          if (encoding === "ucs2" || encoding === "ucs-2" || encoding === "utf16le" || encoding === "utf-16le") {
+            if (arr.length < 2 || val.length < 2) {
+              return -1;
+            }
+            indexSize = 2;
+            arrLength /= 2;
+            valLength /= 2;
+            byteOffset /= 2;
+          }
+        }
+        function read(buf, i2) {
+          if (indexSize === 1) {
+            return buf[i2];
+          } else {
+            return buf.readUInt16BE(i2 * indexSize);
+          }
+        }
+        var i;
+        if (dir) {
+          var foundIndex = -1;
+          for (i = byteOffset; i < arrLength; i++) {
+            if (read(arr, i) === read(val, foundIndex === -1 ? 0 : i - foundIndex)) {
+              if (foundIndex === -1)
+                foundIndex = i;
+              if (i - foundIndex + 1 === valLength)
+                return foundIndex * indexSize;
+            } else {
+              if (foundIndex !== -1)
+                i -= i - foundIndex;
+              foundIndex = -1;
+            }
+          }
+        } else {
+          if (byteOffset + valLength > arrLength)
+            byteOffset = arrLength - valLength;
+          for (i = byteOffset; i >= 0; i--) {
+            var found = true;
+            for (var j = 0; j < valLength; j++) {
+              if (read(arr, i + j) !== read(val, j)) {
+                found = false;
+                break;
+              }
+            }
+            if (found)
+              return i;
+          }
+        }
+        return -1;
+      }
+      Buffer2.prototype.includes = function includes(val, byteOffset, encoding) {
+        return this.indexOf(val, byteOffset, encoding) !== -1;
+      };
+      Buffer2.prototype.indexOf = function indexOf(val, byteOffset, encoding) {
+        return bidirectionalIndexOf(this, val, byteOffset, encoding, true);
+      };
+      Buffer2.prototype.lastIndexOf = function lastIndexOf(val, byteOffset, encoding) {
+        return bidirectionalIndexOf(this, val, byteOffset, encoding, false);
+      };
+      function hexWrite(buf, string, offset, length) {
+        offset = Number(offset) || 0;
+        var remaining = buf.length - offset;
+        if (!length) {
+          length = remaining;
+        } else {
+          length = Number(length);
+          if (length > remaining) {
+            length = remaining;
+          }
+        }
+        var strLen = string.length;
+        if (length > strLen / 2) {
+          length = strLen / 2;
+        }
+        for (var i = 0; i < length; ++i) {
+          var parsed = parseInt(string.substr(i * 2, 2), 16);
+          if (numberIsNaN(parsed))
+            return i;
+          buf[offset + i] = parsed;
+        }
+        return i;
+      }
+      function utf8Write(buf, string, offset, length) {
+        return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length);
+      }
+      function asciiWrite(buf, string, offset, length) {
+        return blitBuffer(asciiToBytes(string), buf, offset, length);
+      }
+      function base64Write(buf, string, offset, length) {
+        return blitBuffer(base64ToBytes(string), buf, offset, length);
+      }
+      function ucs2Write(buf, string, offset, length) {
+        return blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length);
+      }
+      Buffer2.prototype.write = function write(string, offset, length, encoding) {
+        if (offset === void 0) {
+          encoding = "utf8";
+          length = this.length;
+          offset = 0;
+        } else if (length === void 0 && typeof offset === "string") {
+          encoding = offset;
+          length = this.length;
+          offset = 0;
+        } else if (isFinite(offset)) {
+          offset = offset >>> 0;
+          if (isFinite(length)) {
+            length = length >>> 0;
+            if (encoding === void 0)
+              encoding = "utf8";
+          } else {
+            encoding = length;
+            length = void 0;
+          }
+        } else {
+          throw new Error("Buffer.write(string, encoding, offset[, length]) is no longer supported");
+        }
+        var remaining = this.length - offset;
+        if (length === void 0 || length > remaining)
+          length = remaining;
+        if (string.length > 0 && (length < 0 || offset < 0) || offset > this.length) {
+          throw new RangeError("Attempt to write outside buffer bounds");
+        }
+        if (!encoding)
+          encoding = "utf8";
+        var loweredCase = false;
+        for (; ; ) {
+          switch (encoding) {
+            case "hex":
+              return hexWrite(this, string, offset, length);
+            case "utf8":
+            case "utf-8":
+              return utf8Write(this, string, offset, length);
+            case "ascii":
+            case "latin1":
+            case "binary":
+              return asciiWrite(this, string, offset, length);
+            case "base64":
+              return base64Write(this, string, offset, length);
+            case "ucs2":
+            case "ucs-2":
+            case "utf16le":
+            case "utf-16le":
+              return ucs2Write(this, string, offset, length);
+            default:
+              if (loweredCase)
+                throw new TypeError("Unknown encoding: " + encoding);
+              encoding = ("" + encoding).toLowerCase();
+              loweredCase = true;
+          }
+        }
+      };
+      Buffer2.prototype.toJSON = function toJSON() {
+        return {
+          type: "Buffer",
+          data: Array.prototype.slice.call(this._arr || this, 0)
+        };
+      };
+      function base64Slice(buf, start, end) {
+        if (start === 0 && end === buf.length) {
+          return base64.fromByteArray(buf);
+        } else {
+          return base64.fromByteArray(buf.slice(start, end));
+        }
+      }
+      function utf8Slice(buf, start, end) {
+        end = Math.min(buf.length, end);
+        var res = [];
+        var i = start;
+        while (i < end) {
+          var firstByte = buf[i];
+          var codePoint = null;
+          var bytesPerSequence = firstByte > 239 ? 4 : firstByte > 223 ? 3 : firstByte > 191 ? 2 : 1;
+          if (i + bytesPerSequence <= end) {
+            var secondByte, thirdByte, fourthByte, tempCodePoint;
+            switch (bytesPerSequence) {
+              case 1:
+                if (firstByte < 128) {
+                  codePoint = firstByte;
+                }
+                break;
+              case 2:
+                secondByte = buf[i + 1];
+                if ((secondByte & 192) === 128) {
+                  tempCodePoint = (firstByte & 31) << 6 | secondByte & 63;
+                  if (tempCodePoint > 127) {
+                    codePoint = tempCodePoint;
+                  }
+                }
+                break;
+              case 3:
+                secondByte = buf[i + 1];
+                thirdByte = buf[i + 2];
+                if ((secondByte & 192) === 128 && (thirdByte & 192) === 128) {
+                  tempCodePoint = (firstByte & 15) << 12 | (secondByte & 63) << 6 | thirdByte & 63;
+                  if (tempCodePoint > 2047 && (tempCodePoint < 55296 || tempCodePoint > 57343)) {
+                    codePoint = tempCodePoint;
+                  }
+                }
+                break;
+              case 4:
+                secondByte = buf[i + 1];
+                thirdByte = buf[i + 2];
+                fourthByte = buf[i + 3];
+                if ((secondByte & 192) === 128 && (thirdByte & 192) === 128 && (fourthByte & 192) === 128) {
+                  tempCodePoint = (firstByte & 15) << 18 | (secondByte & 63) << 12 | (thirdByte & 63) << 6 | fourthByte & 63;
+                  if (tempCodePoint > 65535 && tempCodePoint < 1114112) {
+                    codePoint = tempCodePoint;
+                  }
+                }
+            }
+          }
+          if (codePoint === null) {
+            codePoint = 65533;
+            bytesPerSequence = 1;
+          } else if (codePoint > 65535) {
+            codePoint -= 65536;
+            res.push(codePoint >>> 10 & 1023 | 55296);
+            codePoint = 56320 | codePoint & 1023;
+          }
+          res.push(codePoint);
+          i += bytesPerSequence;
+        }
+        return decodeCodePointsArray(res);
+      }
+      var MAX_ARGUMENTS_LENGTH = 4096;
+      function decodeCodePointsArray(codePoints) {
+        var len = codePoints.length;
+        if (len <= MAX_ARGUMENTS_LENGTH) {
+          return String.fromCharCode.apply(String, codePoints);
+        }
+        var res = "";
+        var i = 0;
+        while (i < len) {
+          res += String.fromCharCode.apply(String, codePoints.slice(i, i += MAX_ARGUMENTS_LENGTH));
+        }
+        return res;
+      }
+      function asciiSlice(buf, start, end) {
+        var ret = "";
+        end = Math.min(buf.length, end);
+        for (var i = start; i < end; ++i) {
+          ret += String.fromCharCode(buf[i] & 127);
+        }
+        return ret;
+      }
+      function latin1Slice(buf, start, end) {
+        var ret = "";
+        end = Math.min(buf.length, end);
+        for (var i = start; i < end; ++i) {
+          ret += String.fromCharCode(buf[i]);
+        }
+        return ret;
+      }
+      function hexSlice(buf, start, end) {
+        var len = buf.length;
+        if (!start || start < 0)
+          start = 0;
+        if (!end || end < 0 || end > len)
+          end = len;
+        var out = "";
+        for (var i = start; i < end; ++i) {
+          out += hexSliceLookupTable[buf[i]];
+        }
+        return out;
+      }
+      function utf16leSlice(buf, start, end) {
+        var bytes = buf.slice(start, end);
+        var res = "";
+        for (var i = 0; i < bytes.length - 1; i += 2) {
+          res += String.fromCharCode(bytes[i] + bytes[i + 1] * 256);
+        }
+        return res;
+      }
+      Buffer2.prototype.slice = function slice(start, end) {
+        var len = this.length;
+        start = ~~start;
+        end = end === void 0 ? len : ~~end;
+        if (start < 0) {
+          start += len;
+          if (start < 0)
+            start = 0;
+        } else if (start > len) {
+          start = len;
+        }
+        if (end < 0) {
+          end += len;
+          if (end < 0)
+            end = 0;
+        } else if (end > len) {
+          end = len;
+        }
+        if (end < start)
+          end = start;
+        var newBuf = this.subarray(start, end);
+        Object.setPrototypeOf(newBuf, Buffer2.prototype);
+        return newBuf;
+      };
+      function checkOffset(offset, ext, length) {
+        if (offset % 1 !== 0 || offset < 0)
+          throw new RangeError("offset is not uint");
+        if (offset + ext > length)
+          throw new RangeError("Trying to access beyond buffer length");
+      }
+      Buffer2.prototype.readUintLE = Buffer2.prototype.readUIntLE = function readUIntLE(offset, byteLength2, noAssert) {
+        offset = offset >>> 0;
+        byteLength2 = byteLength2 >>> 0;
+        if (!noAssert)
+          checkOffset(offset, byteLength2, this.length);
+        var val = this[offset];
+        var mul = 1;
+        var i = 0;
+        while (++i < byteLength2 && (mul *= 256)) {
+          val += this[offset + i] * mul;
+        }
+        return val;
+      };
+      Buffer2.prototype.readUintBE = Buffer2.prototype.readUIntBE = function readUIntBE(offset, byteLength2, noAssert) {
+        offset = offset >>> 0;
+        byteLength2 = byteLength2 >>> 0;
+        if (!noAssert) {
+          checkOffset(offset, byteLength2, this.length);
+        }
+        var val = this[offset + --byteLength2];
+        var mul = 1;
+        while (byteLength2 > 0 && (mul *= 256)) {
+          val += this[offset + --byteLength2] * mul;
+        }
+        return val;
+      };
+      Buffer2.prototype.readUint8 = Buffer2.prototype.readUInt8 = function readUInt8(offset, noAssert) {
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkOffset(offset, 1, this.length);
+        return this[offset];
+      };
+      Buffer2.prototype.readUint16LE = Buffer2.prototype.readUInt16LE = function readUInt16LE(offset, noAssert) {
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkOffset(offset, 2, this.length);
+        return this[offset] | this[offset + 1] << 8;
+      };
+      Buffer2.prototype.readUint16BE = Buffer2.prototype.readUInt16BE = function readUInt16BE(offset, noAssert) {
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkOffset(offset, 2, this.length);
+        return this[offset] << 8 | this[offset + 1];
+      };
+      Buffer2.prototype.readUint32LE = Buffer2.prototype.readUInt32LE = function readUInt32LE(offset, noAssert) {
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkOffset(offset, 4, this.length);
+        return (this[offset] | this[offset + 1] << 8 | this[offset + 2] << 16) + this[offset + 3] * 16777216;
+      };
+      Buffer2.prototype.readUint32BE = Buffer2.prototype.readUInt32BE = function readUInt32BE(offset, noAssert) {
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkOffset(offset, 4, this.length);
+        return this[offset] * 16777216 + (this[offset + 1] << 16 | this[offset + 2] << 8 | this[offset + 3]);
+      };
+      Buffer2.prototype.readIntLE = function readIntLE(offset, byteLength2, noAssert) {
+        offset = offset >>> 0;
+        byteLength2 = byteLength2 >>> 0;
+        if (!noAssert)
+          checkOffset(offset, byteLength2, this.length);
+        var val = this[offset];
+        var mul = 1;
+        var i = 0;
+        while (++i < byteLength2 && (mul *= 256)) {
+          val += this[offset + i] * mul;
+        }
+        mul *= 128;
+        if (val >= mul)
+          val -= Math.pow(2, 8 * byteLength2);
+        return val;
+      };
+      Buffer2.prototype.readIntBE = function readIntBE(offset, byteLength2, noAssert) {
+        offset = offset >>> 0;
+        byteLength2 = byteLength2 >>> 0;
+        if (!noAssert)
+          checkOffset(offset, byteLength2, this.length);
+        var i = byteLength2;
+        var mul = 1;
+        var val = this[offset + --i];
+        while (i > 0 && (mul *= 256)) {
+          val += this[offset + --i] * mul;
+        }
+        mul *= 128;
+        if (val >= mul)
+          val -= Math.pow(2, 8 * byteLength2);
+        return val;
+      };
+      Buffer2.prototype.readInt8 = function readInt8(offset, noAssert) {
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkOffset(offset, 1, this.length);
+        if (!(this[offset] & 128))
+          return this[offset];
+        return (255 - this[offset] + 1) * -1;
+      };
+      Buffer2.prototype.readInt16LE = function readInt16LE(offset, noAssert) {
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkOffset(offset, 2, this.length);
+        var val = this[offset] | this[offset + 1] << 8;
+        return val & 32768 ? val | 4294901760 : val;
+      };
+      Buffer2.prototype.readInt16BE = function readInt16BE(offset, noAssert) {
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkOffset(offset, 2, this.length);
+        var val = this[offset + 1] | this[offset] << 8;
+        return val & 32768 ? val | 4294901760 : val;
+      };
+      Buffer2.prototype.readInt32LE = function readInt32LE(offset, noAssert) {
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkOffset(offset, 4, this.length);
+        return this[offset] | this[offset + 1] << 8 | this[offset + 2] << 16 | this[offset + 3] << 24;
+      };
+      Buffer2.prototype.readInt32BE = function readInt32BE(offset, noAssert) {
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkOffset(offset, 4, this.length);
+        return this[offset] << 24 | this[offset + 1] << 16 | this[offset + 2] << 8 | this[offset + 3];
+      };
+      Buffer2.prototype.readFloatLE = function readFloatLE(offset, noAssert) {
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkOffset(offset, 4, this.length);
+        return ieee754.read(this, offset, true, 23, 4);
+      };
+      Buffer2.prototype.readFloatBE = function readFloatBE(offset, noAssert) {
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkOffset(offset, 4, this.length);
+        return ieee754.read(this, offset, false, 23, 4);
+      };
+      Buffer2.prototype.readDoubleLE = function readDoubleLE(offset, noAssert) {
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkOffset(offset, 8, this.length);
+        return ieee754.read(this, offset, true, 52, 8);
+      };
+      Buffer2.prototype.readDoubleBE = function readDoubleBE(offset, noAssert) {
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkOffset(offset, 8, this.length);
+        return ieee754.read(this, offset, false, 52, 8);
+      };
+      function checkInt(buf, value, offset, ext, max, min) {
+        if (!Buffer2.isBuffer(buf))
+          throw new TypeError('"buffer" argument must be a Buffer instance');
+        if (value > max || value < min)
+          throw new RangeError('"value" argument is out of bounds');
+        if (offset + ext > buf.length)
+          throw new RangeError("Index out of range");
+      }
+      Buffer2.prototype.writeUintLE = Buffer2.prototype.writeUIntLE = function writeUIntLE(value, offset, byteLength2, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        byteLength2 = byteLength2 >>> 0;
+        if (!noAssert) {
+          var maxBytes = Math.pow(2, 8 * byteLength2) - 1;
+          checkInt(this, value, offset, byteLength2, maxBytes, 0);
+        }
+        var mul = 1;
+        var i = 0;
+        this[offset] = value & 255;
+        while (++i < byteLength2 && (mul *= 256)) {
+          this[offset + i] = value / mul & 255;
+        }
+        return offset + byteLength2;
+      };
+      Buffer2.prototype.writeUintBE = Buffer2.prototype.writeUIntBE = function writeUIntBE(value, offset, byteLength2, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        byteLength2 = byteLength2 >>> 0;
+        if (!noAssert) {
+          var maxBytes = Math.pow(2, 8 * byteLength2) - 1;
+          checkInt(this, value, offset, byteLength2, maxBytes, 0);
+        }
+        var i = byteLength2 - 1;
+        var mul = 1;
+        this[offset + i] = value & 255;
+        while (--i >= 0 && (mul *= 256)) {
+          this[offset + i] = value / mul & 255;
+        }
+        return offset + byteLength2;
+      };
+      Buffer2.prototype.writeUint8 = Buffer2.prototype.writeUInt8 = function writeUInt8(value, offset, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkInt(this, value, offset, 1, 255, 0);
+        this[offset] = value & 255;
+        return offset + 1;
+      };
+      Buffer2.prototype.writeUint16LE = Buffer2.prototype.writeUInt16LE = function writeUInt16LE(value, offset, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkInt(this, value, offset, 2, 65535, 0);
+        this[offset] = value & 255;
+        this[offset + 1] = value >>> 8;
+        return offset + 2;
+      };
+      Buffer2.prototype.writeUint16BE = Buffer2.prototype.writeUInt16BE = function writeUInt16BE(value, offset, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkInt(this, value, offset, 2, 65535, 0);
+        this[offset] = value >>> 8;
+        this[offset + 1] = value & 255;
+        return offset + 2;
+      };
+      Buffer2.prototype.writeUint32LE = Buffer2.prototype.writeUInt32LE = function writeUInt32LE(value, offset, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkInt(this, value, offset, 4, 4294967295, 0);
+        this[offset + 3] = value >>> 24;
+        this[offset + 2] = value >>> 16;
+        this[offset + 1] = value >>> 8;
+        this[offset] = value & 255;
+        return offset + 4;
+      };
+      Buffer2.prototype.writeUint32BE = Buffer2.prototype.writeUInt32BE = function writeUInt32BE(value, offset, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkInt(this, value, offset, 4, 4294967295, 0);
+        this[offset] = value >>> 24;
+        this[offset + 1] = value >>> 16;
+        this[offset + 2] = value >>> 8;
+        this[offset + 3] = value & 255;
+        return offset + 4;
+      };
+      Buffer2.prototype.writeIntLE = function writeIntLE(value, offset, byteLength2, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        if (!noAssert) {
+          var limit = Math.pow(2, 8 * byteLength2 - 1);
+          checkInt(this, value, offset, byteLength2, limit - 1, -limit);
+        }
+        var i = 0;
+        var mul = 1;
+        var sub = 0;
+        this[offset] = value & 255;
+        while (++i < byteLength2 && (mul *= 256)) {
+          if (value < 0 && sub === 0 && this[offset + i - 1] !== 0) {
+            sub = 1;
+          }
+          this[offset + i] = (value / mul >> 0) - sub & 255;
+        }
+        return offset + byteLength2;
+      };
+      Buffer2.prototype.writeIntBE = function writeIntBE(value, offset, byteLength2, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        if (!noAssert) {
+          var limit = Math.pow(2, 8 * byteLength2 - 1);
+          checkInt(this, value, offset, byteLength2, limit - 1, -limit);
+        }
+        var i = byteLength2 - 1;
+        var mul = 1;
+        var sub = 0;
+        this[offset + i] = value & 255;
+        while (--i >= 0 && (mul *= 256)) {
+          if (value < 0 && sub === 0 && this[offset + i + 1] !== 0) {
+            sub = 1;
+          }
+          this[offset + i] = (value / mul >> 0) - sub & 255;
+        }
+        return offset + byteLength2;
+      };
+      Buffer2.prototype.writeInt8 = function writeInt8(value, offset, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkInt(this, value, offset, 1, 127, -128);
+        if (value < 0)
+          value = 255 + value + 1;
+        this[offset] = value & 255;
+        return offset + 1;
+      };
+      Buffer2.prototype.writeInt16LE = function writeInt16LE(value, offset, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkInt(this, value, offset, 2, 32767, -32768);
+        this[offset] = value & 255;
+        this[offset + 1] = value >>> 8;
+        return offset + 2;
+      };
+      Buffer2.prototype.writeInt16BE = function writeInt16BE(value, offset, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkInt(this, value, offset, 2, 32767, -32768);
+        this[offset] = value >>> 8;
+        this[offset + 1] = value & 255;
+        return offset + 2;
+      };
+      Buffer2.prototype.writeInt32LE = function writeInt32LE(value, offset, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkInt(this, value, offset, 4, 2147483647, -2147483648);
+        this[offset] = value & 255;
+        this[offset + 1] = value >>> 8;
+        this[offset + 2] = value >>> 16;
+        this[offset + 3] = value >>> 24;
+        return offset + 4;
+      };
+      Buffer2.prototype.writeInt32BE = function writeInt32BE(value, offset, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        if (!noAssert)
+          checkInt(this, value, offset, 4, 2147483647, -2147483648);
+        if (value < 0)
+          value = 4294967295 + value + 1;
+        this[offset] = value >>> 24;
+        this[offset + 1] = value >>> 16;
+        this[offset + 2] = value >>> 8;
+        this[offset + 3] = value & 255;
+        return offset + 4;
+      };
+      function checkIEEE754(buf, value, offset, ext, max, min) {
+        if (offset + ext > buf.length)
+          throw new RangeError("Index out of range");
+        if (offset < 0)
+          throw new RangeError("Index out of range");
+      }
+      function writeFloat(buf, value, offset, littleEndian, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        if (!noAssert) {
+          checkIEEE754(buf, value, offset, 4, 34028234663852886e22, -34028234663852886e22);
+        }
+        ieee754.write(buf, value, offset, littleEndian, 23, 4);
+        return offset + 4;
+      }
+      Buffer2.prototype.writeFloatLE = function writeFloatLE(value, offset, noAssert) {
+        return writeFloat(this, value, offset, true, noAssert);
+      };
+      Buffer2.prototype.writeFloatBE = function writeFloatBE(value, offset, noAssert) {
+        return writeFloat(this, value, offset, false, noAssert);
+      };
+      function writeDouble(buf, value, offset, littleEndian, noAssert) {
+        value = +value;
+        offset = offset >>> 0;
+        if (!noAssert) {
+          checkIEEE754(buf, value, offset, 8, 17976931348623157e292, -17976931348623157e292);
+        }
+        ieee754.write(buf, value, offset, littleEndian, 52, 8);
+        return offset + 8;
+      }
+      Buffer2.prototype.writeDoubleLE = function writeDoubleLE(value, offset, noAssert) {
+        return writeDouble(this, value, offset, true, noAssert);
+      };
+      Buffer2.prototype.writeDoubleBE = function writeDoubleBE(value, offset, noAssert) {
+        return writeDouble(this, value, offset, false, noAssert);
+      };
+      Buffer2.prototype.copy = function copy(target, targetStart, start, end) {
+        if (!Buffer2.isBuffer(target))
+          throw new TypeError("argument should be a Buffer");
+        if (!start)
+          start = 0;
+        if (!end && end !== 0)
+          end = this.length;
+        if (targetStart >= target.length)
+          targetStart = target.length;
+        if (!targetStart)
+          targetStart = 0;
+        if (end > 0 && end < start)
+          end = start;
+        if (end === start)
+          return 0;
+        if (target.length === 0 || this.length === 0)
+          return 0;
+        if (targetStart < 0) {
+          throw new RangeError("targetStart out of bounds");
+        }
+        if (start < 0 || start >= this.length)
+          throw new RangeError("Index out of range");
+        if (end < 0)
+          throw new RangeError("sourceEnd out of bounds");
+        if (end > this.length)
+          end = this.length;
+        if (target.length - targetStart < end - start) {
+          end = target.length - targetStart + start;
+        }
+        var len = end - start;
+        if (this === target && typeof Uint8Array.prototype.copyWithin === "function") {
+          this.copyWithin(targetStart, start, end);
+        } else {
+          Uint8Array.prototype.set.call(target, this.subarray(start, end), targetStart);
+        }
+        return len;
+      };
+      Buffer2.prototype.fill = function fill(val, start, end, encoding) {
+        if (typeof val === "string") {
+          if (typeof start === "string") {
+            encoding = start;
+            start = 0;
+            end = this.length;
+          } else if (typeof end === "string") {
+            encoding = end;
+            end = this.length;
+          }
+          if (encoding !== void 0 && typeof encoding !== "string") {
+            throw new TypeError("encoding must be a string");
+          }
+          if (typeof encoding === "string" && !Buffer2.isEncoding(encoding)) {
+            throw new TypeError("Unknown encoding: " + encoding);
+          }
+          if (val.length === 1) {
+            var code = val.charCodeAt(0);
+            if (encoding === "utf8" && code < 128 || encoding === "latin1") {
+              val = code;
+            }
+          }
+        } else if (typeof val === "number") {
+          val = val & 255;
+        } else if (typeof val === "boolean") {
+          val = Number(val);
+        }
+        if (start < 0 || this.length < start || this.length < end) {
+          throw new RangeError("Out of range index");
+        }
+        if (end <= start) {
+          return this;
+        }
+        start = start >>> 0;
+        end = end === void 0 ? this.length : end >>> 0;
+        if (!val)
+          val = 0;
+        var i;
+        if (typeof val === "number") {
+          for (i = start; i < end; ++i) {
+            this[i] = val;
+          }
+        } else {
+          var bytes = Buffer2.isBuffer(val) ? val : Buffer2.from(val, encoding);
+          var len = bytes.length;
+          if (len === 0) {
+            throw new TypeError('The value "' + val + '" is invalid for argument "value"');
+          }
+          for (i = 0; i < end - start; ++i) {
+            this[i + start] = bytes[i % len];
+          }
+        }
+        return this;
+      };
+      var INVALID_BASE64_RE = /[^+/0-9A-Za-z-_]/g;
+      function base64clean(str) {
+        str = str.split("=")[0];
+        str = str.trim().replace(INVALID_BASE64_RE, "");
+        if (str.length < 2)
+          return "";
+        while (str.length % 4 !== 0) {
+          str = str + "=";
+        }
+        return str;
+      }
+      function utf8ToBytes(string, units) {
+        units = units || Infinity;
+        var codePoint;
+        var length = string.length;
+        var leadSurrogate = null;
+        var bytes = [];
+        for (var i = 0; i < length; ++i) {
+          codePoint = string.charCodeAt(i);
+          if (codePoint > 55295 && codePoint < 57344) {
+            if (!leadSurrogate) {
+              if (codePoint > 56319) {
+                if ((units -= 3) > -1)
+                  bytes.push(239, 191, 189);
+                continue;
+              } else if (i + 1 === length) {
+                if ((units -= 3) > -1)
+                  bytes.push(239, 191, 189);
+                continue;
+              }
+              leadSurrogate = codePoint;
+              continue;
+            }
+            if (codePoint < 56320) {
+              if ((units -= 3) > -1)
+                bytes.push(239, 191, 189);
+              leadSurrogate = codePoint;
+              continue;
+            }
+            codePoint = (leadSurrogate - 55296 << 10 | codePoint - 56320) + 65536;
+          } else if (leadSurrogate) {
+            if ((units -= 3) > -1)
+              bytes.push(239, 191, 189);
+          }
+          leadSurrogate = null;
+          if (codePoint < 128) {
+            if ((units -= 1) < 0)
+              break;
+            bytes.push(codePoint);
+          } else if (codePoint < 2048) {
+            if ((units -= 2) < 0)
+              break;
+            bytes.push(codePoint >> 6 | 192, codePoint & 63 | 128);
+          } else if (codePoint < 65536) {
+            if ((units -= 3) < 0)
+              break;
+            bytes.push(codePoint >> 12 | 224, codePoint >> 6 & 63 | 128, codePoint & 63 | 128);
+          } else if (codePoint < 1114112) {
+            if ((units -= 4) < 0)
+              break;
+            bytes.push(codePoint >> 18 | 240, codePoint >> 12 & 63 | 128, codePoint >> 6 & 63 | 128, codePoint & 63 | 128);
+          } else {
+            throw new Error("Invalid code point");
+          }
+        }
+        return bytes;
+      }
+      function asciiToBytes(str) {
+        var byteArray = [];
+        for (var i = 0; i < str.length; ++i) {
+          byteArray.push(str.charCodeAt(i) & 255);
+        }
+        return byteArray;
+      }
+      function utf16leToBytes(str, units) {
+        var c, hi, lo;
+        var byteArray = [];
+        for (var i = 0; i < str.length; ++i) {
+          if ((units -= 2) < 0)
+            break;
+          c = str.charCodeAt(i);
+          hi = c >> 8;
+          lo = c % 256;
+          byteArray.push(lo);
+          byteArray.push(hi);
+        }
+        return byteArray;
+      }
+      function base64ToBytes(str) {
+        return base64.toByteArray(base64clean(str));
+      }
+      function blitBuffer(src, dst, offset, length) {
+        for (var i = 0; i < length; ++i) {
+          if (i + offset >= dst.length || i >= src.length)
+            break;
+          dst[i + offset] = src[i];
+        }
+        return i;
+      }
+      function isInstance(obj, type) {
+        return obj instanceof type || obj != null && obj.constructor != null && obj.constructor.name != null && obj.constructor.name === type.name;
+      }
+      function numberIsNaN(obj) {
+        return obj !== obj;
+      }
+      var hexSliceLookupTable = function() {
+        var alphabet = "0123456789abcdef";
+        var table = new Array(256);
+        for (var i = 0; i < 16; ++i) {
+          var i16 = i * 16;
+          for (var j = 0; j < 16; ++j) {
+            table[i16 + j] = alphabet[i] + alphabet[j];
+          }
+        }
+        return table;
+      }();
+    }
+  });
+
+  // node_modules/qrcode/lib/core/reed-solomon-encoder.js
+  var require_reed_solomon_encoder = __commonJS({
+    "node_modules/qrcode/lib/core/reed-solomon-encoder.js"(exports, module) {
+      var BufferUtil = require_typedarray_buffer();
+      var Polynomial = require_polynomial();
+      var Buffer2 = require_buffer().Buffer;
+      function ReedSolomonEncoder(degree) {
+        this.genPoly = void 0;
+        this.degree = degree;
+        if (this.degree)
+          this.initialize(this.degree);
+      }
+      ReedSolomonEncoder.prototype.initialize = function initialize(degree) {
+        this.degree = degree;
+        this.genPoly = Polynomial.generateECPolynomial(this.degree);
+      };
+      ReedSolomonEncoder.prototype.encode = function encode(data) {
+        if (!this.genPoly) {
+          throw new Error("Encoder not initialized");
+        }
+        var pad = BufferUtil.alloc(this.degree);
+        var paddedData = Buffer2.concat([data, pad], data.length + this.degree);
+        var remainder = Polynomial.mod(paddedData, this.genPoly);
+        var start = this.degree - remainder.length;
+        if (start > 0) {
+          var buff = BufferUtil.alloc(this.degree);
+          remainder.copy(buff, start);
+          return buff;
+        }
+        return remainder;
+      };
+      module.exports = ReedSolomonEncoder;
+    }
+  });
+
+  // node_modules/qrcode/lib/core/version-check.js
+  var require_version_check = __commonJS({
+    "node_modules/qrcode/lib/core/version-check.js"(exports) {
+      exports.isValid = function isValid(version) {
+        return !isNaN(version) && version >= 1 && version <= 40;
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/core/regex.js
+  var require_regex = __commonJS({
+    "node_modules/qrcode/lib/core/regex.js"(exports) {
+      var numeric = "[0-9]+";
+      var alphanumeric = "[A-Z $%*+\\-./:]+";
+      var kanji = "(?:[u3000-u303F]|[u3040-u309F]|[u30A0-u30FF]|[uFF00-uFFEF]|[u4E00-u9FAF]|[u2605-u2606]|[u2190-u2195]|u203B|[u2010u2015u2018u2019u2025u2026u201Cu201Du2225u2260]|[u0391-u0451]|[u00A7u00A8u00B1u00B4u00D7u00F7])+";
+      kanji = kanji.replace(/u/g, "\\u");
+      var byte = "(?:(?![A-Z0-9 $%*+\\-./:]|" + kanji + ")(?:.|[\r\n]))+";
+      exports.KANJI = new RegExp(kanji, "g");
+      exports.BYTE_KANJI = new RegExp("[^A-Z0-9 $%*+\\-./:]+", "g");
+      exports.BYTE = new RegExp(byte, "g");
+      exports.NUMERIC = new RegExp(numeric, "g");
+      exports.ALPHANUMERIC = new RegExp(alphanumeric, "g");
+      var TEST_KANJI = new RegExp("^" + kanji + "$");
+      var TEST_NUMERIC = new RegExp("^" + numeric + "$");
+      var TEST_ALPHANUMERIC = new RegExp("^[A-Z0-9 $%*+\\-./:]+$");
+      exports.testKanji = function testKanji(str) {
+        return TEST_KANJI.test(str);
+      };
+      exports.testNumeric = function testNumeric(str) {
+        return TEST_NUMERIC.test(str);
+      };
+      exports.testAlphanumeric = function testAlphanumeric(str) {
+        return TEST_ALPHANUMERIC.test(str);
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/core/mode.js
+  var require_mode = __commonJS({
+    "node_modules/qrcode/lib/core/mode.js"(exports) {
+      var VersionCheck = require_version_check();
+      var Regex = require_regex();
+      exports.NUMERIC = {
+        id: "Numeric",
+        bit: 1 << 0,
+        ccBits: [10, 12, 14]
+      };
+      exports.ALPHANUMERIC = {
+        id: "Alphanumeric",
+        bit: 1 << 1,
+        ccBits: [9, 11, 13]
+      };
+      exports.BYTE = {
+        id: "Byte",
+        bit: 1 << 2,
+        ccBits: [8, 16, 16]
+      };
+      exports.KANJI = {
+        id: "Kanji",
+        bit: 1 << 3,
+        ccBits: [8, 10, 12]
+      };
+      exports.MIXED = {
+        bit: -1
+      };
+      exports.getCharCountIndicator = function getCharCountIndicator(mode2, version) {
+        if (!mode2.ccBits)
+          throw new Error("Invalid mode: " + mode2);
+        if (!VersionCheck.isValid(version)) {
+          throw new Error("Invalid version: " + version);
+        }
+        if (version >= 1 && version < 10)
+          return mode2.ccBits[0];
+        else if (version < 27)
+          return mode2.ccBits[1];
+        return mode2.ccBits[2];
+      };
+      exports.getBestModeForData = function getBestModeForData(dataStr) {
+        if (Regex.testNumeric(dataStr))
+          return exports.NUMERIC;
+        else if (Regex.testAlphanumeric(dataStr))
+          return exports.ALPHANUMERIC;
+        else if (Regex.testKanji(dataStr))
+          return exports.KANJI;
+        else
+          return exports.BYTE;
+      };
+      exports.toString = function toString(mode2) {
+        if (mode2 && mode2.id)
+          return mode2.id;
+        throw new Error("Invalid mode");
+      };
+      exports.isValid = function isValid(mode2) {
+        return mode2 && mode2.bit && mode2.ccBits;
+      };
+      function fromString(string) {
+        if (typeof string !== "string") {
+          throw new Error("Param is not a string");
+        }
+        var lcStr = string.toLowerCase();
+        switch (lcStr) {
+          case "numeric":
+            return exports.NUMERIC;
+          case "alphanumeric":
+            return exports.ALPHANUMERIC;
+          case "kanji":
+            return exports.KANJI;
+          case "byte":
+            return exports.BYTE;
+          default:
+            throw new Error("Unknown mode: " + string);
+        }
+      }
+      exports.from = function from(value, defaultValue) {
+        if (exports.isValid(value)) {
+          return value;
+        }
+        try {
+          return fromString(value);
+        } catch (e2) {
+          return defaultValue;
+        }
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/core/version.js
+  var require_version = __commonJS({
+    "node_modules/qrcode/lib/core/version.js"(exports) {
+      var Utils = require_utils();
+      var ECCode = require_error_correction_code();
+      var ECLevel = require_error_correction_level();
+      var Mode = require_mode();
+      var VersionCheck = require_version_check();
+      var isArray = require_isarray();
+      var G18 = 1 << 12 | 1 << 11 | 1 << 10 | 1 << 9 | 1 << 8 | 1 << 5 | 1 << 2 | 1 << 0;
+      var G18_BCH = Utils.getBCHDigit(G18);
+      function getBestVersionForDataLength(mode2, length, errorCorrectionLevel) {
+        for (var currentVersion = 1; currentVersion <= 40; currentVersion++) {
+          if (length <= exports.getCapacity(currentVersion, errorCorrectionLevel, mode2)) {
+            return currentVersion;
+          }
+        }
+        return void 0;
+      }
+      function getReservedBitsCount(mode2, version) {
+        return Mode.getCharCountIndicator(mode2, version) + 4;
+      }
+      function getTotalBitsFromDataArray(segments, version) {
+        var totalBits = 0;
+        segments.forEach(function(data) {
+          var reservedBits = getReservedBitsCount(data.mode, version);
+          totalBits += reservedBits + data.getBitsLength();
+        });
+        return totalBits;
+      }
+      function getBestVersionForMixedData(segments, errorCorrectionLevel) {
+        for (var currentVersion = 1; currentVersion <= 40; currentVersion++) {
+          var length = getTotalBitsFromDataArray(segments, currentVersion);
+          if (length <= exports.getCapacity(currentVersion, errorCorrectionLevel, Mode.MIXED)) {
+            return currentVersion;
+          }
+        }
+        return void 0;
+      }
+      exports.from = function from(value, defaultValue) {
+        if (VersionCheck.isValid(value)) {
+          return parseInt(value, 10);
+        }
+        return defaultValue;
+      };
+      exports.getCapacity = function getCapacity(version, errorCorrectionLevel, mode2) {
+        if (!VersionCheck.isValid(version)) {
+          throw new Error("Invalid QR Code version");
+        }
+        if (typeof mode2 === "undefined")
+          mode2 = Mode.BYTE;
+        var totalCodewords = Utils.getSymbolTotalCodewords(version);
+        var ecTotalCodewords = ECCode.getTotalCodewordsCount(version, errorCorrectionLevel);
+        var dataTotalCodewordsBits = (totalCodewords - ecTotalCodewords) * 8;
+        if (mode2 === Mode.MIXED)
+          return dataTotalCodewordsBits;
+        var usableBits = dataTotalCodewordsBits - getReservedBitsCount(mode2, version);
+        switch (mode2) {
+          case Mode.NUMERIC:
+            return Math.floor(usableBits / 10 * 3);
+          case Mode.ALPHANUMERIC:
+            return Math.floor(usableBits / 11 * 2);
+          case Mode.KANJI:
+            return Math.floor(usableBits / 13);
+          case Mode.BYTE:
+          default:
+            return Math.floor(usableBits / 8);
+        }
+      };
+      exports.getBestVersionForData = function getBestVersionForData(data, errorCorrectionLevel) {
+        var seg;
+        var ecl = ECLevel.from(errorCorrectionLevel, ECLevel.M);
+        if (isArray(data)) {
+          if (data.length > 1) {
+            return getBestVersionForMixedData(data, ecl);
+          }
+          if (data.length === 0) {
+            return 1;
+          }
+          seg = data[0];
+        } else {
+          seg = data;
+        }
+        return getBestVersionForDataLength(seg.mode, seg.getLength(), ecl);
+      };
+      exports.getEncodedBits = function getEncodedBits(version) {
+        if (!VersionCheck.isValid(version) || version < 7) {
+          throw new Error("Invalid QR Code version");
+        }
+        var d = version << 12;
+        while (Utils.getBCHDigit(d) - G18_BCH >= 0) {
+          d ^= G18 << Utils.getBCHDigit(d) - G18_BCH;
+        }
+        return version << 12 | d;
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/core/format-info.js
+  var require_format_info = __commonJS({
+    "node_modules/qrcode/lib/core/format-info.js"(exports) {
+      var Utils = require_utils();
+      var G15 = 1 << 10 | 1 << 8 | 1 << 5 | 1 << 4 | 1 << 2 | 1 << 1 | 1 << 0;
+      var G15_MASK = 1 << 14 | 1 << 12 | 1 << 10 | 1 << 4 | 1 << 1;
+      var G15_BCH = Utils.getBCHDigit(G15);
+      exports.getEncodedBits = function getEncodedBits(errorCorrectionLevel, mask) {
+        var data = errorCorrectionLevel.bit << 3 | mask;
+        var d = data << 10;
+        while (Utils.getBCHDigit(d) - G15_BCH >= 0) {
+          d ^= G15 << Utils.getBCHDigit(d) - G15_BCH;
+        }
+        return (data << 10 | d) ^ G15_MASK;
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/core/numeric-data.js
+  var require_numeric_data = __commonJS({
+    "node_modules/qrcode/lib/core/numeric-data.js"(exports, module) {
+      var Mode = require_mode();
+      function NumericData(data) {
+        this.mode = Mode.NUMERIC;
+        this.data = data.toString();
+      }
+      NumericData.getBitsLength = function getBitsLength(length) {
+        return 10 * Math.floor(length / 3) + (length % 3 ? length % 3 * 3 + 1 : 0);
+      };
+      NumericData.prototype.getLength = function getLength() {
+        return this.data.length;
+      };
+      NumericData.prototype.getBitsLength = function getBitsLength() {
+        return NumericData.getBitsLength(this.data.length);
+      };
+      NumericData.prototype.write = function write(bitBuffer) {
+        var i, group, value;
+        for (i = 0; i + 3 <= this.data.length; i += 3) {
+          group = this.data.substr(i, 3);
+          value = parseInt(group, 10);
+          bitBuffer.put(value, 10);
+        }
+        var remainingNum = this.data.length - i;
+        if (remainingNum > 0) {
+          group = this.data.substr(i);
+          value = parseInt(group, 10);
+          bitBuffer.put(value, remainingNum * 3 + 1);
+        }
+      };
+      module.exports = NumericData;
+    }
+  });
+
+  // node_modules/qrcode/lib/core/alphanumeric-data.js
+  var require_alphanumeric_data = __commonJS({
+    "node_modules/qrcode/lib/core/alphanumeric-data.js"(exports, module) {
+      var Mode = require_mode();
+      var ALPHA_NUM_CHARS = [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O",
+        "P",
+        "Q",
+        "R",
+        "S",
+        "T",
+        "U",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z",
+        " ",
+        "$",
+        "%",
+        "*",
+        "+",
+        "-",
+        ".",
+        "/",
+        ":"
+      ];
+      function AlphanumericData(data) {
+        this.mode = Mode.ALPHANUMERIC;
+        this.data = data;
+      }
+      AlphanumericData.getBitsLength = function getBitsLength(length) {
+        return 11 * Math.floor(length / 2) + 6 * (length % 2);
+      };
+      AlphanumericData.prototype.getLength = function getLength() {
+        return this.data.length;
+      };
+      AlphanumericData.prototype.getBitsLength = function getBitsLength() {
+        return AlphanumericData.getBitsLength(this.data.length);
+      };
+      AlphanumericData.prototype.write = function write(bitBuffer) {
+        var i;
+        for (i = 0; i + 2 <= this.data.length; i += 2) {
+          var value = ALPHA_NUM_CHARS.indexOf(this.data[i]) * 45;
+          value += ALPHA_NUM_CHARS.indexOf(this.data[i + 1]);
+          bitBuffer.put(value, 11);
+        }
+        if (this.data.length % 2) {
+          bitBuffer.put(ALPHA_NUM_CHARS.indexOf(this.data[i]), 6);
+        }
+      };
+      module.exports = AlphanumericData;
+    }
+  });
+
+  // node_modules/qrcode/lib/core/byte-data.js
+  var require_byte_data = __commonJS({
+    "node_modules/qrcode/lib/core/byte-data.js"(exports, module) {
+      var BufferUtil = require_typedarray_buffer();
+      var Mode = require_mode();
+      function ByteData(data) {
+        this.mode = Mode.BYTE;
+        this.data = BufferUtil.from(data);
+      }
+      ByteData.getBitsLength = function getBitsLength(length) {
+        return length * 8;
+      };
+      ByteData.prototype.getLength = function getLength() {
+        return this.data.length;
+      };
+      ByteData.prototype.getBitsLength = function getBitsLength() {
+        return ByteData.getBitsLength(this.data.length);
+      };
+      ByteData.prototype.write = function(bitBuffer) {
+        for (var i = 0, l = this.data.length; i < l; i++) {
+          bitBuffer.put(this.data[i], 8);
+        }
+      };
+      module.exports = ByteData;
+    }
+  });
+
+  // node_modules/qrcode/lib/core/kanji-data.js
+  var require_kanji_data = __commonJS({
+    "node_modules/qrcode/lib/core/kanji-data.js"(exports, module) {
+      var Mode = require_mode();
+      var Utils = require_utils();
+      function KanjiData(data) {
+        this.mode = Mode.KANJI;
+        this.data = data;
+      }
+      KanjiData.getBitsLength = function getBitsLength(length) {
+        return length * 13;
+      };
+      KanjiData.prototype.getLength = function getLength() {
+        return this.data.length;
+      };
+      KanjiData.prototype.getBitsLength = function getBitsLength() {
+        return KanjiData.getBitsLength(this.data.length);
+      };
+      KanjiData.prototype.write = function(bitBuffer) {
+        var i;
+        for (i = 0; i < this.data.length; i++) {
+          var value = Utils.toSJIS(this.data[i]);
+          if (value >= 33088 && value <= 40956) {
+            value -= 33088;
+          } else if (value >= 57408 && value <= 60351) {
+            value -= 49472;
+          } else {
+            throw new Error("Invalid SJIS character: " + this.data[i] + "\nMake sure your charset is UTF-8");
+          }
+          value = (value >>> 8 & 255) * 192 + (value & 255);
+          bitBuffer.put(value, 13);
+        }
+      };
+      module.exports = KanjiData;
+    }
+  });
+
+  // node_modules/dijkstrajs/dijkstra.js
+  var require_dijkstra = __commonJS({
+    "node_modules/dijkstrajs/dijkstra.js"(exports, module) {
+      "use strict";
+      var dijkstra = {
+        single_source_shortest_paths: function(graph, s, d) {
+          var predecessors = {};
+          var costs = {};
+          costs[s] = 0;
+          var open = dijkstra.PriorityQueue.make();
+          open.push(s, 0);
+          var closest, u, v, cost_of_s_to_u, adjacent_nodes, cost_of_e, cost_of_s_to_u_plus_cost_of_e, cost_of_s_to_v, first_visit;
+          while (!open.empty()) {
+            closest = open.pop();
+            u = closest.value;
+            cost_of_s_to_u = closest.cost;
+            adjacent_nodes = graph[u] || {};
+            for (v in adjacent_nodes) {
+              if (adjacent_nodes.hasOwnProperty(v)) {
+                cost_of_e = adjacent_nodes[v];
+                cost_of_s_to_u_plus_cost_of_e = cost_of_s_to_u + cost_of_e;
+                cost_of_s_to_v = costs[v];
+                first_visit = typeof costs[v] === "undefined";
+                if (first_visit || cost_of_s_to_v > cost_of_s_to_u_plus_cost_of_e) {
+                  costs[v] = cost_of_s_to_u_plus_cost_of_e;
+                  open.push(v, cost_of_s_to_u_plus_cost_of_e);
+                  predecessors[v] = u;
+                }
+              }
+            }
+          }
+          if (typeof d !== "undefined" && typeof costs[d] === "undefined") {
+            var msg = ["Could not find a path from ", s, " to ", d, "."].join("");
+            throw new Error(msg);
+          }
+          return predecessors;
+        },
+        extract_shortest_path_from_predecessor_list: function(predecessors, d) {
+          var nodes = [];
+          var u = d;
+          var predecessor;
+          while (u) {
+            nodes.push(u);
+            predecessor = predecessors[u];
+            u = predecessors[u];
+          }
+          nodes.reverse();
+          return nodes;
+        },
+        find_path: function(graph, s, d) {
+          var predecessors = dijkstra.single_source_shortest_paths(graph, s, d);
+          return dijkstra.extract_shortest_path_from_predecessor_list(predecessors, d);
+        },
+        PriorityQueue: {
+          make: function(opts) {
+            var T = dijkstra.PriorityQueue, t = {}, key;
+            opts = opts || {};
+            for (key in T) {
+              if (T.hasOwnProperty(key)) {
+                t[key] = T[key];
+              }
+            }
+            t.queue = [];
+            t.sorter = opts.sorter || T.default_sorter;
+            return t;
+          },
+          default_sorter: function(a, b) {
+            return a.cost - b.cost;
+          },
+          push: function(value, cost) {
+            var item = { value, cost };
+            this.queue.push(item);
+            this.queue.sort(this.sorter);
+          },
+          pop: function() {
+            return this.queue.shift();
+          },
+          empty: function() {
+            return this.queue.length === 0;
+          }
+        }
+      };
+      if (typeof module !== "undefined") {
+        module.exports = dijkstra;
+      }
+    }
+  });
+
+  // node_modules/qrcode/lib/core/segments.js
+  var require_segments = __commonJS({
+    "node_modules/qrcode/lib/core/segments.js"(exports) {
+      var Mode = require_mode();
+      var NumericData = require_numeric_data();
+      var AlphanumericData = require_alphanumeric_data();
+      var ByteData = require_byte_data();
+      var KanjiData = require_kanji_data();
+      var Regex = require_regex();
+      var Utils = require_utils();
+      var dijkstra = require_dijkstra();
+      function getStringByteLength(str) {
+        return unescape(encodeURIComponent(str)).length;
+      }
+      function getSegments(regex, mode2, str) {
+        var segments = [];
+        var result;
+        while ((result = regex.exec(str)) !== null) {
+          segments.push({
+            data: result[0],
+            index: result.index,
+            mode: mode2,
+            length: result[0].length
+          });
+        }
+        return segments;
+      }
+      function getSegmentsFromString(dataStr) {
+        var numSegs = getSegments(Regex.NUMERIC, Mode.NUMERIC, dataStr);
+        var alphaNumSegs = getSegments(Regex.ALPHANUMERIC, Mode.ALPHANUMERIC, dataStr);
+        var byteSegs;
+        var kanjiSegs;
+        if (Utils.isKanjiModeEnabled()) {
+          byteSegs = getSegments(Regex.BYTE, Mode.BYTE, dataStr);
+          kanjiSegs = getSegments(Regex.KANJI, Mode.KANJI, dataStr);
+        } else {
+          byteSegs = getSegments(Regex.BYTE_KANJI, Mode.BYTE, dataStr);
+          kanjiSegs = [];
+        }
+        var segs = numSegs.concat(alphaNumSegs, byteSegs, kanjiSegs);
+        return segs.sort(function(s1, s2) {
+          return s1.index - s2.index;
+        }).map(function(obj) {
+          return {
+            data: obj.data,
+            mode: obj.mode,
+            length: obj.length
+          };
+        });
+      }
+      function getSegmentBitsLength(length, mode2) {
+        switch (mode2) {
+          case Mode.NUMERIC:
+            return NumericData.getBitsLength(length);
+          case Mode.ALPHANUMERIC:
+            return AlphanumericData.getBitsLength(length);
+          case Mode.KANJI:
+            return KanjiData.getBitsLength(length);
+          case Mode.BYTE:
+            return ByteData.getBitsLength(length);
+        }
+      }
+      function mergeSegments(segs) {
+        return segs.reduce(function(acc, curr) {
+          var prevSeg = acc.length - 1 >= 0 ? acc[acc.length - 1] : null;
+          if (prevSeg && prevSeg.mode === curr.mode) {
+            acc[acc.length - 1].data += curr.data;
+            return acc;
+          }
+          acc.push(curr);
+          return acc;
+        }, []);
+      }
+      function buildNodes(segs) {
+        var nodes = [];
+        for (var i = 0; i < segs.length; i++) {
+          var seg = segs[i];
+          switch (seg.mode) {
+            case Mode.NUMERIC:
+              nodes.push([
+                seg,
+                { data: seg.data, mode: Mode.ALPHANUMERIC, length: seg.length },
+                { data: seg.data, mode: Mode.BYTE, length: seg.length }
+              ]);
+              break;
+            case Mode.ALPHANUMERIC:
+              nodes.push([
+                seg,
+                { data: seg.data, mode: Mode.BYTE, length: seg.length }
+              ]);
+              break;
+            case Mode.KANJI:
+              nodes.push([
+                seg,
+                { data: seg.data, mode: Mode.BYTE, length: getStringByteLength(seg.data) }
+              ]);
+              break;
+            case Mode.BYTE:
+              nodes.push([
+                { data: seg.data, mode: Mode.BYTE, length: getStringByteLength(seg.data) }
+              ]);
+          }
+        }
+        return nodes;
+      }
+      function buildGraph(nodes, version) {
+        var table = {};
+        var graph = { "start": {} };
+        var prevNodeIds = ["start"];
+        for (var i = 0; i < nodes.length; i++) {
+          var nodeGroup = nodes[i];
+          var currentNodeIds = [];
+          for (var j = 0; j < nodeGroup.length; j++) {
+            var node = nodeGroup[j];
+            var key = "" + i + j;
+            currentNodeIds.push(key);
+            table[key] = { node, lastCount: 0 };
+            graph[key] = {};
+            for (var n = 0; n < prevNodeIds.length; n++) {
+              var prevNodeId = prevNodeIds[n];
+              if (table[prevNodeId] && table[prevNodeId].node.mode === node.mode) {
+                graph[prevNodeId][key] = getSegmentBitsLength(table[prevNodeId].lastCount + node.length, node.mode) - getSegmentBitsLength(table[prevNodeId].lastCount, node.mode);
+                table[prevNodeId].lastCount += node.length;
+              } else {
+                if (table[prevNodeId])
+                  table[prevNodeId].lastCount = node.length;
+                graph[prevNodeId][key] = getSegmentBitsLength(node.length, node.mode) + 4 + Mode.getCharCountIndicator(node.mode, version);
+              }
+            }
+          }
+          prevNodeIds = currentNodeIds;
+        }
+        for (n = 0; n < prevNodeIds.length; n++) {
+          graph[prevNodeIds[n]]["end"] = 0;
+        }
+        return { map: graph, table };
+      }
+      function buildSingleSegment(data, modesHint) {
+        var mode2;
+        var bestMode = Mode.getBestModeForData(data);
+        mode2 = Mode.from(modesHint, bestMode);
+        if (mode2 !== Mode.BYTE && mode2.bit < bestMode.bit) {
+          throw new Error('"' + data + '" cannot be encoded with mode ' + Mode.toString(mode2) + ".\n Suggested mode is: " + Mode.toString(bestMode));
+        }
+        if (mode2 === Mode.KANJI && !Utils.isKanjiModeEnabled()) {
+          mode2 = Mode.BYTE;
+        }
+        switch (mode2) {
+          case Mode.NUMERIC:
+            return new NumericData(data);
+          case Mode.ALPHANUMERIC:
+            return new AlphanumericData(data);
+          case Mode.KANJI:
+            return new KanjiData(data);
+          case Mode.BYTE:
+            return new ByteData(data);
+        }
+      }
+      exports.fromArray = function fromArray(array) {
+        return array.reduce(function(acc, seg) {
+          if (typeof seg === "string") {
+            acc.push(buildSingleSegment(seg, null));
+          } else if (seg.data) {
+            acc.push(buildSingleSegment(seg.data, seg.mode));
+          }
+          return acc;
+        }, []);
+      };
+      exports.fromString = function fromString(data, version) {
+        var segs = getSegmentsFromString(data, Utils.isKanjiModeEnabled());
+        var nodes = buildNodes(segs);
+        var graph = buildGraph(nodes, version);
+        var path = dijkstra.find_path(graph.map, "start", "end");
+        var optimizedSegs = [];
+        for (var i = 1; i < path.length - 1; i++) {
+          optimizedSegs.push(graph.table[path[i]].node);
+        }
+        return exports.fromArray(mergeSegments(optimizedSegs));
+      };
+      exports.rawSplit = function rawSplit(data) {
+        return exports.fromArray(getSegmentsFromString(data, Utils.isKanjiModeEnabled()));
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/core/qrcode.js
+  var require_qrcode = __commonJS({
+    "node_modules/qrcode/lib/core/qrcode.js"(exports) {
+      var BufferUtil = require_typedarray_buffer();
+      var Utils = require_utils();
+      var ECLevel = require_error_correction_level();
+      var BitBuffer = require_bit_buffer();
+      var BitMatrix = require_bit_matrix();
+      var AlignmentPattern = require_alignment_pattern();
+      var FinderPattern = require_finder_pattern();
+      var MaskPattern = require_mask_pattern();
+      var ECCode = require_error_correction_code();
+      var ReedSolomonEncoder = require_reed_solomon_encoder();
+      var Version = require_version();
+      var FormatInfo = require_format_info();
+      var Mode = require_mode();
+      var Segments = require_segments();
+      var isArray = require_isarray();
+      function setupFinderPattern(matrix, version) {
+        var size = matrix.size;
+        var pos = FinderPattern.getPositions(version);
+        for (var i = 0; i < pos.length; i++) {
+          var row = pos[i][0];
+          var col = pos[i][1];
+          for (var r = -1; r <= 7; r++) {
+            if (row + r <= -1 || size <= row + r)
+              continue;
+            for (var c = -1; c <= 7; c++) {
+              if (col + c <= -1 || size <= col + c)
+                continue;
+              if (r >= 0 && r <= 6 && (c === 0 || c === 6) || c >= 0 && c <= 6 && (r === 0 || r === 6) || r >= 2 && r <= 4 && c >= 2 && c <= 4) {
+                matrix.set(row + r, col + c, true, true);
+              } else {
+                matrix.set(row + r, col + c, false, true);
+              }
+            }
+          }
+        }
+      }
+      function setupTimingPattern(matrix) {
+        var size = matrix.size;
+        for (var r = 8; r < size - 8; r++) {
+          var value = r % 2 === 0;
+          matrix.set(r, 6, value, true);
+          matrix.set(6, r, value, true);
+        }
+      }
+      function setupAlignmentPattern(matrix, version) {
+        var pos = AlignmentPattern.getPositions(version);
+        for (var i = 0; i < pos.length; i++) {
+          var row = pos[i][0];
+          var col = pos[i][1];
+          for (var r = -2; r <= 2; r++) {
+            for (var c = -2; c <= 2; c++) {
+              if (r === -2 || r === 2 || c === -2 || c === 2 || r === 0 && c === 0) {
+                matrix.set(row + r, col + c, true, true);
+              } else {
+                matrix.set(row + r, col + c, false, true);
+              }
+            }
+          }
+        }
+      }
+      function setupVersionInfo(matrix, version) {
+        var size = matrix.size;
+        var bits = Version.getEncodedBits(version);
+        var row, col, mod;
+        for (var i = 0; i < 18; i++) {
+          row = Math.floor(i / 3);
+          col = i % 3 + size - 8 - 3;
+          mod = (bits >> i & 1) === 1;
+          matrix.set(row, col, mod, true);
+          matrix.set(col, row, mod, true);
+        }
+      }
+      function setupFormatInfo(matrix, errorCorrectionLevel, maskPattern) {
+        var size = matrix.size;
+        var bits = FormatInfo.getEncodedBits(errorCorrectionLevel, maskPattern);
+        var i, mod;
+        for (i = 0; i < 15; i++) {
+          mod = (bits >> i & 1) === 1;
+          if (i < 6) {
+            matrix.set(i, 8, mod, true);
+          } else if (i < 8) {
+            matrix.set(i + 1, 8, mod, true);
+          } else {
+            matrix.set(size - 15 + i, 8, mod, true);
+          }
+          if (i < 8) {
+            matrix.set(8, size - i - 1, mod, true);
+          } else if (i < 9) {
+            matrix.set(8, 15 - i - 1 + 1, mod, true);
+          } else {
+            matrix.set(8, 15 - i - 1, mod, true);
+          }
+        }
+        matrix.set(size - 8, 8, 1, true);
+      }
+      function setupData(matrix, data) {
+        var size = matrix.size;
+        var inc = -1;
+        var row = size - 1;
+        var bitIndex = 7;
+        var byteIndex = 0;
+        for (var col = size - 1; col > 0; col -= 2) {
+          if (col === 6)
+            col--;
+          while (true) {
+            for (var c = 0; c < 2; c++) {
+              if (!matrix.isReserved(row, col - c)) {
+                var dark = false;
+                if (byteIndex < data.length) {
+                  dark = (data[byteIndex] >>> bitIndex & 1) === 1;
+                }
+                matrix.set(row, col - c, dark);
+                bitIndex--;
+                if (bitIndex === -1) {
+                  byteIndex++;
+                  bitIndex = 7;
+                }
+              }
+            }
+            row += inc;
+            if (row < 0 || size <= row) {
+              row -= inc;
+              inc = -inc;
+              break;
+            }
+          }
+        }
+      }
+      function createData(version, errorCorrectionLevel, segments) {
+        var buffer = new BitBuffer();
+        segments.forEach(function(data) {
+          buffer.put(data.mode.bit, 4);
+          buffer.put(data.getLength(), Mode.getCharCountIndicator(data.mode, version));
+          data.write(buffer);
+        });
+        var totalCodewords = Utils.getSymbolTotalCodewords(version);
+        var ecTotalCodewords = ECCode.getTotalCodewordsCount(version, errorCorrectionLevel);
+        var dataTotalCodewordsBits = (totalCodewords - ecTotalCodewords) * 8;
+        if (buffer.getLengthInBits() + 4 <= dataTotalCodewordsBits) {
+          buffer.put(0, 4);
+        }
+        while (buffer.getLengthInBits() % 8 !== 0) {
+          buffer.putBit(0);
+        }
+        var remainingByte = (dataTotalCodewordsBits - buffer.getLengthInBits()) / 8;
+        for (var i = 0; i < remainingByte; i++) {
+          buffer.put(i % 2 ? 17 : 236, 8);
+        }
+        return createCodewords(buffer, version, errorCorrectionLevel);
+      }
+      function createCodewords(bitBuffer, version, errorCorrectionLevel) {
+        var totalCodewords = Utils.getSymbolTotalCodewords(version);
+        var ecTotalCodewords = ECCode.getTotalCodewordsCount(version, errorCorrectionLevel);
+        var dataTotalCodewords = totalCodewords - ecTotalCodewords;
+        var ecTotalBlocks = ECCode.getBlocksCount(version, errorCorrectionLevel);
+        var blocksInGroup2 = totalCodewords % ecTotalBlocks;
+        var blocksInGroup1 = ecTotalBlocks - blocksInGroup2;
+        var totalCodewordsInGroup1 = Math.floor(totalCodewords / ecTotalBlocks);
+        var dataCodewordsInGroup1 = Math.floor(dataTotalCodewords / ecTotalBlocks);
+        var dataCodewordsInGroup2 = dataCodewordsInGroup1 + 1;
+        var ecCount = totalCodewordsInGroup1 - dataCodewordsInGroup1;
+        var rs = new ReedSolomonEncoder(ecCount);
+        var offset = 0;
+        var dcData = new Array(ecTotalBlocks);
+        var ecData = new Array(ecTotalBlocks);
+        var maxDataSize = 0;
+        var buffer = BufferUtil.from(bitBuffer.buffer);
+        for (var b = 0; b < ecTotalBlocks; b++) {
+          var dataSize = b < blocksInGroup1 ? dataCodewordsInGroup1 : dataCodewordsInGroup2;
+          dcData[b] = buffer.slice(offset, offset + dataSize);
+          ecData[b] = rs.encode(dcData[b]);
+          offset += dataSize;
+          maxDataSize = Math.max(maxDataSize, dataSize);
+        }
+        var data = BufferUtil.alloc(totalCodewords);
+        var index = 0;
+        var i, r;
+        for (i = 0; i < maxDataSize; i++) {
+          for (r = 0; r < ecTotalBlocks; r++) {
+            if (i < dcData[r].length) {
+              data[index++] = dcData[r][i];
+            }
+          }
+        }
+        for (i = 0; i < ecCount; i++) {
+          for (r = 0; r < ecTotalBlocks; r++) {
+            data[index++] = ecData[r][i];
+          }
+        }
+        return data;
+      }
+      function createSymbol(data, version, errorCorrectionLevel, maskPattern) {
+        var segments;
+        if (isArray(data)) {
+          segments = Segments.fromArray(data);
+        } else if (typeof data === "string") {
+          var estimatedVersion = version;
+          if (!estimatedVersion) {
+            var rawSegments = Segments.rawSplit(data);
+            estimatedVersion = Version.getBestVersionForData(rawSegments, errorCorrectionLevel);
+          }
+          segments = Segments.fromString(data, estimatedVersion || 40);
+        } else {
+          throw new Error("Invalid data");
+        }
+        var bestVersion = Version.getBestVersionForData(segments, errorCorrectionLevel);
+        if (!bestVersion) {
+          throw new Error("The amount of data is too big to be stored in a QR Code");
+        }
+        if (!version) {
+          version = bestVersion;
+        } else if (version < bestVersion) {
+          throw new Error("\nThe chosen QR Code version cannot contain this amount of data.\nMinimum version required to store current data is: " + bestVersion + ".\n");
+        }
+        var dataBits = createData(version, errorCorrectionLevel, segments);
+        var moduleCount = Utils.getSymbolSize(version);
+        var modules = new BitMatrix(moduleCount);
+        setupFinderPattern(modules, version);
+        setupTimingPattern(modules);
+        setupAlignmentPattern(modules, version);
+        setupFormatInfo(modules, errorCorrectionLevel, 0);
+        if (version >= 7) {
+          setupVersionInfo(modules, version);
+        }
+        setupData(modules, dataBits);
+        if (isNaN(maskPattern)) {
+          maskPattern = MaskPattern.getBestMask(modules, setupFormatInfo.bind(null, modules, errorCorrectionLevel));
+        }
+        MaskPattern.applyMask(maskPattern, modules);
+        setupFormatInfo(modules, errorCorrectionLevel, maskPattern);
+        return {
+          modules,
+          version,
+          errorCorrectionLevel,
+          maskPattern,
+          segments
+        };
+      }
+      exports.create = function create(data, options) {
+        if (typeof data === "undefined" || data === "") {
+          throw new Error("No input text");
+        }
+        var errorCorrectionLevel = ECLevel.M;
+        var version;
+        var mask;
+        if (typeof options !== "undefined") {
+          errorCorrectionLevel = ECLevel.from(options.errorCorrectionLevel, ECLevel.M);
+          version = Version.from(options.version);
+          mask = MaskPattern.from(options.maskPattern);
+          if (options.toSJISFunc) {
+            Utils.setToSJISFunction(options.toSJISFunc);
+          }
+        }
+        return createSymbol(data, version, errorCorrectionLevel, mask);
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/renderer/utils.js
+  var require_utils2 = __commonJS({
+    "node_modules/qrcode/lib/renderer/utils.js"(exports) {
+      function hex2rgba(hex) {
+        if (typeof hex === "number") {
+          hex = hex.toString();
+        }
+        if (typeof hex !== "string") {
+          throw new Error("Color should be defined as hex string");
+        }
+        var hexCode = hex.slice().replace("#", "").split("");
+        if (hexCode.length < 3 || hexCode.length === 5 || hexCode.length > 8) {
+          throw new Error("Invalid hex color: " + hex);
+        }
+        if (hexCode.length === 3 || hexCode.length === 4) {
+          hexCode = Array.prototype.concat.apply([], hexCode.map(function(c) {
+            return [c, c];
+          }));
+        }
+        if (hexCode.length === 6)
+          hexCode.push("F", "F");
+        var hexValue = parseInt(hexCode.join(""), 16);
+        return {
+          r: hexValue >> 24 & 255,
+          g: hexValue >> 16 & 255,
+          b: hexValue >> 8 & 255,
+          a: hexValue & 255,
+          hex: "#" + hexCode.slice(0, 6).join("")
+        };
+      }
+      exports.getOptions = function getOptions(options) {
+        if (!options)
+          options = {};
+        if (!options.color)
+          options.color = {};
+        var margin = typeof options.margin === "undefined" || options.margin === null || options.margin < 0 ? 4 : options.margin;
+        var width = options.width && options.width >= 21 ? options.width : void 0;
+        var scale = options.scale || 4;
+        return {
+          width,
+          scale: width ? 4 : scale,
+          margin,
+          color: {
+            dark: hex2rgba(options.color.dark || "#000000ff"),
+            light: hex2rgba(options.color.light || "#ffffffff")
+          },
+          type: options.type,
+          rendererOpts: options.rendererOpts || {}
+        };
+      };
+      exports.getScale = function getScale(qrSize, opts) {
+        return opts.width && opts.width >= qrSize + opts.margin * 2 ? opts.width / (qrSize + opts.margin * 2) : opts.scale;
+      };
+      exports.getImageWidth = function getImageWidth(qrSize, opts) {
+        var scale = exports.getScale(qrSize, opts);
+        return Math.floor((qrSize + opts.margin * 2) * scale);
+      };
+      exports.qrToImageData = function qrToImageData(imgData, qr, opts) {
+        var size = qr.modules.size;
+        var data = qr.modules.data;
+        var scale = exports.getScale(size, opts);
+        var symbolSize = Math.floor((size + opts.margin * 2) * scale);
+        var scaledMargin = opts.margin * scale;
+        var palette = [opts.color.light, opts.color.dark];
+        for (var i = 0; i < symbolSize; i++) {
+          for (var j = 0; j < symbolSize; j++) {
+            var posDst = (i * symbolSize + j) * 4;
+            var pxColor = opts.color.light;
+            if (i >= scaledMargin && j >= scaledMargin && i < symbolSize - scaledMargin && j < symbolSize - scaledMargin) {
+              var iSrc = Math.floor((i - scaledMargin) / scale);
+              var jSrc = Math.floor((j - scaledMargin) / scale);
+              pxColor = palette[data[iSrc * size + jSrc] ? 1 : 0];
+            }
+            imgData[posDst++] = pxColor.r;
+            imgData[posDst++] = pxColor.g;
+            imgData[posDst++] = pxColor.b;
+            imgData[posDst] = pxColor.a;
+          }
+        }
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/renderer/canvas.js
+  var require_canvas = __commonJS({
+    "node_modules/qrcode/lib/renderer/canvas.js"(exports) {
+      var Utils = require_utils2();
+      function clearCanvas(ctx, canvas2, size) {
+        ctx.clearRect(0, 0, canvas2.width, canvas2.height);
+        if (!canvas2.style)
+          canvas2.style = {};
+        canvas2.height = size;
+        canvas2.width = size;
+        canvas2.style.height = size + "px";
+        canvas2.style.width = size + "px";
+      }
+      function getCanvasElement() {
+        try {
+          return document.createElement("canvas");
+        } catch (e2) {
+          throw new Error("You need to specify a canvas element");
+        }
+      }
+      exports.render = function render(qrData, canvas2, options) {
+        var opts = options;
+        var canvasEl = canvas2;
+        if (typeof opts === "undefined" && (!canvas2 || !canvas2.getContext)) {
+          opts = canvas2;
+          canvas2 = void 0;
+        }
+        if (!canvas2) {
+          canvasEl = getCanvasElement();
+        }
+        opts = Utils.getOptions(opts);
+        var size = Utils.getImageWidth(qrData.modules.size, opts);
+        var ctx = canvasEl.getContext("2d");
+        var image = ctx.createImageData(size, size);
+        Utils.qrToImageData(image.data, qrData, opts);
+        clearCanvas(ctx, canvasEl, size);
+        ctx.putImageData(image, 0, 0);
+        return canvasEl;
+      };
+      exports.renderToDataURL = function renderToDataURL(qrData, canvas2, options) {
+        var opts = options;
+        if (typeof opts === "undefined" && (!canvas2 || !canvas2.getContext)) {
+          opts = canvas2;
+          canvas2 = void 0;
+        }
+        if (!opts)
+          opts = {};
+        var canvasEl = exports.render(qrData, canvas2, opts);
+        var type = opts.type || "image/png";
+        var rendererOpts = opts.rendererOpts || {};
+        return canvasEl.toDataURL(type, rendererOpts.quality);
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/renderer/svg-tag.js
+  var require_svg_tag = __commonJS({
+    "node_modules/qrcode/lib/renderer/svg-tag.js"(exports) {
+      var Utils = require_utils2();
+      function getColorAttrib(color, attrib) {
+        var alpha = color.a / 255;
+        var str = attrib + '="' + color.hex + '"';
+        return alpha < 1 ? str + " " + attrib + '-opacity="' + alpha.toFixed(2).slice(1) + '"' : str;
+      }
+      function svgCmd(cmd, x, y) {
+        var str = cmd + x;
+        if (typeof y !== "undefined")
+          str += " " + y;
+        return str;
+      }
+      function qrToPath(data, size, margin) {
+        var path = "";
+        var moveBy = 0;
+        var newRow = false;
+        var lineLength = 0;
+        for (var i = 0; i < data.length; i++) {
+          var col = Math.floor(i % size);
+          var row = Math.floor(i / size);
+          if (!col && !newRow)
+            newRow = true;
+          if (data[i]) {
+            lineLength++;
+            if (!(i > 0 && col > 0 && data[i - 1])) {
+              path += newRow ? svgCmd("M", col + margin, 0.5 + row + margin) : svgCmd("m", moveBy, 0);
+              moveBy = 0;
+              newRow = false;
+            }
+            if (!(col + 1 < size && data[i + 1])) {
+              path += svgCmd("h", lineLength);
+              lineLength = 0;
+            }
+          } else {
+            moveBy++;
+          }
+        }
+        return path;
+      }
+      exports.render = function render(qrData, options, cb) {
+        var opts = Utils.getOptions(options);
+        var size = qrData.modules.size;
+        var data = qrData.modules.data;
+        var qrcodesize = size + opts.margin * 2;
+        var bg = !opts.color.light.a ? "" : "<path " + getColorAttrib(opts.color.light, "fill") + ' d="M0 0h' + qrcodesize + "v" + qrcodesize + 'H0z"/>';
+        var path = "<path " + getColorAttrib(opts.color.dark, "stroke") + ' d="' + qrToPath(data, size, opts.margin) + '"/>';
+        var viewBox = 'viewBox="0 0 ' + qrcodesize + " " + qrcodesize + '"';
+        var width = !opts.width ? "" : 'width="' + opts.width + '" height="' + opts.width + '" ';
+        var svgTag = '<svg xmlns="http://www.w3.org/2000/svg" ' + width + viewBox + ' shape-rendering="crispEdges">' + bg + path + "</svg>\n";
+        if (typeof cb === "function") {
+          cb(null, svgTag);
+        }
+        return svgTag;
+      };
+    }
+  });
+
+  // node_modules/qrcode/lib/browser.js
+  var require_browser = __commonJS({
+    "node_modules/qrcode/lib/browser.js"(exports) {
+      var canPromise = require_can_promise();
+      var QRCode = require_qrcode();
+      var CanvasRenderer = require_canvas();
+      var SvgRenderer = require_svg_tag();
+      function renderCanvas(renderFunc, canvas2, text, opts, cb) {
+        var args = [].slice.call(arguments, 1);
+        var argsNum = args.length;
+        var isLastArgCb = typeof args[argsNum - 1] === "function";
+        if (!isLastArgCb && !canPromise()) {
+          throw new Error("Callback required as last argument");
+        }
+        if (isLastArgCb) {
+          if (argsNum < 2) {
+            throw new Error("Too few arguments provided");
+          }
+          if (argsNum === 2) {
+            cb = text;
+            text = canvas2;
+            canvas2 = opts = void 0;
+          } else if (argsNum === 3) {
+            if (canvas2.getContext && typeof cb === "undefined") {
+              cb = opts;
+              opts = void 0;
+            } else {
+              cb = opts;
+              opts = text;
+              text = canvas2;
+              canvas2 = void 0;
+            }
+          }
+        } else {
+          if (argsNum < 1) {
+            throw new Error("Too few arguments provided");
+          }
+          if (argsNum === 1) {
+            text = canvas2;
+            canvas2 = opts = void 0;
+          } else if (argsNum === 2 && !canvas2.getContext) {
+            opts = text;
+            text = canvas2;
+            canvas2 = void 0;
+          }
+          return new Promise(function(resolve, reject) {
+            try {
+              var data2 = QRCode.create(text, opts);
+              resolve(renderFunc(data2, canvas2, opts));
+            } catch (e2) {
+              reject(e2);
+            }
+          });
+        }
+        try {
+          var data = QRCode.create(text, opts);
+          cb(null, renderFunc(data, canvas2, opts));
+        } catch (e2) {
+          cb(e2);
+        }
+      }
+      exports.create = QRCode.create;
+      exports.toCanvas = renderCanvas.bind(null, CanvasRenderer.render);
+      exports.toDataURL = renderCanvas.bind(null, CanvasRenderer.renderToDataURL);
+      exports.toString = renderCanvas.bind(null, function(data, _, opts) {
+        return SvgRenderer.render(data, opts);
+      });
+    }
+  });
+
+  // node_modules/qr-scanner/qr-scanner-worker.min.js
+  var qr_scanner_worker_min_exports = {};
+  __export(qr_scanner_worker_min_exports, {
+    createWorker: () => createWorker
+  });
+  var createWorker;
+  var init_qr_scanner_worker_min = __esm({
+    "node_modules/qr-scanner/qr-scanner-worker.min.js"() {
+      createWorker = () => new Worker(URL.createObjectURL(new Blob([`class x{constructor(a,b){this.width=b;this.height=a.length/b;this.data=a}static createEmpty(a,b){return new x(new Uint8ClampedArray(a*b),a)}get(a,b){return 0>a||a>=this.width||0>b||b>=this.height?!1:!!this.data[b*this.width+a]}set(a,b,c){this.data[b*this.width+a]=c?1:0}setRegion(a,b,c,d,e){for(let f=b;f<b+d;f++)for(let g=a;g<a+c;g++)this.set(g,f,!!e)}}
 class A{constructor(a,b,c){this.width=a;a*=b;if(c&&c.length!==a)throw Error("Wrong buffer size");this.data=c||new Uint8ClampedArray(a)}get(a,b){return this.data[b*this.width+a]}set(a,b,c){this.data[b*this.width+a]=c}}
 class ba{constructor(a){this.bitOffset=this.byteOffset=0;this.bytes=a}readBits(a){if(1>a||32<a||a>this.available())throw Error("Cannot read "+a.toString()+" bits");var b=0;if(0<this.bitOffset){b=8-this.bitOffset;var c=a<b?a:b;b-=c;b=(this.bytes[this.byteOffset]&255>>8-c<<b)>>b;a-=c;this.bitOffset+=c;8===this.bitOffset&&(this.bitOffset=0,this.byteOffset++)}if(0<a){for(;8<=a;)b=b<<8|this.bytes[this.byteOffset]&255,this.byteOffset++,a-=8;0<a&&(c=8-a,b=b<<a|(this.bytes[this.byteOffset]&255>>c<<c)>>c,
 this.bitOffset+=a)}return b}available(){return 8*(this.bytes.length-this.byteOffset)-this.bitOffset}}var B,C=B||(B={});C.Numeric="numeric";C.Alphanumeric="alphanumeric";C.Byte="byte";C.Kanji="kanji";C.ECI="eci";C.StructuredAppend="structuredappend";var D,E=D||(D={});E[E.Terminator=0]="Terminator";E[E.Numeric=1]="Numeric";E[E.Alphanumeric=2]="Alphanumeric";E[E.Byte=4]="Byte";E[E.Kanji=8]="Kanji";E[E.ECI=7]="ECI";E[E.StructuredAppend=3]="StructuredAppend";let F="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".split("");
@@ -102,7 +4255,606 @@ u.set(r,q,v)}h?(q=new Uint8ClampedArray(a.buffer,m,k),m+=k,q=new x(q,b)):q=x.cre
 y:z))||"attemptBoth"!==e.inversionAttempts&&"invertFirst"!==e.inversionAttempts||(f=V(d?z:y));return f}X.default=X;let Y="dontInvert",Z={red:77,green:150,blue:29,useIntegerApproximation:!0};
 self.onmessage=a=>{let b=a.data.id,c=a.data.data;switch(a.data.type){case "decode":(a=X(c.data,c.width,c.height,{inversionAttempts:Y,greyScaleWeights:Z}))?self.postMessage({id:b,type:"qrResult",data:a.data,cornerPoints:[a.location.topLeftCorner,a.location.topRightCorner,a.location.bottomRightCorner,a.location.bottomLeftCorner]}):self.postMessage({id:b,type:"qrResult",data:null});break;case "grayscaleWeights":Z.red=c.red;Z.green=c.green;Z.blue=c.blue;Z.useIntegerApproximation=c.useIntegerApproximation;
 break;case "inversionMode":switch(c){case "original":Y="dontInvert";break;case "invert":Y="onlyInvert";break;case "both":Y="attemptBoth";break;default:throw Error("Invalid inversion mode");}break;case "close":self.close()}}
-`]),{type:"application/javascript"}))});var Ae=co(Wt());var Yt=o=>{for(var e=atob(o.split(",")[1]),r=o.split(",")[0].split(":")[1].split(";")[0],t=new ArrayBuffer(e.length),n=new Uint8Array(t),a=0;a<e.length;a++)n[a]=e.charCodeAt(a);var i=new Blob([t],{type:r});return i},Vt=(o,e)=>{let r=URL.createObjectURL(o),t=document.createElement("a");t.href=r,t.download=e,document.body.appendChild(t),t.dispatchEvent(new MouseEvent("click",{bubbles:!0,cancelable:!0,view:window})),document.body.removeChild(t)},Xt=async(o,e)=>{let t={text:"Qr Code",title:"Qr Code",files:[new File([o],e,{type:o.type})]};if(navigator.canShare(t))try{await navigator.share(t)}catch(n){n.name!=="AbortError"&&console.error(n.name,n.message)}else console.warn("Sharing not supported",t)};var Kt=(o,e,r)=>{if(!o){let t=e.getContext("2d");t&&t.clearRect(0,0,e.width,e.height);return}if(!r){let t=e.parentElement?.getBoundingClientRect();r=t.width>t.height?t.height:t.width}return(0,Ae.toCanvas)(e,o,{margin:0,width:r,errorCorrectionLevel:"M"},t=>{t&&console.error(t)})},Me=async(o,e,r)=>{if(!o)throw new Error("No data");if(!r){let n=e.parentElement?.getBoundingClientRect();r=n.width>n.height?n.height:n.width}let t=await new Promise((n,a)=>{(0,Ae.toDataURL)(e,o,{margin:0,width:r,errorCorrectionLevel:"M"},(i,s)=>i?a(i):n(s))});return Yt(t)};var Qt=(o,e,r)=>{function t(){clearTimeout(o),o=null}o&&t(),o=setTimeout(()=>{t(),r()},e)};var m=class{constructor(e,r,t,n,a){this._legacyCanvasSize=m.DEFAULT_CANVAS_SIZE,this._preferredCamera="environment",this._maxScansPerSecond=25,this._lastScanTimestamp=-1,this._destroyed=this._flashOn=this._paused=this._active=!1,this.$video=e,this.$canvas=document.createElement("canvas"),t&&typeof t=="object"?this._onDecode=r:(console.warn(t||n||a?"You're using a deprecated version of the QrScanner constructor which will be removed in the future":"Note that the type of the scan result passed to onDecode will change in the future. To already switch to the new api today, you can pass returnDetailedScanResult: true."),this._legacyOnDecode=r),r=typeof t=="object"?t:{},this._onDecodeError=r.onDecodeError||(typeof t=="function"?t:this._onDecodeError),this._calculateScanRegion=r.calculateScanRegion||(typeof n=="function"?n:this._calculateScanRegion),this._preferredCamera=r.preferredCamera||a||this._preferredCamera,this._legacyCanvasSize=typeof t=="number"?t:typeof n=="number"?n:this._legacyCanvasSize,this._maxScansPerSecond=r.maxScansPerSecond||this._maxScansPerSecond,this._onPlay=this._onPlay.bind(this),this._onLoadedMetaData=this._onLoadedMetaData.bind(this),this._onVisibilityChange=this._onVisibilityChange.bind(this),this._updateOverlay=this._updateOverlay.bind(this),e.disablePictureInPicture=!0,e.playsInline=!0,e.muted=!0;let i=!1;if(e.hidden&&(e.hidden=!1,i=!0),document.body.contains(e)||(document.body.appendChild(e),i=!0),t=e.parentElement,r.highlightScanRegion||r.highlightCodeOutline){if(n=!!r.overlay,this.$overlay=r.overlay||document.createElement("div"),a=this.$overlay.style,a.position="absolute",a.display="none",a.pointerEvents="none",this.$overlay.classList.add("scan-region-highlight"),!n&&r.highlightScanRegion){this.$overlay.innerHTML='<svg class="scan-region-highlight-svg" viewBox="0 0 238 238" preserveAspectRatio="none" style="position:absolute;width:100%;height:100%;left:0;top:0;fill:none;stroke:#e9b213;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"><path d="M31 2H10a8 8 0 0 0-8 8v21M207 2h21a8 8 0 0 1 8 8v21m0 176v21a8 8 0 0 1-8 8h-21m-176 0H10a8 8 0 0 1-8-8v-21"/></svg>';try{this.$overlay.firstElementChild.animate({transform:["scale(.98)","scale(1.01)"]},{duration:400,iterations:1/0,direction:"alternate",easing:"ease-in-out"})}catch{}t.insertBefore(this.$overlay,this.$video.nextSibling)}r.highlightCodeOutline&&(this.$overlay.insertAdjacentHTML("beforeend",'<svg class="code-outline-highlight" preserveAspectRatio="none" style="display:none;width:100%;height:100%;fill:none;stroke:#e9b213;stroke-width:5;stroke-dasharray:25;stroke-linecap:round;stroke-linejoin:round"><polygon/></svg>'),this.$codeOutlineHighlight=this.$overlay.lastElementChild)}this._scanRegion=this._calculateScanRegion(e),requestAnimationFrame(()=>{let s=window.getComputedStyle(e);s.display==="none"&&(e.style.setProperty("display","block","important"),i=!0),s.visibility!=="visible"&&(e.style.setProperty("visibility","visible","important"),i=!0),i&&(console.warn("QrScanner has overwritten the video hiding style to avoid Safari stopping the playback."),e.style.opacity="0",e.style.width="0",e.style.height="0",this.$overlay&&this.$overlay.parentElement&&this.$overlay.parentElement.removeChild(this.$overlay),delete this.$overlay,delete this.$codeOutlineHighlight),this.$overlay&&this._updateOverlay()}),e.addEventListener("play",this._onPlay),e.addEventListener("loadedmetadata",this._onLoadedMetaData),document.addEventListener("visibilitychange",this._onVisibilityChange),window.addEventListener("resize",this._updateOverlay),this._qrEnginePromise=m.createQrEngine()}static set WORKER_PATH(e){console.warn("Setting QrScanner.WORKER_PATH is not required and not supported anymore. Have a look at the README for new setup instructions.")}static async hasCamera(){try{return!!(await m.listCameras(!1)).length}catch{return!1}}static async listCameras(e=!1){if(!navigator.mediaDevices)return[];let r=async()=>(await navigator.mediaDevices.enumerateDevices()).filter(n=>n.kind==="videoinput"),t;try{e&&(await r()).every(n=>!n.label)&&(t=await navigator.mediaDevices.getUserMedia({audio:!1,video:!0}))}catch{}try{return(await r()).map((n,a)=>({id:n.deviceId,label:n.label||(a===0?"Default Camera":`Camera ${a+1}`)}))}finally{t&&(console.warn("Call listCameras after successfully starting a QR scanner to avoid creating a temporary video stream"),m._stopVideoStream(t))}}async hasFlash(){let e;try{if(this.$video.srcObject){if(!(this.$video.srcObject instanceof MediaStream))return!1;e=this.$video.srcObject}else e=(await this._getCameraStream()).stream;return"torch"in e.getVideoTracks()[0].getSettings()}catch{return!1}finally{e&&e!==this.$video.srcObject&&(console.warn("Call hasFlash after successfully starting the scanner to avoid creating a temporary video stream"),m._stopVideoStream(e))}}isFlashOn(){return this._flashOn}async toggleFlash(){this._flashOn?await this.turnFlashOff():await this.turnFlashOn()}async turnFlashOn(){if(!this._flashOn&&!this._destroyed&&(this._flashOn=!0,this._active&&!this._paused))try{if(!await this.hasFlash())throw"No flash available";await this.$video.srcObject.getVideoTracks()[0].applyConstraints({advanced:[{torch:!0}]})}catch(e){throw this._flashOn=!1,e}}async turnFlashOff(){this._flashOn&&(this._flashOn=!1,await this._restartVideoStream())}destroy(){this.$video.removeEventListener("loadedmetadata",this._onLoadedMetaData),this.$video.removeEventListener("play",this._onPlay),document.removeEventListener("visibilitychange",this._onVisibilityChange),window.removeEventListener("resize",this._updateOverlay),this._destroyed=!0,this._flashOn=!1,this.stop(),m._postWorkerMessage(this._qrEnginePromise,"close")}async start(){if(this._destroyed)throw Error("The QR scanner can not be started as it had been destroyed.");if((!this._active||this._paused)&&(window.location.protocol!=="https:"&&console.warn("The camera stream is only accessible if the page is transferred via https."),this._active=!0,!document.hidden))if(this._paused=!1,this.$video.srcObject)await this.$video.play();else try{let{stream:e,facingMode:r}=await this._getCameraStream();!this._active||this._paused?m._stopVideoStream(e):(this._setVideoMirror(r),this.$video.srcObject=e,await this.$video.play(),this._flashOn&&(this._flashOn=!1,this.turnFlashOn().catch(()=>{})))}catch(e){if(!this._paused)throw this._active=!1,e}}stop(){this.pause(),this._active=!1}async pause(e=!1){if(this._paused=!0,!this._active)return!0;this.$video.pause(),this.$overlay&&(this.$overlay.style.display="none");let r=()=>{this.$video.srcObject instanceof MediaStream&&(m._stopVideoStream(this.$video.srcObject),this.$video.srcObject=null)};return e?(r(),!0):(await new Promise(t=>setTimeout(t,300)),this._paused?(r(),!0):!1)}async setCamera(e){e!==this._preferredCamera&&(this._preferredCamera=e,await this._restartVideoStream())}static async scanImage(e,r,t,n,a=!1,i=!1){let s,c=!1;r&&("scanRegion"in r||"qrEngine"in r||"canvas"in r||"disallowCanvasResizing"in r||"alsoTryWithoutScanRegion"in r||"returnDetailedScanResult"in r)?(s=r.scanRegion,t=r.qrEngine,n=r.canvas,a=r.disallowCanvasResizing||!1,i=r.alsoTryWithoutScanRegion||!1,c=!0):console.warn(r||t||n||a||i?"You're using a deprecated api for scanImage which will be removed in the future.":"Note that the return type of scanImage will change in the future. To already switch to the new api today, you can pass returnDetailedScanResult: true."),r=!!t;try{let u,d;[t,u]=await Promise.all([t||m.createQrEngine(),m._loadImage(e)]),[n,d]=m._drawToCanvas(u,s,n,a);let f;if(t instanceof Worker){let h=t;r||m._postWorkerMessageSync(h,"inversionMode","both"),f=await new Promise((B,C)=>{let b,L,x,Q=-1;L=A=>{A.data.id===Q&&(h.removeEventListener("message",L),h.removeEventListener("error",x),clearTimeout(b),A.data.data!==null?B({data:A.data.data,cornerPoints:m._convertPoints(A.data.cornerPoints,s)}):C(m.NO_QR_CODE_FOUND))},x=A=>{h.removeEventListener("message",L),h.removeEventListener("error",x),clearTimeout(b),C("Scanner error: "+(A?A.message||A:"Unknown Error"))},h.addEventListener("message",L),h.addEventListener("error",x),b=setTimeout(()=>x("timeout"),1e4);let E=d.getImageData(0,0,n.width,n.height);Q=m._postWorkerMessageSync(h,"decode",E,[E.data.buffer])})}else f=await Promise.race([new Promise((h,B)=>window.setTimeout(()=>B("Scanner error: timeout"),1e4)),(async()=>{try{var[h]=await t.detect(n);if(!h)throw m.NO_QR_CODE_FOUND;return{data:h.rawValue,cornerPoints:m._convertPoints(h.cornerPoints,s)}}catch(B){if(h=B.message||B,/not implemented|service unavailable/.test(h))return m._disableBarcodeDetector=!0,m.scanImage(e,{scanRegion:s,canvas:n,disallowCanvasResizing:a,alsoTryWithoutScanRegion:i});throw`Scanner error: ${h}`}})()]);return c?f:f.data}catch(u){if(!s||!i)throw u;let d=await m.scanImage(e,{qrEngine:t,canvas:n,disallowCanvasResizing:a});return c?d:d.data}finally{r||m._postWorkerMessage(t,"close")}}setGrayscaleWeights(e,r,t,n=!0){m._postWorkerMessage(this._qrEnginePromise,"grayscaleWeights",{red:e,green:r,blue:t,useIntegerApproximation:n})}setInversionMode(e){m._postWorkerMessage(this._qrEnginePromise,"inversionMode",e)}static async createQrEngine(e){return e&&console.warn("Specifying a worker path is not required and not supported anymore."),!m._disableBarcodeDetector&&"BarcodeDetector"in window&&BarcodeDetector.getSupportedFormats&&(await BarcodeDetector.getSupportedFormats()).includes("qr_code")?new BarcodeDetector({formats:["qr_code"]}):Promise.resolve().then(()=>(Gt(),Jt)).then(r=>r.createWorker())}_onPlay(){this._scanRegion=this._calculateScanRegion(this.$video),this._updateOverlay(),this.$overlay&&(this.$overlay.style.display=""),this._scanFrame()}_onLoadedMetaData(){this._scanRegion=this._calculateScanRegion(this.$video),this._updateOverlay()}_onVisibilityChange(){document.hidden?this.pause():this._active&&this.start()}_calculateScanRegion(e){let r=Math.round(.6666666666666666*Math.min(e.videoWidth,e.videoHeight));return{x:Math.round((e.videoWidth-r)/2),y:Math.round((e.videoHeight-r)/2),width:r,height:r,downScaledWidth:this._legacyCanvasSize,downScaledHeight:this._legacyCanvasSize}}_updateOverlay(){requestAnimationFrame(()=>{if(this.$overlay){var e=this.$video,r=e.videoWidth,t=e.videoHeight,n=e.offsetWidth,a=e.offsetHeight,i=e.offsetLeft,s=e.offsetTop,c=window.getComputedStyle(e),u=c.objectFit,d=r/t,f=n/a;switch(u){case"none":var h=r,B=t;break;case"fill":h=n,B=a;break;default:(u==="cover"?d>f:d<f)?(B=a,h=B*d):(h=n,B=h/d),u==="scale-down"&&(h=Math.min(h,r),B=Math.min(B,t))}var[C,b]=c.objectPosition.split(" ").map((x,Q)=>{let E=parseFloat(x);return x.endsWith("%")?(Q?a-B:n-h)*E/100:E});c=this._scanRegion.width||r,f=this._scanRegion.height||t,u=this._scanRegion.x||0;var L=this._scanRegion.y||0;d=this.$overlay.style,d.width=`${c/r*h}px`,d.height=`${f/t*B}px`,d.top=`${s+b+L/t*B}px`,t=/scaleX\(-1\)/.test(e.style.transform),d.left=`${i+(t?n-C-h:C)+(t?r-u-c:u)/r*h}px`,d.transform=e.style.transform}})}static _convertPoints(e,r){if(!r)return e;let t=r.x||0,n=r.y||0,a=r.width&&r.downScaledWidth?r.width/r.downScaledWidth:1;r=r.height&&r.downScaledHeight?r.height/r.downScaledHeight:1;for(let i of e)i.x=i.x*a+t,i.y=i.y*r+n;return e}_scanFrame(){!this._active||this.$video.paused||this.$video.ended||("requestVideoFrameCallback"in this.$video?this.$video.requestVideoFrameCallback.bind(this.$video):requestAnimationFrame)(async()=>{if(!(1>=this.$video.readyState)){var e=Date.now()-this._lastScanTimestamp,r=1e3/this._maxScansPerSecond;e<r&&await new Promise(n=>setTimeout(n,r-e)),this._lastScanTimestamp=Date.now();try{var t=await m.scanImage(this.$video,{scanRegion:this._scanRegion,qrEngine:this._qrEnginePromise,canvas:this.$canvas})}catch(n){if(!this._active)return;this._onDecodeError(n)}!m._disableBarcodeDetector||await this._qrEnginePromise instanceof Worker||(this._qrEnginePromise=m.createQrEngine()),t?(this._onDecode?this._onDecode(t):this._legacyOnDecode&&this._legacyOnDecode(t.data),this.$codeOutlineHighlight&&(clearTimeout(this._codeOutlineHighlightRemovalTimeout),this._codeOutlineHighlightRemovalTimeout=void 0,this.$codeOutlineHighlight.setAttribute("viewBox",`${this._scanRegion.x||0} ${this._scanRegion.y||0} ${this._scanRegion.width||this.$video.videoWidth} ${this._scanRegion.height||this.$video.videoHeight}`),this.$codeOutlineHighlight.firstElementChild.setAttribute("points",t.cornerPoints.map(({x:n,y:a})=>`${n},${a}`).join(" ")),this.$codeOutlineHighlight.style.display="")):this.$codeOutlineHighlight&&!this._codeOutlineHighlightRemovalTimeout&&(this._codeOutlineHighlightRemovalTimeout=setTimeout(()=>this.$codeOutlineHighlight.style.display="none",100))}this._scanFrame()})}_onDecodeError(e){e!==m.NO_QR_CODE_FOUND&&console.log(e)}async _getCameraStream(){if(!navigator.mediaDevices)throw"Camera not found.";let e=/^(environment|user)$/.test(this._preferredCamera)?"facingMode":"deviceId",r=[{width:{min:1024}},{width:{min:768}},{}],t=r.map(n=>Object.assign({},n,{[e]:{exact:this._preferredCamera}}));for(let n of[...t,...r])try{let a=await navigator.mediaDevices.getUserMedia({video:n,audio:!1}),i=this._getFacingMode(a)||(n.facingMode?this._preferredCamera:this._preferredCamera==="environment"?"user":"environment");return{stream:a,facingMode:i}}catch{}throw"Camera not found."}async _restartVideoStream(){let e=this._paused;await this.pause(!0)&&!e&&this._active&&await this.start()}static _stopVideoStream(e){for(let r of e.getTracks())r.stop(),e.removeTrack(r)}_setVideoMirror(e){this.$video.style.transform="scaleX("+(e==="user"?-1:1)+")"}_getFacingMode(e){return(e=e.getVideoTracks()[0])?/rear|back|environment/i.test(e.label)?"environment":/front|user|face/i.test(e.label)?"user":null:null}static _drawToCanvas(e,r,t,n=!1){t=t||document.createElement("canvas");let a=r&&r.x?r.x:0,i=r&&r.y?r.y:0,s=r&&r.width?r.width:e.videoWidth||e.width,c=r&&r.height?r.height:e.videoHeight||e.height;return n||(n=r&&r.downScaledWidth?r.downScaledWidth:s,r=r&&r.downScaledHeight?r.downScaledHeight:c,t.width!==n&&(t.width=n),t.height!==r&&(t.height=r)),r=t.getContext("2d",{alpha:!1}),r.imageSmoothingEnabled=!1,r.drawImage(e,a,i,s,c,0,0,t.width,t.height),[t,r]}static async _loadImage(e){if(e instanceof Image)return await m._awaitImageLoad(e),e;if(e instanceof HTMLVideoElement||e instanceof HTMLCanvasElement||e instanceof SVGImageElement||"OffscreenCanvas"in window&&e instanceof OffscreenCanvas||"ImageBitmap"in window&&e instanceof ImageBitmap)return e;if(e instanceof File||e instanceof Blob||e instanceof URL||typeof e=="string"){let r=new Image;r.src=e instanceof File||e instanceof Blob?URL.createObjectURL(e):e.toString();try{return await m._awaitImageLoad(r),r}finally{(e instanceof File||e instanceof Blob)&&URL.revokeObjectURL(r.src)}}else throw"Unsupported image type."}static async _awaitImageLoad(e){e.complete&&e.naturalWidth!==0||await new Promise((r,t)=>{let n=a=>{e.removeEventListener("load",n),e.removeEventListener("error",n),a instanceof ErrorEvent?t("Image load error"):r()};e.addEventListener("load",n),e.addEventListener("error",n)})}static async _postWorkerMessage(e,r,t,n){return m._postWorkerMessageSync(await e,r,t,n)}static _postWorkerMessageSync(e,r,t,n){if(!(e instanceof Worker))return-1;let a=m._workerMessageId++;return e.postMessage({id:a,type:r,data:t},n),a}};m.DEFAULT_CANVAS_SIZE=400;m.NO_QR_CODE_FOUND="No QR code found";m._disableBarcodeDetector=!1;m._workerMessageId=0;var Zt=m;var jt=(o,e)=>{let r=new Zt(o,a=>e?.(a),{maxScansPerSecond:20}),t=o.parentElement?.getBoundingClientRect(),n=t.width>t.height?t.height:t.width;return o.setAttribute("style",`width: ${n.toFixed}px`),r};var Qn=new URLSearchParams(location.search),Ie=Qn.get("mode")||"generate",_e,wr=o=>{Ie=o;let e=Ie==="generate",r=Ie==="scan",t=(n,a,i="hidden")=>{let s=document.querySelector(n);s&&(a?s.classList.remove(i):s.classList.add(i))};t("#mode-generate-button",!e,"primary"),t("#mode-scan-button",!r,"primary"),t(".input-row",e),t(".qr-code-container",e),t(".qr-scanner-container",r),t("#button-download",e),r?(_e=jt(document.querySelector("#qr-scanner-video"),n=>console.log(n)),_e.start()):(_e?.stop(),_e?.destroy())};wr(Ie);var Se=document.querySelector("#qr-code-canvas"),Jn,Le=()=>{Qt(Jn,400,()=>Kt(K.value,Se))},Gn=document.querySelector("body");Gn.onresize=Le;var K=document.querySelector("#url-input");K.oninput=Le;var Zn=document.querySelector("#mode-generate-button");Zn.onclick=()=>{wr("generate")};var jn=document.querySelector("#mode-scan-button");jn.onclick=()=>{wr("scan")};var ea=document.querySelector("#button-github");ea.onclick=()=>{window.open("https://github.com/rodolfoThePig/easy-qr-code")};var ra=document.querySelector("#button-paste");ra.onclick=async()=>{let o=await navigator.clipboard.readText();typeof o=="string"&&(K.value=o,Le())};var ta=document.querySelector("#button-clear");ta.onclick=()=>{K.value="",Le()};var oa=document.querySelector("#button-copy");oa.onclick=async()=>{let o=await Me(K.value,Se);navigator.clipboard.write([new ClipboardItem({"image/png":o})])};var na=document.querySelector("#button-download");na.onclick=async()=>{let o=await Me(K.value,Se);Vt(o,"Qr-code.png")};var aa=document.querySelector("#button-share");aa.onclick=async()=>{let o=await Me(K.value,Se);Xt(o,"Qr-code.png")};})();
+`]), { type: "application/javascript" }));
+    }
+  });
+
+  // src/utils/qr-code.ts
+  var import_qrcode = __toModule(require_browser());
+
+  // src/utils/blob.ts
+  var dataURItoBlob = (dataURI) => {
+    var byteString = atob(dataURI.split(",")[1]);
+    var mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+      ia[i] = byteString.charCodeAt(i);
+    }
+    var blob = new Blob([ab], { type: mimeString });
+    return blob;
+  };
+  var downloadBlob = (blob, fileName) => {
+    const blobUrl = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = blobUrl;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.dispatchEvent(new MouseEvent("click", {
+      bubbles: true,
+      cancelable: true,
+      view: window
+    }));
+    document.body.removeChild(link);
+  };
+  var shareBlobImage = async (blob, fileName) => {
+    const files = [new File([blob], fileName, { type: blob.type })];
+    const shareData = {
+      text: "Qr Code",
+      title: "Qr Code",
+      files
+    };
+    if (navigator.canShare(shareData)) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        if (err.name !== "AbortError") {
+          console.error(err.name, err.message);
+        }
+      }
+    } else {
+      console.warn("Sharing not supported", shareData);
+    }
+  };
+
+  // src/utils/qr-code.ts
+  var paintQrCodeToCanvas = (data, canvas2, width) => {
+    if (!data) {
+      const context = canvas2.getContext("2d");
+      if (context) {
+        context.clearRect(0, 0, canvas2.width, canvas2.height);
+      }
+      return;
+    }
+    if (!width) {
+      const parentRect = canvas2.parentElement?.getBoundingClientRect();
+      width = parentRect.width > parentRect.height ? parentRect.height : parentRect.width;
+    }
+    return (0, import_qrcode.toCanvas)(canvas2, data, { margin: 0, width, errorCorrectionLevel: "M" }, (error) => {
+      if (error) {
+        console.error(error);
+      }
+    });
+  };
+  var qrCodeToBlob = async (data, canvas2, width) => {
+    if (!data) {
+      throw new Error("No data");
+    }
+    if (!width) {
+      const parentRect = canvas2.parentElement?.getBoundingClientRect();
+      width = parentRect.width > parentRect.height ? parentRect.height : parentRect.width;
+    }
+    const dataUrl = await new Promise((resolve, reject) => {
+      (0, import_qrcode.toDataURL)(canvas2, data, { margin: 0, width, errorCorrectionLevel: "M" }, (error, url) => error ? reject(error) : resolve(url));
+    });
+    return dataURItoBlob(dataUrl);
+  };
+
+  // src/utils/time.ts
+  var debounce = (timeout, duration, func) => {
+    function clear() {
+      clearTimeout(timeout);
+      timeout = null;
+    }
+    if (timeout) {
+      clear();
+    }
+    timeout = setTimeout(() => {
+      clear();
+      func();
+    }, duration);
+  };
+
+  // node_modules/qr-scanner/qr-scanner.min.js
+  var e = class {
+    constructor(a, b, c, d, f) {
+      this._legacyCanvasSize = e.DEFAULT_CANVAS_SIZE;
+      this._preferredCamera = "environment";
+      this._maxScansPerSecond = 25;
+      this._lastScanTimestamp = -1;
+      this._destroyed = this._flashOn = this._paused = this._active = false;
+      this.$video = a;
+      this.$canvas = document.createElement("canvas");
+      c && typeof c === "object" ? this._onDecode = b : (c || d || f ? console.warn("You're using a deprecated version of the QrScanner constructor which will be removed in the future") : console.warn("Note that the type of the scan result passed to onDecode will change in the future. To already switch to the new api today, you can pass returnDetailedScanResult: true."), this._legacyOnDecode = b);
+      b = typeof c === "object" ? c : {};
+      this._onDecodeError = b.onDecodeError || (typeof c === "function" ? c : this._onDecodeError);
+      this._calculateScanRegion = b.calculateScanRegion || (typeof d === "function" ? d : this._calculateScanRegion);
+      this._preferredCamera = b.preferredCamera || f || this._preferredCamera;
+      this._legacyCanvasSize = typeof c === "number" ? c : typeof d === "number" ? d : this._legacyCanvasSize;
+      this._maxScansPerSecond = b.maxScansPerSecond || this._maxScansPerSecond;
+      this._onPlay = this._onPlay.bind(this);
+      this._onLoadedMetaData = this._onLoadedMetaData.bind(this);
+      this._onVisibilityChange = this._onVisibilityChange.bind(this);
+      this._updateOverlay = this._updateOverlay.bind(this);
+      a.disablePictureInPicture = true;
+      a.playsInline = true;
+      a.muted = true;
+      let h = false;
+      a.hidden && (a.hidden = false, h = true);
+      document.body.contains(a) || (document.body.appendChild(a), h = true);
+      c = a.parentElement;
+      if (b.highlightScanRegion || b.highlightCodeOutline) {
+        d = !!b.overlay;
+        this.$overlay = b.overlay || document.createElement("div");
+        f = this.$overlay.style;
+        f.position = "absolute";
+        f.display = "none";
+        f.pointerEvents = "none";
+        this.$overlay.classList.add("scan-region-highlight");
+        if (!d && b.highlightScanRegion) {
+          this.$overlay.innerHTML = '<svg class="scan-region-highlight-svg" viewBox="0 0 238 238" preserveAspectRatio="none" style="position:absolute;width:100%;height:100%;left:0;top:0;fill:none;stroke:#e9b213;stroke-width:4;stroke-linecap:round;stroke-linejoin:round"><path d="M31 2H10a8 8 0 0 0-8 8v21M207 2h21a8 8 0 0 1 8 8v21m0 176v21a8 8 0 0 1-8 8h-21m-176 0H10a8 8 0 0 1-8-8v-21"/></svg>';
+          try {
+            this.$overlay.firstElementChild.animate({ transform: [
+              "scale(.98)",
+              "scale(1.01)"
+            ] }, { duration: 400, iterations: Infinity, direction: "alternate", easing: "ease-in-out" });
+          } catch (m) {
+          }
+          c.insertBefore(this.$overlay, this.$video.nextSibling);
+        }
+        b.highlightCodeOutline && (this.$overlay.insertAdjacentHTML("beforeend", '<svg class="code-outline-highlight" preserveAspectRatio="none" style="display:none;width:100%;height:100%;fill:none;stroke:#e9b213;stroke-width:5;stroke-dasharray:25;stroke-linecap:round;stroke-linejoin:round"><polygon/></svg>'), this.$codeOutlineHighlight = this.$overlay.lastElementChild);
+      }
+      this._scanRegion = this._calculateScanRegion(a);
+      requestAnimationFrame(() => {
+        let m = window.getComputedStyle(a);
+        m.display === "none" && (a.style.setProperty("display", "block", "important"), h = true);
+        m.visibility !== "visible" && (a.style.setProperty("visibility", "visible", "important"), h = true);
+        h && (console.warn("QrScanner has overwritten the video hiding style to avoid Safari stopping the playback."), a.style.opacity = "0", a.style.width = "0", a.style.height = "0", this.$overlay && this.$overlay.parentElement && this.$overlay.parentElement.removeChild(this.$overlay), delete this.$overlay, delete this.$codeOutlineHighlight);
+        this.$overlay && this._updateOverlay();
+      });
+      a.addEventListener("play", this._onPlay);
+      a.addEventListener("loadedmetadata", this._onLoadedMetaData);
+      document.addEventListener("visibilitychange", this._onVisibilityChange);
+      window.addEventListener("resize", this._updateOverlay);
+      this._qrEnginePromise = e.createQrEngine();
+    }
+    static set WORKER_PATH(a) {
+      console.warn("Setting QrScanner.WORKER_PATH is not required and not supported anymore. Have a look at the README for new setup instructions.");
+    }
+    static async hasCamera() {
+      try {
+        return !!(await e.listCameras(false)).length;
+      } catch (a) {
+        return false;
+      }
+    }
+    static async listCameras(a = false) {
+      if (!navigator.mediaDevices)
+        return [];
+      let b = async () => (await navigator.mediaDevices.enumerateDevices()).filter((d) => d.kind === "videoinput"), c;
+      try {
+        a && (await b()).every((d) => !d.label) && (c = await navigator.mediaDevices.getUserMedia({ audio: false, video: true }));
+      } catch (d) {
+      }
+      try {
+        return (await b()).map((d, f) => ({ id: d.deviceId, label: d.label || (f === 0 ? "Default Camera" : `Camera ${f + 1}`) }));
+      } finally {
+        c && (console.warn("Call listCameras after successfully starting a QR scanner to avoid creating a temporary video stream"), e._stopVideoStream(c));
+      }
+    }
+    async hasFlash() {
+      let a;
+      try {
+        if (this.$video.srcObject) {
+          if (!(this.$video.srcObject instanceof MediaStream))
+            return false;
+          a = this.$video.srcObject;
+        } else
+          a = (await this._getCameraStream()).stream;
+        return "torch" in a.getVideoTracks()[0].getSettings();
+      } catch (b) {
+        return false;
+      } finally {
+        a && a !== this.$video.srcObject && (console.warn("Call hasFlash after successfully starting the scanner to avoid creating a temporary video stream"), e._stopVideoStream(a));
+      }
+    }
+    isFlashOn() {
+      return this._flashOn;
+    }
+    async toggleFlash() {
+      this._flashOn ? await this.turnFlashOff() : await this.turnFlashOn();
+    }
+    async turnFlashOn() {
+      if (!this._flashOn && !this._destroyed && (this._flashOn = true, this._active && !this._paused))
+        try {
+          if (!await this.hasFlash())
+            throw "No flash available";
+          await this.$video.srcObject.getVideoTracks()[0].applyConstraints({ advanced: [{ torch: true }] });
+        } catch (a) {
+          throw this._flashOn = false, a;
+        }
+    }
+    async turnFlashOff() {
+      this._flashOn && (this._flashOn = false, await this._restartVideoStream());
+    }
+    destroy() {
+      this.$video.removeEventListener("loadedmetadata", this._onLoadedMetaData);
+      this.$video.removeEventListener("play", this._onPlay);
+      document.removeEventListener("visibilitychange", this._onVisibilityChange);
+      window.removeEventListener("resize", this._updateOverlay);
+      this._destroyed = true;
+      this._flashOn = false;
+      this.stop();
+      e._postWorkerMessage(this._qrEnginePromise, "close");
+    }
+    async start() {
+      if (this._destroyed)
+        throw Error("The QR scanner can not be started as it had been destroyed.");
+      if (!this._active || this._paused) {
+        if (window.location.protocol !== "https:" && console.warn("The camera stream is only accessible if the page is transferred via https."), this._active = true, !document.hidden)
+          if (this._paused = false, this.$video.srcObject)
+            await this.$video.play();
+          else
+            try {
+              let { stream: a, facingMode: b } = await this._getCameraStream();
+              !this._active || this._paused ? e._stopVideoStream(a) : (this._setVideoMirror(b), this.$video.srcObject = a, await this.$video.play(), this._flashOn && (this._flashOn = false, this.turnFlashOn().catch(() => {
+              })));
+            } catch (a) {
+              if (!this._paused)
+                throw this._active = false, a;
+            }
+      }
+    }
+    stop() {
+      this.pause();
+      this._active = false;
+    }
+    async pause(a = false) {
+      this._paused = true;
+      if (!this._active)
+        return true;
+      this.$video.pause();
+      this.$overlay && (this.$overlay.style.display = "none");
+      let b = () => {
+        this.$video.srcObject instanceof MediaStream && (e._stopVideoStream(this.$video.srcObject), this.$video.srcObject = null);
+      };
+      if (a)
+        return b(), true;
+      await new Promise((c) => setTimeout(c, 300));
+      if (!this._paused)
+        return false;
+      b();
+      return true;
+    }
+    async setCamera(a) {
+      a !== this._preferredCamera && (this._preferredCamera = a, await this._restartVideoStream());
+    }
+    static async scanImage(a, b, c, d, f = false, h = false) {
+      let m, n = false;
+      b && ("scanRegion" in b || "qrEngine" in b || "canvas" in b || "disallowCanvasResizing" in b || "alsoTryWithoutScanRegion" in b || "returnDetailedScanResult" in b) ? (m = b.scanRegion, c = b.qrEngine, d = b.canvas, f = b.disallowCanvasResizing || false, h = b.alsoTryWithoutScanRegion || false, n = true) : b || c || d || f || h ? console.warn("You're using a deprecated api for scanImage which will be removed in the future.") : console.warn("Note that the return type of scanImage will change in the future. To already switch to the new api today, you can pass returnDetailedScanResult: true.");
+      b = !!c;
+      try {
+        let p, k;
+        [c, p] = await Promise.all([c || e.createQrEngine(), e._loadImage(a)]);
+        [d, k] = e._drawToCanvas(p, m, d, f);
+        let q;
+        if (c instanceof Worker) {
+          let g = c;
+          b || e._postWorkerMessageSync(g, "inversionMode", "both");
+          q = await new Promise((l, v) => {
+            let w, u, r, y = -1;
+            u = (t) => {
+              t.data.id === y && (g.removeEventListener("message", u), g.removeEventListener("error", r), clearTimeout(w), t.data.data !== null ? l({ data: t.data.data, cornerPoints: e._convertPoints(t.data.cornerPoints, m) }) : v(e.NO_QR_CODE_FOUND));
+            };
+            r = (t) => {
+              g.removeEventListener("message", u);
+              g.removeEventListener("error", r);
+              clearTimeout(w);
+              v("Scanner error: " + (t ? t.message || t : "Unknown Error"));
+            };
+            g.addEventListener("message", u);
+            g.addEventListener("error", r);
+            w = setTimeout(() => r("timeout"), 1e4);
+            let x = k.getImageData(0, 0, d.width, d.height);
+            y = e._postWorkerMessageSync(g, "decode", x, [x.data.buffer]);
+          });
+        } else
+          q = await Promise.race([new Promise((g, l) => window.setTimeout(() => l("Scanner error: timeout"), 1e4)), (async () => {
+            try {
+              var [g] = await c.detect(d);
+              if (!g)
+                throw e.NO_QR_CODE_FOUND;
+              return { data: g.rawValue, cornerPoints: e._convertPoints(g.cornerPoints, m) };
+            } catch (l) {
+              g = l.message || l;
+              if (/not implemented|service unavailable/.test(g))
+                return e._disableBarcodeDetector = true, e.scanImage(a, { scanRegion: m, canvas: d, disallowCanvasResizing: f, alsoTryWithoutScanRegion: h });
+              throw `Scanner error: ${g}`;
+            }
+          })()]);
+        return n ? q : q.data;
+      } catch (p) {
+        if (!m || !h)
+          throw p;
+        let k = await e.scanImage(a, { qrEngine: c, canvas: d, disallowCanvasResizing: f });
+        return n ? k : k.data;
+      } finally {
+        b || e._postWorkerMessage(c, "close");
+      }
+    }
+    setGrayscaleWeights(a, b, c, d = true) {
+      e._postWorkerMessage(this._qrEnginePromise, "grayscaleWeights", {
+        red: a,
+        green: b,
+        blue: c,
+        useIntegerApproximation: d
+      });
+    }
+    setInversionMode(a) {
+      e._postWorkerMessage(this._qrEnginePromise, "inversionMode", a);
+    }
+    static async createQrEngine(a) {
+      a && console.warn("Specifying a worker path is not required and not supported anymore.");
+      return !e._disableBarcodeDetector && "BarcodeDetector" in window && BarcodeDetector.getSupportedFormats && (await BarcodeDetector.getSupportedFormats()).includes("qr_code") ? new BarcodeDetector({ formats: ["qr_code"] }) : Promise.resolve().then(() => (init_qr_scanner_worker_min(), qr_scanner_worker_min_exports)).then((b) => b.createWorker());
+    }
+    _onPlay() {
+      this._scanRegion = this._calculateScanRegion(this.$video);
+      this._updateOverlay();
+      this.$overlay && (this.$overlay.style.display = "");
+      this._scanFrame();
+    }
+    _onLoadedMetaData() {
+      this._scanRegion = this._calculateScanRegion(this.$video);
+      this._updateOverlay();
+    }
+    _onVisibilityChange() {
+      document.hidden ? this.pause() : this._active && this.start();
+    }
+    _calculateScanRegion(a) {
+      let b = Math.round(2 / 3 * Math.min(a.videoWidth, a.videoHeight));
+      return {
+        x: Math.round((a.videoWidth - b) / 2),
+        y: Math.round((a.videoHeight - b) / 2),
+        width: b,
+        height: b,
+        downScaledWidth: this._legacyCanvasSize,
+        downScaledHeight: this._legacyCanvasSize
+      };
+    }
+    _updateOverlay() {
+      requestAnimationFrame(() => {
+        if (this.$overlay) {
+          var a = this.$video, b = a.videoWidth, c = a.videoHeight, d = a.offsetWidth, f = a.offsetHeight, h = a.offsetLeft, m = a.offsetTop, n = window.getComputedStyle(a), p = n.objectFit, k = b / c, q = d / f;
+          switch (p) {
+            case "none":
+              var g = b;
+              var l = c;
+              break;
+            case "fill":
+              g = d;
+              l = f;
+              break;
+            default:
+              (p === "cover" ? k > q : k < q) ? (l = f, g = l * k) : (g = d, l = g / k), p === "scale-down" && (g = Math.min(g, b), l = Math.min(l, c));
+          }
+          var [v, w] = n.objectPosition.split(" ").map((r, y) => {
+            const x = parseFloat(r);
+            return r.endsWith("%") ? (y ? f - l : d - g) * x / 100 : x;
+          });
+          n = this._scanRegion.width || b;
+          q = this._scanRegion.height || c;
+          p = this._scanRegion.x || 0;
+          var u = this._scanRegion.y || 0;
+          k = this.$overlay.style;
+          k.width = `${n / b * g}px`;
+          k.height = `${q / c * l}px`;
+          k.top = `${m + w + u / c * l}px`;
+          c = /scaleX\(-1\)/.test(a.style.transform);
+          k.left = `${h + (c ? d - v - g : v) + (c ? b - p - n : p) / b * g}px`;
+          k.transform = a.style.transform;
+        }
+      });
+    }
+    static _convertPoints(a, b) {
+      if (!b)
+        return a;
+      let c = b.x || 0, d = b.y || 0, f = b.width && b.downScaledWidth ? b.width / b.downScaledWidth : 1;
+      b = b.height && b.downScaledHeight ? b.height / b.downScaledHeight : 1;
+      for (let h of a)
+        h.x = h.x * f + c, h.y = h.y * b + d;
+      return a;
+    }
+    _scanFrame() {
+      !this._active || this.$video.paused || this.$video.ended || ("requestVideoFrameCallback" in this.$video ? this.$video.requestVideoFrameCallback.bind(this.$video) : requestAnimationFrame)(async () => {
+        if (!(1 >= this.$video.readyState)) {
+          var a = Date.now() - this._lastScanTimestamp, b = 1e3 / this._maxScansPerSecond;
+          a < b && await new Promise((d) => setTimeout(d, b - a));
+          this._lastScanTimestamp = Date.now();
+          try {
+            var c = await e.scanImage(this.$video, { scanRegion: this._scanRegion, qrEngine: this._qrEnginePromise, canvas: this.$canvas });
+          } catch (d) {
+            if (!this._active)
+              return;
+            this._onDecodeError(d);
+          }
+          !e._disableBarcodeDetector || await this._qrEnginePromise instanceof Worker || (this._qrEnginePromise = e.createQrEngine());
+          c ? (this._onDecode ? this._onDecode(c) : this._legacyOnDecode && this._legacyOnDecode(c.data), this.$codeOutlineHighlight && (clearTimeout(this._codeOutlineHighlightRemovalTimeout), this._codeOutlineHighlightRemovalTimeout = void 0, this.$codeOutlineHighlight.setAttribute("viewBox", `${this._scanRegion.x || 0} ${this._scanRegion.y || 0} ${this._scanRegion.width || this.$video.videoWidth} ${this._scanRegion.height || this.$video.videoHeight}`), this.$codeOutlineHighlight.firstElementChild.setAttribute("points", c.cornerPoints.map(({ x: d, y: f }) => `${d},${f}`).join(" ")), this.$codeOutlineHighlight.style.display = "")) : this.$codeOutlineHighlight && !this._codeOutlineHighlightRemovalTimeout && (this._codeOutlineHighlightRemovalTimeout = setTimeout(() => this.$codeOutlineHighlight.style.display = "none", 100));
+        }
+        this._scanFrame();
+      });
+    }
+    _onDecodeError(a) {
+      a !== e.NO_QR_CODE_FOUND && console.log(a);
+    }
+    async _getCameraStream() {
+      if (!navigator.mediaDevices)
+        throw "Camera not found.";
+      let a = /^(environment|user)$/.test(this._preferredCamera) ? "facingMode" : "deviceId", b = [{ width: { min: 1024 } }, { width: { min: 768 } }, {}], c = b.map((d) => Object.assign({}, d, { [a]: { exact: this._preferredCamera } }));
+      for (let d of [...c, ...b])
+        try {
+          let f = await navigator.mediaDevices.getUserMedia({ video: d, audio: false }), h = this._getFacingMode(f) || (d.facingMode ? this._preferredCamera : this._preferredCamera === "environment" ? "user" : "environment");
+          return { stream: f, facingMode: h };
+        } catch (f) {
+        }
+      throw "Camera not found.";
+    }
+    async _restartVideoStream() {
+      let a = this._paused;
+      await this.pause(true) && !a && this._active && await this.start();
+    }
+    static _stopVideoStream(a) {
+      for (let b of a.getTracks())
+        b.stop(), a.removeTrack(b);
+    }
+    _setVideoMirror(a) {
+      this.$video.style.transform = "scaleX(" + (a === "user" ? -1 : 1) + ")";
+    }
+    _getFacingMode(a) {
+      return (a = a.getVideoTracks()[0]) ? /rear|back|environment/i.test(a.label) ? "environment" : /front|user|face/i.test(a.label) ? "user" : null : null;
+    }
+    static _drawToCanvas(a, b, c, d = false) {
+      c = c || document.createElement("canvas");
+      let f = b && b.x ? b.x : 0, h = b && b.y ? b.y : 0, m = b && b.width ? b.width : a.videoWidth || a.width, n = b && b.height ? b.height : a.videoHeight || a.height;
+      d || (d = b && b.downScaledWidth ? b.downScaledWidth : m, b = b && b.downScaledHeight ? b.downScaledHeight : n, c.width !== d && (c.width = d), c.height !== b && (c.height = b));
+      b = c.getContext("2d", { alpha: false });
+      b.imageSmoothingEnabled = false;
+      b.drawImage(a, f, h, m, n, 0, 0, c.width, c.height);
+      return [c, b];
+    }
+    static async _loadImage(a) {
+      if (a instanceof Image)
+        return await e._awaitImageLoad(a), a;
+      if (a instanceof HTMLVideoElement || a instanceof HTMLCanvasElement || a instanceof SVGImageElement || "OffscreenCanvas" in window && a instanceof OffscreenCanvas || "ImageBitmap" in window && a instanceof ImageBitmap)
+        return a;
+      if (a instanceof File || a instanceof Blob || a instanceof URL || typeof a === "string") {
+        let b = new Image();
+        b.src = a instanceof File || a instanceof Blob ? URL.createObjectURL(a) : a.toString();
+        try {
+          return await e._awaitImageLoad(b), b;
+        } finally {
+          (a instanceof File || a instanceof Blob) && URL.revokeObjectURL(b.src);
+        }
+      } else
+        throw "Unsupported image type.";
+    }
+    static async _awaitImageLoad(a) {
+      a.complete && a.naturalWidth !== 0 || await new Promise((b, c) => {
+        let d = (f) => {
+          a.removeEventListener("load", d);
+          a.removeEventListener("error", d);
+          f instanceof ErrorEvent ? c("Image load error") : b();
+        };
+        a.addEventListener("load", d);
+        a.addEventListener("error", d);
+      });
+    }
+    static async _postWorkerMessage(a, b, c, d) {
+      return e._postWorkerMessageSync(await a, b, c, d);
+    }
+    static _postWorkerMessageSync(a, b, c, d) {
+      if (!(a instanceof Worker))
+        return -1;
+      let f = e._workerMessageId++;
+      a.postMessage({ id: f, type: b, data: c }, d);
+      return f;
+    }
+  };
+  e.DEFAULT_CANVAS_SIZE = 400;
+  e.NO_QR_CODE_FOUND = "No QR code found";
+  e._disableBarcodeDetector = false;
+  e._workerMessageId = 0;
+  var qr_scanner_min_default = e;
+
+  // src/utils/qr-scanner.ts
+  var initializeScanner = (onScan) => {
+    const scannerEl = document.querySelector("#qr-code-canvas");
+    return new qr_scanner_min_default(scannerEl, (result) => onScan?.(result), {
+      maxScansPerSecond: 20
+    });
+  };
+
+  // src/main.ts
+  var queryParams = new URLSearchParams(location.search);
+  var mode = queryParams.get("mode") || "generate";
+  var scanner;
+  var updateMode = (newMode) => {
+    mode = newMode;
+    const generate = mode === "generate";
+    const scan = mode === "scan";
+    const toggleElementClass = (selector, enabled, className = "hidden") => {
+      const el = document.querySelector(selector);
+      if (el) {
+        if (!enabled) {
+          el.classList.add(className);
+        } else {
+          el.classList.remove(className);
+        }
+      }
+    };
+    toggleElementClass("#mode-generate-button", !generate, "primary");
+    toggleElementClass("#mode-scan-button", !scan, "primary");
+    toggleElementClass(".input-row", generate);
+    toggleElementClass(".qr-code-container", generate);
+    toggleElementClass(".qr-scanner-container", scan);
+    toggleElementClass("#button-download", generate);
+    if (scan) {
+      scanner = initializeScanner((result) => console.log(result));
+    } else {
+      scanner?.stop();
+      scanner?.destroy();
+    }
+  };
+  updateMode(mode);
+  var canvas = document.querySelector("#qr-code-canvas");
+  var canvasTimeout;
+  var updateQrCode = () => {
+    debounce(canvasTimeout, 400, () => paintQrCodeToCanvas(input.value, canvas));
+  };
+  var body = document.querySelector("body");
+  body.onresize = updateQrCode;
+  var input = document.querySelector("#url-input");
+  input.oninput = updateQrCode;
+  var modeGenerateButton = document.querySelector("#mode-generate-button");
+  modeGenerateButton.onclick = () => {
+    updateMode("generate");
+  };
+  var modeScanButton = document.querySelector("#mode-scan-button");
+  modeScanButton.onclick = () => {
+    updateMode("scan");
+  };
+  var githubButton = document.querySelector("#button-github");
+  githubButton.onclick = () => {
+    window.open("https://github.com/rodolfoThePig/easy-qr-code");
+  };
+  var pasteButton = document.querySelector("#button-paste");
+  pasteButton.onclick = async () => {
+    const clipboard = await navigator.clipboard.readText();
+    if (typeof clipboard === "string") {
+      input.value = clipboard;
+      updateQrCode();
+    }
+  };
+  var clearButton = document.querySelector("#button-clear");
+  clearButton.onclick = () => {
+    input.value = "";
+    updateQrCode();
+  };
+  var copyButton = document.querySelector("#button-copy");
+  copyButton.onclick = async () => {
+    const blob = await qrCodeToBlob(input.value, canvas);
+    navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+  };
+  var downloadButton = document.querySelector("#button-download");
+  downloadButton.onclick = async () => {
+    const blob = await qrCodeToBlob(input.value, canvas);
+    downloadBlob(blob, "Qr-code.png");
+  };
+  var shareButton = document.querySelector("#button-share");
+  shareButton.onclick = async () => {
+    const blob = await qrCodeToBlob(input.value, canvas);
+    shareBlobImage(blob, "Qr-code.png");
+  };
+})();
 /*!
  * The buffer module from node.js, for the browser.
  *
